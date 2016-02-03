@@ -1,0 +1,14 @@
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\App.g.i.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\App.g.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\MainPage.g.i.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\MainPage.g.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\Resources\Dictionary.g.i.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\Resources\Dictionary.g.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\XamlTypeInfo.g.cs
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\App.xaml
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\MainPage.xaml
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\Resources\Dictionary.xaml
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\App.xbf
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\MainPage.xbf
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\Resources\Dictionary.xbf
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_03\TickTick\TickTick.Windows\obj\ARM\Debug\XamlSaveStateFile.xml

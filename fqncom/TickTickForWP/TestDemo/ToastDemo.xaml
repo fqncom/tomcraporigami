@@ -1,0 +1,180 @@
+﻿<Page x:Class="TestDemo.ToastDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:drawerLayout="using:DrawerLayout"
+      xmlns:local="using:TestDemo"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <Grid>
+        <!--<StackPanel Background="AliceBlue">
+            <Button Click="Button_Click"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_1"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_2"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_3"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_4"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_5"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_6"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_7"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+            <Button Click="Button_Click_8"
+                    Content="开起一个toast通知"
+                    Foreground="Black" />
+
+        </StackPanel>-->
+        <Grid x:Name="gridPopupTasks"
+              Background="White"
+              Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Pivot Grid.Row="0" Background="Black">
+                    <Pivot.TitleTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock FontSize="32" Text="TICKTICK" />
+                                <TextBlock FontSize="32"
+                                           FontWeight="Light"
+                                           Text="买火车票" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Pivot.TitleTemplate>
+                    <Pivot.HeaderTemplate>
+                        <DataTemplate>
+                            <Border Width="360">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0"
+                                               FontSize="24"
+                                               Text="2:16 PM" />
+                                    <TextBlock Grid.Column="1"
+                                               HorizontalAlignment="Right"
+                                               FontSize="24"
+                                               Text="1 of 2" />
+                                    <SymbolIcon Grid.Column="2" Symbol="Go" />
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </Pivot.HeaderTemplate>
+                    <PivotItem />
+                    <PivotItem />
+                    <PivotItem />
+                    <PivotItem />
+                    <PivotItem />
+                </Pivot>
+
+                <Grid Grid.Row="1" Background="Black">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            Content="推迟" />
+                    <Button Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Content="完成" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Background="Black"
+                  Opacity="0.2" />
+
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid Background="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+                    <TextBlock FontSize="32" Text="TICKTICK" />
+                    <TextBlock FontSize="32"
+                               FontWeight="Light"
+                               Text="买火车票" />
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               FontSize="24"
+                               Text="2:16 PM" />
+                    <TextBlock Grid.Column="1"
+                               HorizontalAlignment="Right"
+                               FontSize="24"
+                               Text="1 of 2" />
+                    <SymbolIcon Grid.Column="2" Symbol="Go" />
+                </Grid>
+                <ComboBox Grid.Row="2">
+                    <ComboBoxItem Content="1 tian " />
+                    <ComboBoxItem Content="1 tian " />
+                    <ComboBoxItem Content="1 tian " />
+                    <ComboBoxItem Content="1 tian " />
+                    <ComboBoxItem Content="1 tian " />
+                </ComboBox>
+                <Grid Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            HorizontalAlignment="Center"
+                            Content="推迟" />
+                    <Button Grid.Column="1"
+                            HorizontalAlignment="Center"
+                            Content="完成" />
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Background="Black"
+                  Opacity="0.2" />
+        </Grid>
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Icon="Add" />
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="优先级" />
+                <AppBarButton Label="发送" />
+                <AppBarButton Label="删除" />
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+</Page>

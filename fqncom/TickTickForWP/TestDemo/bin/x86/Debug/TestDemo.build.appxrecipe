@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>FQN-PC</Machine>
+    <WindowsUser>fqn</WindowsUser>
+    <TargetPlatformIdentifier>WindowsPhoneApp</TargetPlatformIdentifier>
+    <SolutionConfiguration>Debug|x86</SolutionConfiguration>
+    <PackageArchitecture>x86</PackageArchitecture>
+    <PackageIdentityName>d3dcdfcf-7a82-4600-a721-d6cfcec93528</PackageIdentityName>
+    <IntermediateOutputPath>D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\obj\x86\Debug\</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\TestDemo.exe">
+      <PackagePath>TestDemo.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\DDay.iCal.1.0.2.575\lib\DDay.iCal.dll">
+      <PackagePath>DDay.iCal.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\DrawerLayout.1.0.4\lib\DrawerLayout.dll">
+      <PackagePath>DrawerLayout.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\Newtonsoft.Json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar.dll">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization.dll">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Gauge.dll">
+      <PackagePath>WinRTXamlToolkit.Controls.Gauge.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging.dll">
+      <PackagePath>WinRTXamlToolkit.Debugging.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.dll">
+      <PackagePath>WinRTXamlToolkit.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\NotificationsExtensions\bin\x86\Debug\NotificationsExtensions.winmd">
+      <PackagePath>NotificationsExtensions.winmd</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\add_members_btn_pressed.png">
+      <PackagePath>Assets\add_members_btn_pressed.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\btn_check_on_holo_dark.png">
+      <PackagePath>Assets\btn_check_on_holo_dark.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\drawer_icon.png">
+      <PackagePath>Assets\drawer_icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\ic_menu_move_list_normal_light.png">
+      <PackagePath>Assets\ic_menu_move_list_normal_light.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\ic_mp_move_light.png">
+      <PackagePath>Assets\ic_mp_move_light.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\list_add_btn_icon_pressed_light.png">
+      <PackagePath>Assets\list_add_btn_icon_pressed_light.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\Logo.scale-240.png">
+      <PackagePath>Assets\Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\remind_icon.png">
+      <PackagePath>Assets\remind_icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\repeat_icon.png">
+      <PackagePath>Assets\repeat_icon.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\SmallLogo.scale-240.png">
+      <PackagePath>Assets\SmallLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\SplashScreen.scale-240.png">
+      <PackagePath>Assets\SplashScreen.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\Square71x71Logo.scale-240.png">
+      <PackagePath>Assets\Square71x71Logo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\StoreLogo.scale-240.png">
+      <PackagePath>Assets\StoreLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\task_move_add_group_light.png">
+      <PackagePath>Assets\task_move_add_group_light.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\WideLogo.scale-240.png">
+      <PackagePath>Assets\WideLogo.scale-240.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\widget_btn_check_buttonless_off_blue.png">
+      <PackagePath>Assets\widget_btn_check_buttonless_off_blue.png</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\Assets\avatar.jpg">
+      <PackagePath>Assets\avatar.jpg</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\App.xbf">
+      <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\BackTaskDemo.xbf">
+      <PackagePath>BackTaskDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\BasicPage1.xbf">
+      <PackagePath>BasicPage1.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\DataDemo.xbf">
+      <PackagePath>DataDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\Dictionary1.xbf">
+      <PackagePath>Dictionary1.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\FontDemo.xbf">
+      <PackagePath>FontDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\JsonDemo.xbf">
+      <PackagePath>JsonDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\ListViewItemDemo.xbf">
+      <PackagePath>ListViewItemDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\MainPage.xbf">
+      <PackagePath>MainPage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\NotificationDemo.xbf">
+      <PackagePath>NotificationDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\PivotDemo.xbf">
+      <PackagePath>PivotDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\RruleDemo.xbf">
+      <PackagePath>RruleDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\TextBlockDemo.xbf">
+      <PackagePath>TextBlockDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\ToastDemo.xbf">
+      <PackagePath>ToastDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\UIDemo.xbf">
+      <PackagePath>UIDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\WebViewDemo.xbf">
+      <PackagePath>WebViewDemo.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\TestDemo.xr.xml">
+      <PackagePath>TestDemo.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\WinRTXamlToolkit.xr.xml">
+      <PackagePath>WinRTXamlToolkit\WinRTXamlToolkit.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\AlternativeFrame\AlternativeFrame.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\AnimatingContainer\AnimatingContainer.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\AnimatingContainer\AnimatingContainer.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\AutoCompleteTextBox\AutoCompleteTextBox.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\AutoCompleteTextBox\AutoCompleteTextBox.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\CameraCaptureControl\CameraCaptureControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\CascadingImageControl\CascadingImageControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\CascadingTextBlock\CascadingTextBlock.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\CascadingTextBlock\CascadingTextBlock.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ColorPicker\ColorPicker.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\CountdownControl\CountdownControl.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\CountdownControl\CountdownControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\CustomGridSplitter\CustomGridSplitter.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\DelayedLoadControl\DelayedLoadControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\FocusVisualizer\FocusVisualizer.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\FocusVisualizer\FocusVisualizer.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\FxContentControl\FxContentControl.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\FxContentControl\FxContentControl.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ImageButton\ImageButton.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ImageButton\ImageButton.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ImageToggleButton\ImageToggleButton.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\InputDialog\InputDialog.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\InputDialog\InputDialog.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ListItemButton\ListItemButton.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\NumericUpDown\NumericUpDown.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ToolStrip\ToolStrip.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ToolStrip\ToolStrip.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\ToolWindow\ToolWindow.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\ToolWindow\ToolWindow.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\TreeView\TreeView.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\TreeView\TreeViewItem.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewItem.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\TreeView\TreeViewMouse.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewMouse.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\TreeView\TreeViewTouch.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\TreeView\TreeViewTouch.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\WatermarkPasswordBox\WatermarkPasswordBox.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.xbf">
+      <PackagePath>WinRTXamlToolkit\Controls\WatermarkTextBox\WatermarkTextBox.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit\Themes\Generic.xbf">
+      <PackagePath>WinRTXamlToolkit\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.xr.xml">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Calendar.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Calendar.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButton.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButton.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButton.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButton.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarItem.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarItem.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Calendar.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Calendar\Themes\Generic.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Calendar\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.xr.xml">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\WinRTXamlToolkit.Controls.DataVisualization.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\AxisLabel.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\AxisLabel.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\DateTimeAxisLabel.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\DateTimeAxisLabel.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\DisplayAxis.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\DisplayAxis.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\NumericAxisLabel.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\NumericAxisLabel.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\RangeAxis.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Axis\RangeAxis.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart\Chart.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Chart\Chart.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\AreaDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\AreaDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\BarDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\BarDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\BubbleDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\BubbleDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\ColumnDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\ColumnDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\LineDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\LineDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\PieDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\PieDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\ScatterDataPoint.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\DataPoint\ScatterDataPoint.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives\DelegatingListBox.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Primitives\DelegatingListBox.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\AreaSeries.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\AreaSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\DataPointSeries.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\DataPointSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\DefinitionSeries.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\DefinitionSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\LegendItem.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\LegendItem.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\LineSeries.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\LineSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\PieSeries.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Charting\Series\PieSeries.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Legend\Legend.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Legend\Legend.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Themes\Generic.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.DataVisualization.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.DataVisualization\Title\Title.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.DataVisualization\Title\Title.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.xr.xml">
+      <PackagePath>WinRTXamlToolkit.Controls.Gauge\WinRTXamlToolkit.Controls.Gauge.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Controls.Gauge.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Controls.Gauge\Themes\Generic.xbf">
+      <PackagePath>WinRTXamlToolkit.Controls.Gauge\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.xr.xml">
+      <PackagePath>WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.xr.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBox.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBox.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBoxItem.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBoxItem.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Themes\Generic.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Themes\Generic.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Themes\SharedResources.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Themes\SharedResources.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\DebugConsoleView.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\DebugConsoleView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\DependencyObjectDetailsView.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\DependencyObjectDetailsView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\ElementListWindow.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\ElementListWindow.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\FocusTrackerWindow.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\FocusTrackerWindow.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\HighlightOverlay.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\HighlightOverlay.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertiesView.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertiesView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\VisualTreeView.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\VisualTreeView.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\BooleanPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\BooleanPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\BrushPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\BrushPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\CacheModePropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\CacheModePropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\CornerRadiusPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\CornerRadiusPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\DefaultPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\DefaultPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\DependencyObjectPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\DependencyObjectPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\EnumPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\EnumPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\FontWeightPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\FontWeightPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\ImageSourcePropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\ImageSourcePropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\NumericPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\NumericPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\PropertyEditorFooter.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\PropertyEditorFooter.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\StringPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\StringPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\packages\WinRTXamlToolkit.Debugging.WindowsPhone.1.8.1.0\lib\wpa\WinRTXamlToolkit.Debugging\Views\PropertyEditors\ThicknessPropertyEditor.xbf">
+      <PackagePath>WinRTXamlToolkit.Debugging\Views\PropertyEditors\ThicknessPropertyEditor.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\bin\x86\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>

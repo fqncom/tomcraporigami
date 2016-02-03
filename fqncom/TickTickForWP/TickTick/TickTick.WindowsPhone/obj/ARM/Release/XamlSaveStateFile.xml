@@ -1,0 +1,9 @@
+<XamlCompilerSaveState>
+  <ReferenceAssemblyList>
+    <LocalAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_03\ticktick\ticktick.windowsphone\obj\arm\release\intermediatexaml\ticktick.windowsphone.exe" HashGuid="ef56fa03-7f7d-192c-f2fe-7e2380085644" />
+    <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_03\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_03\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.interfaces.dll" HashGuid="4bc0ba33-49d2-a760-504b-85e280d4ae29" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_03\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.logging.dll" HashGuid="3d3a781d-406a-ea81-559a-2319b0a0825f" />
+  </ReferenceAssemblyList>
+</XamlCompilerSaveState>

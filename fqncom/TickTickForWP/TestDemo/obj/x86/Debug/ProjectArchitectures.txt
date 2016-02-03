@@ -1,0 +1,2 @@
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\NotificationsExtensions\NotificationsExtensions.csproj;x86
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_08\TestDemo\TestDemo.csproj;x86

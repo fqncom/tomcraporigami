@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="TestDemo.WebViewDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:drawerLayout="using:DrawerLayout"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Grid>
+        <!--<drawerLayout:DrawerLayout x:Name="drawerLayout" Margin="0,-38,0,0">
+            <Grid>
+                <Pivot Margin="0,0,0,0">
+                    <PivotItem>
+                        <WebView x:Name="webView">
+
+                        </WebView>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+            <Grid>
+                <StackPanel>
+                    <TextBox x:Name="txtUrl" PlaceholderText="请输入地址"/>
+                    <SymbolIcon Symbol="Add" Tapped="SymbolIcon_Tapped"/>
+                    <ListView>
+                        <ListViewItem Tapped="ListViewItem_Tapped">
+                            <TextBlock x:Name="txtUrlShow"/>
+                        </ListViewItem>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </drawerLayout:DrawerLayout>-->
+        <drawerLayout:DrawerLayout  x:Name="drawerLayout" Margin="0,0,0,0">
+
+            <Grid x:Name="MainFragment" Background="White">
+
+                <WebView x:Name="webView" />
+            </Grid>
+
+            <Grid x:Name="ListFragment" Background="DarkGray">
+                <StackPanel>
+                    <TextBox x:Name="txtUrl" PlaceholderText="请输入地址"/>
+                    <Viewbox Width="50">
+                        <SymbolIcon Symbol="Add" Tapped="SymbolIcon_Tapped"/>
+                    </Viewbox>
+                    <ListView x:Name="listView" ItemClick="ListViewItem_Tapped" IsItemClickEnabled="True"/>
+
+
+                </StackPanel>
+            </Grid>
+        </drawerLayout:DrawerLayout>
+    </Grid>
+</Page>

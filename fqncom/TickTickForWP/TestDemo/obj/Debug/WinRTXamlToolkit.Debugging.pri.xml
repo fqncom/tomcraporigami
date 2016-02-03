@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="WinRTXamlToolkit.Debugging" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="WinRTXamlToolkit.Debugging">
+				<NamedResource name="WinRTXamlToolkit.Debugging.xr.xml" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/WinRTXamlToolkit.Debugging.xr.xml">
+					<Candidate type="Path">
+						<Value>WinRTXamlToolkit.Debugging\WinRTXamlToolkit.Debugging.xr.xml</Value>
+					</Candidate>
+				</NamedResource>
+				<ResourceMapSubtree name="Controls">
+					<ResourceMapSubtree name="EditableListBox">
+						<NamedResource name="EditableListBox.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Controls/EditableListBox/EditableListBox.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBox.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="EditableListBoxItem.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Controls/EditableListBox/EditableListBoxItem.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Controls\EditableListBox\EditableListBoxItem.xbf</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Themes/Generic.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Themes\Generic.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="SharedResources.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Themes/SharedResources.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Themes\SharedResources.xbf</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Views">
+					<NamedResource name="DebugConsoleView.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/DebugConsoleView.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\DebugConsoleView.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="DependencyObjectDetailsView.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/DependencyObjectDetailsView.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\DependencyObjectDetailsView.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="ElementListWindow.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/ElementListWindow.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\ElementListWindow.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="FocusTrackerWindow.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/FocusTrackerWindow.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\FocusTrackerWindow.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="HighlightOverlay.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/HighlightOverlay.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\HighlightOverlay.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="PropertiesView.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertiesView.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\PropertiesView.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<NamedResource name="VisualTreeView.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/VisualTreeView.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Debugging\Views\VisualTreeView.xbf</Value>
+						</Candidate>
+					</NamedResource>
+					<ResourceMapSubtree name="PropertyEditors">
+						<NamedResource name="BooleanPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/BooleanPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\BooleanPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="BrushPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/BrushPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\BrushPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="CacheModePropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/CacheModePropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\CacheModePropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="CornerRadiusPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/CornerRadiusPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\CornerRadiusPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="DefaultPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/DefaultPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\DefaultPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="DependencyObjectPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/DependencyObjectPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\DependencyObjectPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="EnumPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/EnumPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\EnumPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="FontWeightPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/FontWeightPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\FontWeightPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="ImageSourcePropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/ImageSourcePropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\ImageSourcePropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="NumericPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/NumericPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\NumericPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="PropertyEditorFooter.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/PropertyEditorFooter.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\PropertyEditorFooter.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="StringPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/StringPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\StringPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="ThicknessPropertyEditor.xbf" uri="ms-resource://WinRTXamlToolkit.Debugging/Files/WinRTXamlToolkit.Debugging/Views/PropertyEditors/ThicknessPropertyEditor.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Debugging\Views\PropertyEditors\ThicknessPropertyEditor.xbf</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

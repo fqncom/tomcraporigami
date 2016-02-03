@@ -1,0 +1,147 @@
+﻿<Page
+    x:Class="TestDemo.ListViewItemDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <Page.Resources>
+        <Storyboard x:Name="sbShowListViewItem">
+            <DoubleAnimation 
+                Storyboard.TargetName="listView" 
+                Storyboard.TargetProperty="Height"
+                Duration="0:0:2" 
+                From="0" To="200" 
+                EnableDependentAnimation="True"/>
+        </Storyboard>
+    </Page.Resources>
+    <StackPanel>
+        <Button Content="开始listview动画" Click="Button_Click"/>
+        <!--<ListView ItemClick="Button_Click">
+            <ListViewItem>
+                <Border>
+                    <Grid>
+                        <TextBlock Text="测试1"/>
+                        <ListView Margin="30" x:Name="listView" Height="0">
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </ListViewItem>
+            <ListViewItem>
+                <Border>
+                    <Grid>
+                        <TextBlock Text="测试1"/>
+                        <ListView Margin="30">
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </ListViewItem>
+            <ListViewItem>
+                <Border>
+                    <Grid>
+                        <TextBlock Text="测试1"/>
+                        <ListView Margin="30">
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </ListViewItem>
+            <ListViewItem>
+                <Border>
+                    <Grid>
+                        <TextBlock Text="测试1"/>
+                        <ListView Margin="30">
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </ListViewItem>
+            <ListViewItem>
+                <Border>
+                    <Grid>
+                        <TextBlock Text="测试1"/>
+                        <ListView Margin="30">
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                            <ListViewItem>
+                                <TextBlock Text="测试"/>
+                            </ListViewItem>
+                        </ListView>
+                    </Grid>
+                </Border>
+            </ListViewItem>
+        </ListView>-->
+    </StackPanel>
+</Page>

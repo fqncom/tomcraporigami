@@ -1,0 +1,315 @@
+﻿<Page x:Class="TickTick.Views.SignInPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TickTick.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="sbShowLogo">
+            <DoubleAnimation Duration="0:0:5"
+                             EnableDependentAnimation="True"
+                             From="0"
+                             Storyboard.TargetName="imgLogo"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Pivot x:Name="pivotParent" Title="滴答清单">
+            <PivotItem x:Name="pivotMain" Margin="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Image x:Name="imageLogo"
+                           Grid.Row="0"
+                           Source="ms-appx:///Assets/Images/dida365_logo.png" />
+                    <Border x:ConnectionId='1' Grid.Row="1"
+                            Margin="24,10"
+                            Background="#FF66CCFF"
+                            BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            Padding="5"
+                                                      >
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="Black"
+                                   Text="登  入" />
+                    </Border>
+                    <Border x:ConnectionId='2' Grid.Row="2"
+                            Margin="24,10"
+                            Background="#FFE4E4E4"
+                            BorderBrush="Gray"
+                            BorderThickness="0.5"
+                            Padding="5"
+                                                        >
+                        <TextBlock HorizontalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="Black"
+                                   Text="注  册" />
+                    </Border>
+                    <Button x:ConnectionId='3' x:Name="btnSwap"
+                            Grid.Row="3"
+                            HorizontalAlignment="Center"
+                                                       
+                            Content="切换至TickTick"
+                            Foreground="Gray" />
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Name="pivotSignIn" Margin="0">
+                <PivotItem.Header>
+                    <TextBlock Foreground="Black" Text="登入" />
+                </PivotItem.Header>
+                <Grid Margin="24,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox x:Name="txtEmail"
+                             Grid.Row="0"
+                             BorderBrush="Black"
+                             BorderThickness="2"
+                             FontSize="24"
+                             Foreground="Black"
+                             Header="邮箱"
+                             InputScope="EmailSmtpAddress"
+                             PlaceholderText="请输入邮箱地址"
+                             Text="chenchao21@gmail.com">
+
+                        <TextBox.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="24"
+                                           Foreground="Black"
+                                           Text="邮箱" />
+                            </DataTemplate>
+                        </TextBox.HeaderTemplate>
+                        <!--<TextBox.Header>
+                            <TextBlock Text="邮箱" Foreground="Black"/>
+                        </TextBox.Header>-->
+                    </TextBox>
+                    <PasswordBox x:Name="txtPassword"
+                                 Grid.Row="1"
+                                 BorderBrush="Black"
+                                 BorderThickness="2"
+                                 FontSize="24"
+                                 Foreground="Black"
+                                 Header="密码"
+                                 Password="111111"
+                                 PlaceholderText="请输入密码">
+
+                        <PasswordBox.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="24"
+                                           Foreground="Black"
+                                           Text="密码" />
+                            </DataTemplate>
+                        </PasswordBox.HeaderTemplate>
+                        <!--<TextBox.Header>
+                            <TextBlock Text="密码" Foreground="Black"/>
+                        </TextBox.Header>-->
+                    </PasswordBox>
+                    <Grid Grid.Row="3" Margin="0,0,0,24">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   Margin="0,5"
+                                   FontSize="18"
+                                   Foreground="Black"
+                                   Text="使用合作账户登入" />
+                        <Image Grid.Row="1"
+                               Grid.Column="0"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/qq_signin_logo.png" />
+                        <Image Grid.Row="1"
+                               Grid.Column="2"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/wechat_signin_logo.png" />
+                        <Image Grid.Row="1"
+                               Grid.Column="4"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/weibo_signin_logo.png" />
+                    </Grid>
+                </Grid>
+            </PivotItem>
+            <PivotItem x:Name="pivotRegister" Margin="0">
+                <PivotItem.Header>
+                    <TextBlock Foreground="Black" Text="注册" />
+                </PivotItem.Header>
+                <Grid Margin="24,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0"
+                             BorderBrush="Black"
+                             BorderThickness="2"
+                             FontSize="24"
+                             Header="邮箱"
+                             PlaceholderText="请输入邮箱地址">
+                        <TextBox.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="24"
+                                           Foreground="Black"
+                                           Text="邮箱" />
+                            </DataTemplate>
+                        </TextBox.HeaderTemplate>
+                        <!--<TextBox.Header>
+                            <TextBlock Text="邮箱"/>
+                        </TextBox.Header>-->
+                    </TextBox>
+                    <TextBox Grid.Row="1"
+                             BorderBrush="Black"
+                             BorderThickness="2"
+                             FontSize="24"
+                             Foreground="Black"
+                             Header="密码"
+                             PlaceholderText="请输入密码">
+
+                        <TextBox.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock FontSize="24"
+                                           Foreground="Black"
+                                           Text="密码" />
+                            </DataTemplate>
+                        </TextBox.HeaderTemplate>
+                        <!--<TextBox.Header>
+                            <TextBlock Text="密码" Foreground="Black"/>
+                        </TextBox.Header>-->
+                    </TextBox>
+                    <Grid Grid.Row="3" Margin="0,0,0,24">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="0.7*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="3"
+                                   Margin="0,5"
+                                   FontSize="18"
+                                   Foreground="Black"
+                                   Text="使用合作账户登入" />
+                        <Image Grid.Row="1"
+                               Grid.Column="0"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/qq_signin_logo.png" />
+                        <Image Grid.Row="1"
+                               Grid.Column="2"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/wechat_signin_logo.png" />
+                        <Image Grid.Row="1"
+                               Grid.Column="4"
+                               Source="ms-appx:///Assets/Images/Cooperators_logo/weibo_signin_logo.png" />
+                    </Grid>
+                </Grid>
+            </PivotItem>
+        </Pivot>
+
+    </Grid>
+    <Page.BottomAppBar>
+        <CommandBar Background="#FFDDDDDD" Foreground="Black">
+            <AppBarButton x:ConnectionId='4' x:Name="appBarSignIn"
+                                                          
+                          Icon="Contact"
+                          Label="登入" />
+            <AppBarButton x:ConnectionId='5'                         
+                          Icon="Back"
+                          Label="返回" />
+        </CommandBar>
+    </Page.BottomAppBar>
+    <!--<Grid>
+    <Grid Background="SkyBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+    -->
+    <!--  头像部分  -->
+    <!--
+        <Grid Grid.Row="0" Height="240">
+            <Ellipse Width="150" Height="150" Stroke="Gray" StrokeThickness="5">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="ms-appx:///Assets/Images/avatar.jpg"/>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Border
+                Background="White"
+                BorderBrush="Blue"
+                VerticalAlignment="Top"
+                BorderThickness="0.4"
+                CornerRadius="10,10,0,0"
+                Margin="15,0"
+                Height="55">
+                <TextBox
+                    x:Name="txtUsername"
+                    x:Uid="UsernameTextBox"
+                    PlaceholderText="Input your username"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="0"
+                    BorderBrush="{x:Null}"
+                    Margin="10"
+                    InputScope="EmailSmtpAddress"
+                    Foreground="Black"
+                    Text="chenchao21@gmail.com"/>
+            </Border>
+            <Border
+                Background="White"
+                BorderBrush="Blue"
+                VerticalAlignment="Top"
+                BorderThickness="0.4"
+                CornerRadius="0,0,10,10"
+                Margin="15,55,15,0"
+                Height="55">
+                <PasswordBox
+                    x:Name="txtPassword"
+                    x:Uid="PasswordPasswordBox"
+                    PlaceholderText="Input you password"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    BorderThickness="0"
+                    BorderBrush="{x:Null}"
+                    Margin="10"
+                    Foreground="Black"
+                    Password="111111"/>
+            </Border>
+        </Grid>
+        <Border Grid.Row="2" HorizontalAlignment="Center" CornerRadius="15" BorderBrush="White" BorderThickness="3" Height="50" Tapped="btnLoginConfirm_Clicked">
+            <TextBlock Text="LoginIn" FontSize="28" VerticalAlignment="Center"/>
+        </Border>
+
+        </Grid>
+
+        <Grid x:Name="gridLogoShow" Background="White">
+            <Image x:Name="imgLogo" Opacity="0" Source="ms-appx:///Assets/Images/ticktick_logo.png"/>
+        </Grid>
+    </Grid>-->
+</Page>
+

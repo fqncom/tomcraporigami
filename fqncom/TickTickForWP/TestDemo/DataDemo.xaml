@@ -1,0 +1,19 @@
+﻿<Page x:Class="TestDemo.DataDemo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:TestDemo"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+      mc:Ignorable="d">
+
+    <StackPanel>
+        <Button Click="Button_Click" Content="日期转换" />
+        <TextBlock x:Name="txtNow" />
+        <TextBlock x:Name="txtDate" />
+        <TextBlock x:Name="txtMilliSeconds" />
+        <TextBlock x:Name="txtDatetimeConvert" />
+        <TextBlock x:Name="txtDatetimeConvert2" />
+        <TextBlock x:Name="txtDatetimeConvert3" />
+    </StackPanel>
+</Page>

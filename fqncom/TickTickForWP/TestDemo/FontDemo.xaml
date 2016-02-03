@@ -1,0 +1,33 @@
+﻿<Page
+    x:Class="TestDemo.FontDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+        <Button Content="ceshi" FontSize="200" Margin="30" Click="Button_Click"/>
+        <TextBlock x:Name="txtMsg" />
+        <!--<Popup x:Name="pop" Width="20" Height="20">
+            <Grid>
+                <TextBlock Text="heh"/>
+                <Pivot >
+                    <PivotItem>
+                        <TextBlock Text="ceshi "/>
+                    </PivotItem>
+                    <PivotItem>
+                        <TextBlock Text="ceshi "/>
+                    </PivotItem>
+                    <PivotItem>
+                        <TextBlock Text="ceshi "/>
+                    </PivotItem>
+                </Pivot>
+            </Grid>
+        </Popup>-->
+        <TextBlock x:Name="txtWidth" x:Uid="txtWidth" Text="hehe" Width="100" Height="20"/>
+        <TextBlock x:Name="txtHeight" x:Uid="txtHeight" FontSize="30" Text="hehe" Width="100" Height="20"/>
+    </StackPanel>
+</Page>

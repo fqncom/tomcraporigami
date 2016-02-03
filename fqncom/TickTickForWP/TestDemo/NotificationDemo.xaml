@@ -1,0 +1,21 @@
+﻿<Page
+    x:Class="TestDemo.NotificationDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:TestDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <!--<StackPanel>
+        <Button Content="ToastText01模板通知" x:Name="toastText01" Click="toastText01_Click" Width="370"></Button>
+        <Button Content="ToastText02模板通知" x:Name="toastText02" Click="toastText02_Click" Width="370"></Button>
+        <Button Content="XML模板通知" x:Name="toastXML" Click="toastXML_Click" Width="370"></Button>
+        <Button Content="定时通知" x:Name="scheduledToast" Click="scheduledToast_Click" Width="370"></Button>
+        <TextBlock x:Name="info"></TextBlock>
+    </StackPanel>-->
+    <Grid>
+        <Button Click="Button_Click" Content="点击"/>
+    </Grid>
+</Page>
