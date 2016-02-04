@@ -1,0 +1,79 @@
+﻿@using System.Collections.Concurrent
+@model fqn.MVC_EF.IDal.UserInfo
+@ValidateRequestMode.Disabled
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Adminstrator/Views/Shared/MainMaster.cshtml";
+}
+@section head
+{
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script>
+        alert('哈哈');
+    </script>
+}
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UserInfo</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CreateTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CreateTime)
+            @Html.ValidationMessageFor(model => model.CreateTime)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+
+    <div>
+        @Html.RadioButton("sex", "nan", new { id = "sex", @class = "sex14", })
+        @Html.RadioButton("sex", "nv", new { id = "sex2", @class = "sex14", @checked = true })
+
+        @Html.RadioButton("sex", "mid", new { id = "sex1", @class = "sex14", })
+
+        @Html.TextArea("userMsg", "", 10, 10, new { id = "15", @class = "15", })
+        @Html.TextAreaFor(u => u.Password)
+        @Html.ActionLink("这个是一个超链接", "Index")
+        <!--/*Html.DropDownList(ViewData.Model.Name)*/-->
+        @Html.GetSpanString("啊手动阀手动阀");
+
+        @Html.GetSpanString("啊手动阀手动阀");
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }*@
