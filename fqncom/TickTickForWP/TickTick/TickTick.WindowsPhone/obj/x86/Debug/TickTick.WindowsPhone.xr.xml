@@ -22,10 +22,6 @@
     <RootPropertyPathName Name="DueTime" />
     <RootPropertyPathName Name="UserProfile" />
     <RootPropertyPathName Name="Password" />
-    <RootPropertyPathName Name="IsShowCompletedList" />
-    <RootPropertyPathName Name="IsShow7DaysList" />
-    <RootPropertyPathName Name="IsShowTodayList" />
-    <RootPropertyPathName Name="IsShowAllList" />
     <RootPropertyPathName Name="SettingItem" />
     <RootPropertyPathName Name="SettingItemAbout" />
     <RootPropertyPathName Name="SettingItemHelps" />
@@ -54,6 +50,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="VerticalContentAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Setter">
@@ -80,7 +77,6 @@
       <RootProperty Name="Orientation" />
       <RootProperty Name="Children" />
       <RootProperty Name="Margin" />
-      <RootProperty Name="Visibility" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
       <RootProperty Name="Margin" />
@@ -121,8 +117,6 @@
       <RootMethod Name="SetRow" />
       <RootMethod Name="GetColumn" />
       <RootMethod Name="SetColumn" />
-      <RootMethod Name="GetRowSpan" />
-      <RootMethod Name="SetRowSpan" />
       <RootMethod Name="GetColumnSpan" />
       <RootMethod Name="SetColumnSpan" />
     </RootType>
@@ -189,12 +183,13 @@
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Button">
       <RootProperty Name="Content" />
-      <RootProperty Name="Foreground" />
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="FontWeight" />
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Padding" />
       <RootEvent Name="Click" />
@@ -202,8 +197,8 @@
     <RootType FullName="Windows.UI.Xaml.Controls.TextBox">
       <RootProperty Name="Text" />
       <RootProperty Name="HeaderTemplate" />
-      <RootProperty Name="PlaceholderText" />
       <RootProperty Name="Header" />
+      <RootProperty Name="PlaceholderText" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="FontSize" />
@@ -228,6 +223,7 @@
       <RootProperty Name="VerticalScrollBarVisibility" />
       <RootProperty Name="VerticalScrollMode" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Padding" />
       <RootEvent Name="ViewChanging" />
       <RootMethod Name="GetHorizontalScrollMode" />
       <RootMethod Name="SetHorizontalScrollMode" />
@@ -237,9 +233,9 @@
     <RootType FullName="Windows.UI.Xaml.Controls.ListView">
       <RootProperty Name="Margin" />
       <RootProperty Name="IsItemClickEnabled" />
+      <RootProperty Name="ItemContainerStyle" />
       <RootProperty Name="ItemTemplate" />
       <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ItemContainerStyle" />
       <RootProperty Name="ShowsScrollingPlaceholders" />
       <RootProperty Name="Style" />
       <RootProperty Name="Visibility" />
@@ -300,8 +296,8 @@
       <RootProperty Name="OnContent" />
       <RootProperty Name="HeaderTemplate" />
       <RootProperty Name="Header" />
-      <RootProperty Name="IsOn" />
       <RootProperty Name="Tag" />
+      <RootEvent Name="Toggled" />
     </RootType>
     <RootType FullName="TickTick.Views.SettingDetailPage" />
     <RootType FullName="Windows.UI.Xaml.Controls.Pivot">

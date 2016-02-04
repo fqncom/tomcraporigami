@@ -7,9 +7,142 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
-
     <Page.Resources>
-        <!--<DataTemplate x:Name="comboSnooze">
+
+        <!--<SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="Transparent" />
+        <Thickness x:Key="ComboBoxBorderThemeThickness">2.5</Thickness>
+        <FontFamily x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
+        <x:Double x:Key="ContentControlFontSize">20.26</x:Double>
+        <x:Double x:Key="ComboBoxItemMinHeightThemeSize">33.5</x:Double>
+        <Thickness x:Key="ComboBoxPlaceholderTextThemeMargin">6.5,0.8</Thickness>
+        <Thickness x:Key="PhoneTouchTargetOverhang">0,9.5</Thickness>
+        <Style x:Key="PlaceholderContentPresenterStyle" TargetType="ContentPresenter">
+            <Setter Property="Foreground" Value="Blue" />
+        </Style>
+        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundThemeBrush" Color="Transparent" />-->
+
+
+    </Page.Resources>
+    <!--<Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <CommonNavigationTransitionInfo IsStaggeringEnabled="True" />
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>-->
+    <StackPanel Background="White">
+        <!--<StackPanel>
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   Source="Assets/all_edit_index_light1.png"
+                   Stretch="None" />
+
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Source="Assets/ic_action_today_pressed1.png"
+                   Stretch="None" />
+            <Image Grid.Row="0"
+                   Grid.Column="2"
+                   Source="Assets/list_edit_index_light1.png"
+                   Stretch="None" />
+            <Image Grid.Row="0"
+                   Grid.Column="3"
+                   Source="Assets/inbox_edit_index_light1.png"
+                   Stretch="None" />
+
+        </StackPanel>-->
+        <StackPanel x:Name="stack">
+
+            <Rectangle Width="40"
+                       Height="40"
+                       Stroke="Red"
+                       StrokeThickness="1" />
+            <Rectangle Width="32"
+                       Height="32"
+                       Stroke="Red"
+                       StrokeThickness="1" />
+            <Image Source="Assets/ic_today_pressed1.png" Stretch="None" />
+            <Image x:Name="ImageTemp"
+                   Source="Assets/ic_action_pressed1.png"
+                   Stretch="None" />
+            <Image x:Name="Image"
+                   Source="Assets/ic_action_today_pressed1.png"
+                   Stretch="None" />
+            <Image x:Name="ImageTest" Source="Assets/所有.png" Stretch="None" />
+            <Image Source="Assets/所有1.png" Stretch="None" />
+            <Image Source="Assets/所有2.png" Stretch="None" />
+            <Image Source="Assets/所有3.png" Stretch="None" />
+            <TextBlock x:Name="text"
+                       FontSize="30"
+                       Foreground="Black"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+    </StackPanel>
+
+    <!--<StackPanel Background="Black" >
+        <ListView>
+
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True" />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " CommonNavigationTransitionInfo.IsStaggerElement="True"/>
+            </ListViewItem>
+        </ListView>
+        <ListView>
+
+            <ListViewItem>
+                <TextBlock Text="ceshi "  />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " />
+            </ListViewItem>
+            <ListViewItem>
+                <TextBlock Text="ceshi " />
+            </ListViewItem>
+        </ListView>
+    -->
+    <!--<ComboBox Foreground="Black" SelectedIndex="0">
+            <ComboBox.Resources>
+                <Style x:Key="PlaceholderContentPresenterStyle" TargetType="ContentPresenter">
+                    <Setter Property="Foreground" Value="Yellow" />
+                </Style>
+            </ComboBox.Resources>
+            <ComboBoxItem Content="ceshi" />
+            <ComboBoxItem Content="ceshi" />
+            <ComboBoxItem Content="ceshi" />
+            <ComboBoxItem Content="ceshi" />
+            <ComboBoxItem Content="ceshi" />
+        </ComboBox>-->
+    <!--
+    </StackPanel>-->
+
+    <!--<Page.Resources>
+    -->
+    <!--<DataTemplate x:Name="comboSnooze">
             <ComboBox>
                 <ComboBoxItem Content="ceshi" />
                 <ComboBoxItem Content="ceshi" />
@@ -20,7 +153,7 @@
         </DataTemplate>-->
 
 
-        <!--<Style x:Key="TimePickerStyle1" TargetType="TimePicker">
+    <!--<Style x:Key="TimePickerStyle1" TargetType="TimePicker">
 
             <Setter Property="Template">
                 <Setter.Value>
@@ -53,6 +186,7 @@
                 </Setter.Value>
             </Setter>
         </Style>-->
+    <!--
 
         <SolidColorBrush x:Key="ComboBoxDisabledBackgroundThemeBrush" Color="Transparent" />
         <Thickness x:Key="PhoneBorderThickness">2.5</Thickness>
@@ -336,7 +470,9 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <!--<ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FlowDirection="{TemplateBinding FlowDirection}" HorizontalAlignment="Left" Margin="0,0,0,-4.5" Style="{StaticResource HeaderContentPresenterStyle}" Visibility="Collapsed"/>-->
+    -->
+    <!--<ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FlowDirection="{TemplateBinding FlowDirection}" HorizontalAlignment="Left" Margin="0,0,0,-4.5" Style="{StaticResource HeaderContentPresenterStyle}" Visibility="Collapsed"/>-->
+    <!--
                             <Button x:Name="FlyoutButton"
                                     Grid.Row="1"
                                     MinHeight="{ThemeResource ComboBoxItemMinHeightThemeSize}"
@@ -394,25 +530,250 @@
             </Setter>
         </Style>
         <SolidColorBrush x:Key="TextBoxPlaceholderTextThemeBrush" Color="Green" />
+        <SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="Transparent"/>
+        <Thickness x:Key="ComboBoxBorderThemeThickness">2.5</Thickness>
+        <x:Double x:Key="ContentControlFontSize">20.26</x:Double>
+        <x:Double x:Key="ComboBoxItemMinHeightThemeSize">33.5</x:Double>
+        <Thickness x:Key="ComboBoxPlaceholderTextThemeMargin">6.5,0.8</Thickness>
+        <Style x:Key="ComboBoxStyle2" TargetType="ComboBox">
+        	<Setter Property="Foreground" Value="{ThemeResource ComboBoxForegroundThemeBrush}"/>
+        	<Setter Property="Background" Value="{ThemeResource ComboBoxBackgroundThemeBrush}"/>
+        	<Setter Property="BorderBrush" Value="{ThemeResource ComboBoxBorderThemeBrush}"/>
+        	<Setter Property="BorderThickness" Value="{ThemeResource ComboBoxBorderThemeThickness}"/>
+        	<Setter Property="HorizontalContentAlignment" Value="Left"/>
+        	<Setter Property="FontFamily" Value="{ThemeResource PhoneFontFamilyNormal}"/>
+        	<Setter Property="FontSize" Value="{ThemeResource ContentControlFontSize}"/>
+        	<Setter Property="Margin" Value="0"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="ComboBox">
+        				<Grid x:Name="ComboBoxGrid">
+        					<Grid.RowDefinitions>
+        						<RowDefinition Height="Auto"/>
+        						<RowDefinition Height="Auto"/>
+        					</Grid.RowDefinitions>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualStateGroup.Transitions>
+        								<VisualTransition From="Pressed" To="PointerOver">
+        									<Storyboard>
+        										<PointerUpThemeAnimation Storyboard.TargetName="Background"/>
+        									</Storyboard>
+        								</VisualTransition>
+        								<VisualTransition From="PointerOver" To="Normal">
+        									<Storyboard>
+        										<PointerUpThemeAnimation Storyboard.TargetName="Background"/>
+        										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextBlock">
+        											<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource PhoneMidBrush}"/>
+        										</ObjectAnimationUsingKeyFrames>
+        										<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PlaceholderTextBlock">
+        											<DiscreteObjectKeyFrame KeyTime="0" Value="1"/>
+        										</ObjectAnimationUsingKeyFrames>
+        									</Storyboard>
+        								</VisualTransition>
+        								<VisualTransition From="Pressed" To="Normal">
+        									<Storyboard>
+        										<PointerUpThemeAnimation Storyboard.TargetName="Background"/>
+        									</Storyboard>
+        								</VisualTransition>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="Normal">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="{ThemeResource ComboBoxFlyoutListPlaceholderTextOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PlaceholderTextBlock"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="PointerOver"/>
+        							<VisualState x:Name="Pressed">
+        								<Storyboard>
+        									<PointerDownThemeAnimation Storyboard.TargetName="Background"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxPressedBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxPressedBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="UserControl">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxPressedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Highlighted">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxHighlightedBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxHighlightedBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="UserControl">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxHighlightedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Disabled">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="HeaderContentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="FlyoutButton">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="UserControl">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextBlock">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PlaceholderTextBlock"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="PlaceholderTextContentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxDisabledForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="DropDownStates">
+        							<VisualState x:Name="Opened">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0:0:0.25" EnableDependentAnimation="True" From="{Binding TemplateSettings.DropDownClosedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" To="{Binding TemplateSettings.DropDownOpenedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetProperty="Height" Storyboard.TargetName="ItemsPresenterHost">
+        										<DoubleAnimation.EasingFunction>
+        											<ExponentialEase EasingMode="EaseInOut" Exponent="6"/>
+        										</DoubleAnimation.EasingFunction>
+        									</DoubleAnimation>
+        									<DoubleAnimation Duration="0:0:0.25" To="{Binding TemplateSettings.DropDownOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetProperty="Y" Storyboard.TargetName="ItemsPresenterTranslateTransform">
+        										<DoubleAnimation.EasingFunction>
+        											<ExponentialEase EasingMode="EaseInOut" Exponent="6"/>
+        										</DoubleAnimation.EasingFunction>
+        									</DoubleAnimation>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="UserControl">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Background">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxHighlightedBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="UserControl">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource ComboBoxHighlightedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Closed">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0:0:0.2" EnableDependentAnimation="True" From="{Binding TemplateSettings.DropDownOpenedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" To="{Binding TemplateSettings.DropDownClosedHeight, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetProperty="Height" Storyboard.TargetName="ItemsPresenterHost">
+        										<DoubleAnimation.EasingFunction>
+        											<ExponentialEase EasingMode="EaseInOut" Exponent="6"/>
+        										</DoubleAnimation.EasingFunction>
+        									</DoubleAnimation>
+        									<DoubleAnimation Duration="0:0:0.2" To="{Binding TemplateSettings.DropDownOffset, RelativeSource={RelativeSource Mode=TemplatedParent}}" Storyboard.TargetProperty="Y" Storyboard.TargetName="ItemsPresenterTranslateTransform">
+        										<DoubleAnimation.EasingFunction>
+        											<ExponentialEase EasingMode="EaseInOut" Exponent="6"/>
+        										</DoubleAnimation.EasingFunction>
+        									</DoubleAnimation>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="PresenterStates">
+        							<VisualState x:Name="Full"/>
+        							<VisualState x:Name="InlineNormal">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="FlyoutButton">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ShortListOuterBorder">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="InlinePlaceholder">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="FlyoutButton">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ShortListOuterBorder">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PlaceholderTextContentPresenter"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ItemsPresenter"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<ContentPresenter x:Name="HeaderContentPresenter" ContentTemplate="{TemplateBinding HeaderTemplate}" Content="{TemplateBinding Header}" FlowDirection="{TemplateBinding FlowDirection}" HorizontalAlignment="Left" Margin="0,0,0,-4.5" Style="{StaticResource HeaderContentPresenterStyle}" Visibility="Collapsed"/>
+        					<Button x:Name="FlyoutButton" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" FontWeight="Normal" FlowDirection="{TemplateBinding FlowDirection}" FontSize="{ThemeResource ContentControlFontSize}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left" MinHeight="{ThemeResource ComboBoxItemMinHeightThemeSize}" Padding="6.5,0,0,0" Grid.Row="1" Foreground="#FF5B2222">
+        						<ContentPresenter x:Name="ContentPresenter" Margin="0,0.8,0,0" MinHeight="32.5" Foreground="#FF5D1818">
+        							<TextBlock x:Name="PlaceholderTextBlock" Margin="0" Style="{StaticResource ComboBoxPlaceholderTextBlockStyle}" Text="{TemplateBinding PlaceholderText}" Foreground="#FF20999E"/>
+        						</ContentPresenter>
+        					</Button>
+        					<Border x:Name="ShortListOuterBorder" Margin="{ThemeResource PhoneTouchTargetOverhang}" Grid.Row="1" Visibility="Collapsed">
+        						<Border x:Name="Background" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+        							<UserControl x:Name="UserControl" Foreground="{TemplateBinding Foreground}" FlowDirection="{TemplateBinding FlowDirection}" IsHitTestVisible="False">
+        								<Canvas x:Name="ItemsPresenterHost" HorizontalAlignment="Left" MinHeight="{ThemeResource ComboBoxItemMinHeightThemeSize}">
+        									<ContentPresenter x:Name="PlaceholderTextContentPresenter" Content="{TemplateBinding PlaceholderText}" Margin="{ThemeResource ComboBoxPlaceholderTextThemeMargin}" Opacity="0" Style="{StaticResource PlaceholderContentPresenterStyle}" Foreground="#99BD2F2F"/>
+        									<ItemsPresenter x:Name="ItemsPresenter" Margin="0,0.8,0,0">
+        										<ItemsPresenter.RenderTransform>
+        											<TranslateTransform x:Name="ItemsPresenterTranslateTransform"/>
+        										</ItemsPresenter.RenderTransform>
+        									</ItemsPresenter>
+        								</Canvas>
+        							</UserControl>
+        						</Border>
+        					</Border>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </Page.Resources>
 
-    <StackPanel>
-        <ProgressBar IsEnabled="True" Value="30" FontSize="60">
+    <StackPanel Background="White">
+        <ComboBox Foreground="#FFDE3F3F" Style="{StaticResource ComboBoxStyle2}" Background="#FFF0D7D7">
+            <ComboBox.Resources>
+
+            </ComboBox.Resources>
+            <ComboBoxItem>
+                <TextBlock Text="ceshi" />
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock Text="ceshi" />
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock Text="ceshi" />
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock Text="ceshi" />
+            </ComboBoxItem>
+            <ComboBoxItem>
+                <TextBlock Text="ceshi" />
+            </ComboBoxItem>
+        </ComboBox>
+    -->
+    <!--<Button Click="Button_Click" Content="ceshi "></Button>
+        <TextBlock x:Name="text"></TextBlock>-->
+    <!--<ProgressBar IsEnabled="True" Value="30" FontSize="60">
         </ProgressBar>
-        
+
         <ProgressRing IsActive="True">
-            
+
         </ProgressRing>
         <ProgressRing IsActive="False">
 
-        </ProgressRing>
-        <!--<ListView Background="Green">
-            --><!--<ListView.ItemContainerStyle>
+        </ProgressRing>-->
+    <!--<ListView Background="Green">
+    -->
+    <!--<ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="VerticalContentAlignment" Value="Center" />
                     <Setter Property="Height" Value="41.25" />
                 </Style>
-            </ListView.ItemContainerStyle>--><!--
+            </ListView.ItemContainerStyle>-->
+    <!--
             <ListViewItem>
                 <TextBlock Height="31"
                            Text="ceshi yong deshuju "
@@ -431,7 +792,7 @@
                 <TextBlock Text="ceshi yong deshuju " />
             </ListViewItem>
         </ListView>-->
-        <!--<ListView>
+    <!--<ListView>
             <ListViewItem>
                 <Grid Height="60">
                     <Grid.ColumnDefinitions>
@@ -493,9 +854,10 @@
                 </Grid>
             </ListViewItem>
         </ListView>-->
-        <!--<TextBlock FontSize="48"
+    <!--<TextBlock FontSize="48"
                    Text="上周 重复设置收尾（兼容多闹钟）（1）50% 第一版本整体功能性收尾（1）80% 数据绑定代码优化。listview等（0.5）100% 出完整体验版本。（0.5） 接入字符串（0.5）0% 准备开始接入UI（0.5）80% 备注：重复设置类库不可用。字符串没有。UI上有部分需求变动，实现花了点时间。 上周 重复设置收尾（兼容多闹钟）（1）50% 第一版本整体功能性收尾（1）80% 数据绑定代码优化。listview等（0.5）100% 出完整体验版本。（0.5） 接入字符串（0.5）0% 准备开始接入UI（0.5）80% 备注：重复设置类库不可用。字符串没有。UI上有部分需求变动，实现花了点时间。 上周 重复设置收尾（兼容多闹钟）（1）50% 第一版本整体功能性收尾（1）80% 数据绑定代码优化。listview等（0.5）100% 出完整体验版本。（0.5） 接入字符串（0.5）0% 准备开始接入UI（0.5）80% 备注：重复设置类库不可用。字符串没有。UI上有部分需求变动，实现花了点时间。 上周 重复设置收尾（兼容多闹钟）（1）50% 第一版本整体功能性收尾（1）80% 数据绑定代码优化。listview等（0.5）100% 出完整体验版本。（0.5） 接入字符串（0.5）0% 准备开始接入UI（0.5）80% 备注：重复设置类库不可用。字符串没有。UI上有部分需求变动，实现花了点时间。 "
                    TextWrapping="WrapWholeWords" />-->
+    <!--
     </StackPanel>
     <Page.BottomAppBar>
         <CommandBar Background="White"
@@ -527,6 +889,7 @@
         </CommandBar>
     </Page.BottomAppBar>
 
+    -->
     <!--<StackPanel Orientation="Horizontal">
     -->
     <!--<ComboBox Width="260"

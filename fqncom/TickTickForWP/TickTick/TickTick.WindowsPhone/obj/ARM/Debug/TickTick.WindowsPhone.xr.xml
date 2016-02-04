@@ -50,6 +50,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
+      <RootProperty Name="Padding" />
       <RootProperty Name="VerticalContentAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Setter">
@@ -188,6 +189,7 @@
       <RootProperty Name="FontSize" />
       <RootProperty Name="Foreground" />
       <RootProperty Name="HorizontalContentAlignment" />
+      <RootProperty Name="FontWeight" />
       <RootProperty Name="IsEnabled" />
       <RootProperty Name="Padding" />
       <RootEvent Name="Click" />
@@ -221,6 +223,7 @@
       <RootProperty Name="VerticalScrollBarVisibility" />
       <RootProperty Name="VerticalScrollMode" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Padding" />
       <RootEvent Name="ViewChanging" />
       <RootMethod Name="GetHorizontalScrollMode" />
       <RootMethod Name="SetHorizontalScrollMode" />

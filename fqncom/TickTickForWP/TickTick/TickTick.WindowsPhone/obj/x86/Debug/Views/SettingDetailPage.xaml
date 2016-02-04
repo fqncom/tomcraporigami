@@ -72,30 +72,22 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
-                <ToggleSwitch Grid.Row="0"
+                <ToggleSwitch x:ConnectionId='1' x:Name="toggleAll" Grid.Row="0"
                               Header="所有"
-                              IsOn="{Binding UserProfile.IsShowAllList,
-                                             Mode=TwoWay,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                              Tag="All" />
-                <ToggleSwitch Grid.Row="1"
+                              
+                              Tag="All"                               />
+                <ToggleSwitch x:ConnectionId='2' x:Name="toggleToday" Grid.Row="1"
                               Header="今天"
-                              IsOn="{Binding UserProfile.IsShowTodayList,
-                                             Mode=TwoWay,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                              Tag="Today" />
-                <ToggleSwitch Grid.Row="2"
+                              
+                              Tag="Today"                               />
+                <ToggleSwitch x:ConnectionId='3' x:Name="toggle7Days" Grid.Row="2"
                               Header="最近7天"
-                              IsOn="{Binding UserProfile.IsShow7DaysList,
-                                             Mode=TwoWay,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                              Tag="Last7Days" />
-                <ToggleSwitch Grid.Row="3"
+                              
+                              Tag="Last7Days"                               />
+                <ToggleSwitch x:ConnectionId='4' x:Name="toggleCompleted" Grid.Row="3"
                               Header="已完成"
-                              IsOn="{Binding UserProfile.IsShowCompletedList,
-                                             Mode=TwoWay,
-                                             UpdateSourceTrigger=PropertyChanged}"
-                              Tag="Completed" />
+                              
+                              Tag="Completed"                                />
             </Grid>
             <Grid x:Name="gridEmailSetting"
                   Margin="24,0"

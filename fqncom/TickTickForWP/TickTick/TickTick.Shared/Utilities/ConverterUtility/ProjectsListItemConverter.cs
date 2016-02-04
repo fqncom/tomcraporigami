@@ -15,33 +15,41 @@ namespace TickTick.Utilities.ConverterUtility
         {
             var projects = value as Projects;
 
-            var basePath = "ms-appx:///Assets/Images/Scale-100/{0}";
-            if (projects == null || !projects.IsIntelligentProjects)
+            try
             {
-                return string.Format(basePath, "list_edit_index_light.png");
+                var basePath = "ms-appx:///Assets/Images/Scale-100/{0}";
+                if (projects == null || !projects.IsIntelligentProjects)
+                {
+                    return string.Format(basePath, "list_edit_index_light.png");
+                }
+                switch (projects.IntelligentProjectsTypeEnum)
+                {
+                    case IntelligentProjectsTypeEnum.IsShowTodayList:
+                        return string.Format(basePath, "ic_action_today_pressed1.png");
+                        break;
+                    case IntelligentProjectsTypeEnum.IsShowCompletedList:
+                        return string.Format(basePath, "list_edit_index_light1.png");
+                        break;
+                    case IntelligentProjectsTypeEnum.IsShowScheduledList:
+                        return string.Format(basePath, "list_edit_index_light1.png");// TODO 这个没有
+                        break;
+                    case IntelligentProjectsTypeEnum.IsShow7DaysList:
+                        return string.Format(basePath, "list_edit_index_light1.png");
+                        break;
+                    case IntelligentProjectsTypeEnum.IsShowAllList:
+                        return string.Format(basePath, "all_edit_index_light1.png");
+                        break;
+                    case IntelligentProjectsTypeEnum.IsInboxList:
+                        return string.Format(basePath, "inbox_edit_index_light1.png");
+                        break;
+                }
+                return string.Format(basePath + "{0}", "list_edit_index_light1.png");
             }
-            switch (projects.IntelligentProjectsTypeEnum)
+            catch (Exception e)
             {
-                case IntelligentProjectsTypeEnum.IsShowTodayList:
-                    return string.Format(basePath, "ic_action_today_pressed.png");
-                    break;
-                case IntelligentProjectsTypeEnum.IsShowCompletedList:
-                    return string.Format(basePath, "list_edit_index_light.png");
-                    break;
-                case IntelligentProjectsTypeEnum.IsShowScheduledList:
-                    return string.Format(basePath, "list_edit_index_light.png");// TODO 这个没有
-                    break;
-                case IntelligentProjectsTypeEnum.IsShow7DaysList:
-                    return string.Format(basePath, "list_edit_index_light.png");
-                    break;
-                case IntelligentProjectsTypeEnum.IsShowAllList:
-                    return string.Format(basePath, "all_edit_index_light.png");
-                    break;
-                case IntelligentProjectsTypeEnum.IsInboxList:
-                    return string.Format(basePath, "inbox_edit_index_light.png");
-                    break;
+                
+                throw e;
             }
-            return string.Format(basePath + "{0}", "list_edit_index_light.png");
             //if (!projects.IsIntelligentProjects)
             //{
             //    return string.Format(basePath + "{0}", "list_edit_index_light.png");

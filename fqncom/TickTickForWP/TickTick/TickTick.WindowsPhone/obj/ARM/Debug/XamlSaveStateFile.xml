@@ -1,12 +1,12 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
-    <LocalAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\ticktick\ticktick.windowsphone\obj\arm\debug\intermediatexaml\ticktick.windowsphone.exe" HashGuid="91df68c7-2338-67e1-8c75-87f17f13b913" />
+    <LocalAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\ticktick\ticktick.windowsphone\obj\arm\debug\intermediatexaml\ticktick.windowsphone.exe" HashGuid="7e1473f4-bab3-c08f-1169-f50dd4cf20ca" />
     <ReferenceAssembly PathName="c:\program files (x86)\microsoft sdks\windowsphoneapp\v8.1\extensionsdks\microsoft.vclibs\12.0\references\commonconfiguration\neutral\platform.winmd" HashGuid="58b6b6d1-928e-9908-9804-eb460e5e101b" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\packages\dday.ical.1.0.2.575\lib\dday.ical.dll" HashGuid="0910e1df-3a36-e726-db3c-896d3d1bd569" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\packages\nodatime.1.3.1\lib\portable-net4+sl5+netcore45+wpa81+wp8+monoandroid1+monotouch1+xamarinios1\nodatime.dll" HashGuid="b7202b8c-c2ca-408b-52d8-4d9bf7a2b6c1" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\notificationsextensions\bin\arm\debug\notificationsextensions.winmd" HashGuid="71623a7a-63ca-f809-1344-0df1a606674a" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.interfaces.dll" HashGuid="4bc0ba33-49d2-a760-504b-85e280d4ae29" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_10\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.logging.dll" HashGuid="3d3a781d-406a-ea81-559a-2319b0a0825f" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\dday.ical.1.0.2.575\lib\dday.ical.dll" HashGuid="0910e1df-3a36-e726-db3c-896d3d1bd569" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\nodatime.1.3.1\lib\portable-net4+sl5+netcore45+wpa81+wp8+monoandroid1+monotouch1+xamarinios1\nodatime.dll" HashGuid="b7202b8c-c2ca-408b-52d8-4d9bf7a2b6c1" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\notificationsextensions\bin\arm\debug\notificationsextensions.winmd" HashGuid="71623a7a-63ca-f809-1344-0df1a606674a" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.interfaces.dll" HashGuid="4bc0ba33-49d2-a760-504b-85e280d4ae29" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\windowsuniversallogger.1.0.1\lib\wpa81\windowsuniversallogger.logging.dll" HashGuid="3d3a781d-406a-ea81-559a-2319b0a0825f" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

@@ -42,7 +42,7 @@
     <!--  列表长宽高度开始  -->
 
     <x:Double x:Key="NormalTasksLineHeight">68.75</x:Double>
-    <x:Double x:Key="NormalMainTitleBarLineHeight">68.75</x:Double>
+    <x:Double x:Key="NormalMainTitleBarLineHeight">75</x:Double>
     <x:Double x:Key="NormalMainBottomBarLineHeight">72.5</x:Double>
     <x:Double x:Key="NormalTasksContentLineHeight">100</x:Double>
     <x:Double x:Key="NormalTasksTitleLineHeight">43.75</x:Double>
@@ -75,14 +75,14 @@
     <!--  字体大小结束  -->
 
     <!--  透明度开始  -->
-    <x:Double x:Key="NormalOpacity">0.8</x:Double>
+    <x:Double x:Key="NormalOpacity">0.9</x:Double>
 
     <!--  透明度结束  -->
 
     <!--  外边距开始  -->
     <Thickness x:Key="NormalGridMarginThickness">22.5,0</Thickness>
     <Thickness x:Key="NormalListViewMarginThickness">0,36.25,0,0</Thickness>
-    <Thickness x:Key="NormalProjectsNameMarginThickness">22.5,0,0,0</Thickness>
+    <Thickness x:Key="NormalProjectsNameMarginThickness">22.5,0,10,0</Thickness>
     <Thickness x:Key="NormalTasksCheckIconMarginThickness">12.5,0,23.75,0</Thickness>
     <Thickness x:Key="NormalMainGridMarginThickness">15,0,15,0</Thickness>
     <Thickness x:Key="NormalProjectsListViewItemMarginThickness">0,0,0,10</Thickness>
@@ -103,7 +103,7 @@
     <Thickness x:Key="BoldBorderThickness">4</Thickness>
     <Thickness x:Key="NormalBorderThickness">2</Thickness>
     <Thickness x:Key="ThinBorderThickness">1</Thickness>
-    <Thickness x:Key="NormalTopBorderThickness">0,2,0,0</Thickness>
+    <Thickness x:Key="NormalTopBorderThickness">0,1,0,0</Thickness>
     <Thickness x:Key="NormalCheckListItemContentBorderThickness">1,1,1,1</Thickness>
     <Thickness x:Key="NormalCheckListItemBarBorderThickness">0,1,1,1</Thickness>
     <Thickness x:Key="NormalTasksDateBarThiness">0,1,1,1</Thickness>
@@ -113,7 +113,7 @@
 
     <!--  内边距开始  -->
     <!--  this make the textbox content center  -->
-    <Thickness x:Key="NormalTasksContentPaddingThickness">3</Thickness>
+    <Thickness x:Key="NormalTasksContentPaddingThickness">10</Thickness>
     <!--  内边距结束  -->
 
 
@@ -140,7 +140,7 @@
     <SolidColorBrush x:Key="NormalButtonForegroudColor" Color="#5f7fb0" />
 
     <SolidColorBrush x:Key="NormalPickerBorderColor" Color="#dcdcdc" />
-    <SolidColorBrush x:Key="NormalSplitLineBorderColor" Color="#eeeeee" />
+    <SolidColorBrush x:Key="NormalSplitLineBorderColor" Color="#dcdcdc" />
 
     <SolidColorBrush x:Key="NormalMaskingBackgroudColor" Color="#dcdcdc" />
     <SolidColorBrush x:Key="NormalBackgroudColor" Color="#ffffff" />
@@ -156,7 +156,7 @@
     <!--  任务内容模块开始  -->
     <Style x:Key="NormalTasksContentStyle" TargetType="TextBox">
         <Setter Property="MinHeight" Value="{StaticResource NormalTasksContentLineHeight}" />
-        <!--<Setter Property="Padding" Value="{StaticResource NormalTasksContentPaddingThickness}" />-->
+        <Setter Property="Padding" Value="{StaticResource NormalTasksContentPaddingThickness}" />
         <Setter Property="Background" Value="{StaticResource NormalBackgroudColor}" />
         <Setter Property="Foreground" Value="{StaticResource NormalContentFontColor}" />
         <Setter Property="BorderThickness" Value="{StaticResource ThinBorderThickness}" />
@@ -181,7 +181,7 @@
         <Setter Property="FontSize" Value="{StaticResource NormalContentFontSize}" />
         <Setter Property="BorderBrush" Value="{StaticResource NormalContentBorderColor}" />
         <Setter Property="BorderThickness" Value="{StaticResource ThinBorderThickness}" />
-        <!--<Setter Property="Padding" Value="{StaticResource NormalTasksContentPaddingThickness}" />-->
+        <Setter Property="Padding" Value="{StaticResource NormalTasksContentPaddingThickness}" />
     </Style>
 
     <Style x:Key="NormalTasksCheckListItemContentStyle" TargetType="Border">
@@ -208,6 +208,12 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="{StaticResource NormalTasksCheckListItemLineHeight}" />
+    </Style>
+    <Style x:Key="NormalProjectsListItemContainerStyle" TargetType="ListViewItem">
+        <!--<Setter Property="Margin" Value="{StaticResource NormalTasksCheckListItemMarginThickness}" />-->
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <!--<Setter Property="MinHeight" Value="{StaticResource NormalTasksCheckListItemLineHeight}" />-->
     </Style>
 
     <!--<Style x:Key="NormalTasksTimePickerStyle" TargetType="DatePicker">
@@ -315,7 +321,7 @@
     <Style x:Key="NormalComboboxPickerStyle" TargetType="ComboBox">
         <Setter Property="Background" Value="{StaticResource NormalBackgroudColor}" />
         <Setter Property="Foreground" Value="{StaticResource NormalComboxSelectingFontColor}" />
-        <Setter Property="BorderBrush" Value="{StaticResource NormalComboxBorderColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NormalContentBorderColor}" />
         <Setter Property="BorderThickness" Value="{StaticResource ThinBorderThickness}" />
         <Setter Property="ItemContainerStyle">
             <Setter.Value>
@@ -333,7 +339,7 @@
     <!--  头像模块样式开始  -->
     <Style x:Key="NormalAvatarStyle" TargetType="Rectangle">
         <Setter Property="Stroke" Value="{StaticResource NormalAvatarBorderColor}" />
-        <Setter Property="StrokeThickness" Value="{StaticResource BoldBorderThickness}" />
+        <Setter Property="StrokeThickness" Value="{StaticResource NormalBorderThickness}" />
         <Setter Property="Width" Value="{StaticResource LargeIconWidth}" />
         <Setter Property="Height" Value="{StaticResource LargeIconHeight}" />
         <!--<Setter Property="Fill">-->
@@ -379,7 +385,7 @@
         <Setter Property="Height" Value="{StaticResource NormalMainBottomBarLineHeight}" />
         <Setter Property="Background" Value="{StaticResource NormalBackgroudColor}" />
         <Setter Property="Margin" Value="{StaticResource NormalBottomBarMarginThickness}" />
-        <Setter Property="BorderBrush" Value="{StaticResource NormalForegroudColor}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NormalSplitLineBorderColor}" />
         <Setter Property="BorderThickness" Value="{StaticResource NormalTopBorderThickness}" />
     </Style>
 
@@ -472,7 +478,7 @@
 
     <Style x:Key="NormalTasksDateStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource NormalDateFontSize}" />
-        <Setter Property="Foreground" Value="{StaticResource SmallDateContentFontColor}" />
+        <!--<Setter Property="Foreground" Value="{StaticResource SmallDateContentFontColor}" />-->
     </Style>
     <!--  Tasks列表模块样式结束  -->
 

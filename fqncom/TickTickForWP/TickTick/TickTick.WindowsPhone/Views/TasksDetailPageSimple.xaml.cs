@@ -14,8 +14,10 @@ using TickTick.Utilities;
 using TickTick.ViewModels;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Graphics.Display;
 using Windows.Phone.Notification.Management;
 using Windows.Phone.UI.Input;
+using Windows.UI;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -306,6 +308,8 @@ namespace TickTick.Views
             ViewModel.ChangeDueTime(newTime);// TODO 此处时间有问题，Utc时间
 
             ChangeRemindCmbSelectionToDefault();
+
+            
         }
         /// <summary>
         /// 提醒，选中默认的“在开始时间”
@@ -608,6 +612,34 @@ namespace TickTick.Views
                 ViewModel.Tasks.Title = content.Substring(0, content.IndexOf("\r\n", 0, StringComparison.Ordinal));
                 ViewModel.Tasks.Content = content.Substring(content.IndexOf("\r\n", 0, StringComparison.Ordinal));
             }
+        }
+
+        private void ClearTimePickerValue_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+            var rect = sender as Rectangle;
+            if (rect == null)
+            {
+                return;
+            }
+            var parentGrid = rect.Parent as Grid;
+            var button = parentGrid.FindName("FlyoutButton") as Button;
+            button.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            ViewModel.Tasks.DueDate = null;
+        }
+
+        private void ClearDatePickerValue_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+            var rect = sender as Rectangle;
+            if (rect == null)
+            {
+                return;
+            }
+            var parentGrid = rect.Parent as Grid;
+            var button = parentGrid.FindName("FlyoutButton") as Button;
+            button.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            ViewModel.Tasks.DueDate = null;
         }
 
 

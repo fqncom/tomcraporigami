@@ -9,6 +9,7 @@ using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Globalization;
+using Windows.Graphics.Display;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -19,6 +20,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Shapes;
+using WinRTXamlToolkit.Controls.Extensions;
 
 
 // “空白页”项模板在 http://go.microsoft.com/fwlink/?LinkID=390556 上有介绍
@@ -42,8 +44,34 @@ namespace TestDemo
         /// 此参数通常用于配置页。</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
             //this.listview.ItemsSource = new ObservableCollection<City> { new City("hehe ", 15), new City("hehe ", 15), new City("hehe ", 15), new City("hehe ", 15) };
             //this.calendar.DisplayDate = DateTime.Now;
+            var scaleEnum = DisplayInformation.GetForCurrentView().ResolutionScale;
+            ////var imageList = this.stack.GetChildren() ;
+            ////foreach (Image item in imageList)
+            ////{
+            ////    item.Height = 
+            ////}
+            double scale = 1;
+            switch (scaleEnum)
+            {
+
+                case ResolutionScale.Scale100Percent:
+                    scale = 1;
+                    break;
+                case ResolutionScale.Scale140Percent:
+                    scale = 1.4;
+                    break;
+                case ResolutionScale.Scale180Percent:
+                    scale = 1.8;
+                    break;
+            }
+            //this.ImageTemp.Source.SetValue(WidthProperty, this.Image.ActualHeight * scale)
+            //;
+            var bitmap = this.ImageTest.Source as BitmapImage;
+            var name = bitmap.UriSource.OriginalString;
+            this.text.Text = string.Format("当前分辨率:{0}\r\n,缩放比{1}\r\n,actualWidth:{2}\r\n,actualHeight{3}\r\n,boundsWidth{4}\r\n,boundsHeight{5}\r\n,当前最后一张图的文件名：{6}", scaleEnum.ToString(), scale, this.ActualWidth, this.ActualHeight, Window.Current.Bounds.Width, Window.Current.Bounds.Height,name);
 
         }
 
@@ -118,6 +146,13 @@ namespace TestDemo
 
         private void Rectangle_Tapped(object sender, TappedRoutedEventArgs e)
         {
+
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            var resolutionScale = DisplayInformation.GetForCurrentView().RawPixelsPerViewPixel;
+            //this.TxtResolutionScale.Text = resolutionScale.ToString();
 
         }
     }

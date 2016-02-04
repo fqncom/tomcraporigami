@@ -13,19 +13,27 @@ namespace TickTick.Utilities.ConverterUtility
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var dueDate = value as DateTime?;
-            if (dueDate == null)
+            try
             {
-                dueDate = DateTime.UtcNow;
-            }
-            dueDate = dueDate.Value.ToLocalTime();
-            if (parameter.Equals("DueDate"))
-            {
-                return DateTime.SpecifyKind(dueDate.Value.Date, DateTimeKind.Utc);
-            }
-            //else if (parameter.Equals("DueTime"))
+                var dueDate = value as DateTime?;
+                if (dueDate == null)
+                {
+                    dueDate = DateTime.UtcNow;
+                }
+                dueDate = dueDate.Value.ToLocalTime();
+                if (parameter.Equals("DueDate"))
+                {
+                    return DateTime.SpecifyKind(dueDate.Value.Date, DateTimeKind.Utc);
+                }
+                //else if (parameter.Equals("DueTime"))
 
-            return dueDate.Value.TimeOfDay;
+                return dueDate.Value.TimeOfDay;
+            }
+            catch (Exception e)
+            {
+                
+                throw e;
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

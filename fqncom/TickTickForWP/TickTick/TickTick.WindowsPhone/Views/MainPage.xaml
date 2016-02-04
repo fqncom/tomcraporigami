@@ -60,6 +60,7 @@
                                Style="{StaticResource NormalProjectsNameStyle}"
                                Text="{Binding Name}" />
                     <TextBlock Grid.Column="2"
+                               HorizontalAlignment="Right"
                                VerticalAlignment="Center"
                                Style="{StaticResource NormalProjectsTasksCountStyle}"
                                Text="{Binding TasksCount}" />
@@ -106,9 +107,18 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
+                        <!--
+                            {Binding DueDate,
+                            Converter={StaticResource TasksListItemDateConverter},
+                            ConverterParameter=Foreground}
+                        -->
+                        <!--  Style="{StaticResource NormalTasksDateStyle}"  -->
                         <TextBlock x:Name="txtTasksDueTime"
                                    Grid.Column="0"
-                                   Style="{StaticResource NormalTasksDateStyle}"
+                                   FontSize="{StaticResource NormalDateFontSize}"
+                                   Foreground="{Binding DueDate,
+                                                        Converter={StaticResource TasksListItemDateConverter},
+                                                        ConverterParameter=Foreground}"
                                    Text="{Binding DueDate,
                                                   Converter={StaticResource TasksListItemDateConverter}}" />
                         <Rectangle x:Name="rectTasksReminder"
@@ -396,19 +406,19 @@
                                     <ImageBrush ImageSource="ms-appx:///Assets/Images/avatar.jpg" />
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <Grid Grid.Column="1" Margin="10,0,0,0">
+                            <Grid Grid.Column="1" Margin="10,25,0,0">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="auto" />
                                     <RowDefinition Height="auto" />
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.Row="0"
-                                           VerticalAlignment="Center"
+                                           VerticalAlignment="Bottom"
                                            Style="{StaticResource NormalUserNameStyle}"
                                            Text="{Binding UserInfo.UserName,
                                                           Mode=OneWay,
                                                           UpdateSourceTrigger=PropertyChanged}" />
                                 <TextBlock Grid.Row="1"
-                                           VerticalAlignment="Center"
+                                           VerticalAlignment="Bottom"
                                            Style="{StaticResource NormalUserEmailStyle}"
                                            Text="{Binding UserInfo.UserName,
                                                           Mode=OneWay,

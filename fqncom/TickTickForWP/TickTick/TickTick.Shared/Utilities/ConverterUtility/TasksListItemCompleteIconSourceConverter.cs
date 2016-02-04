@@ -13,18 +13,26 @@ namespace TickTick.Utilities.ConverterUtility
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var flag = (bool?)value;
-            if (flag == null)
+            try
             {
-                flag = true;
+                if (flag == null)
+                {
+                    flag = true;
+                }
+                var basePath = "ms-appx:///Assets/Images/Scale-100/";
+                if (flag.Value)
+                {
+                    return string.Format(basePath + "{0}", "btn_check_buttonless_on.png");
+                }
+                else
+                {
+                    return string.Format(basePath + "{0}", "widget_btn_check_buttonless_off_blue.png");
+                }
             }
-            var basePath = "ms-appx:///Assets/Images/Scale-100/";
-            if (flag.Value)
+            catch (Exception e)
             {
-                return string.Format(basePath + "{0}", "btn_check_buttonless_on.png");
-            }
-            else
-            {
-                return string.Format(basePath + "{0}", "widget_btn_check_buttonless_off_blue.png");
+                
+                throw e;
             }
         }
 

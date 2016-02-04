@@ -38,17 +38,20 @@
                                           Style="{StaticResource HeaderContentPresenterStyle}" />-->
                                 <Button x:Name="FlyoutButton"
                                         Grid.Column="0"
+                                        HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         BorderThickness="0"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontWeight="Normal"
                                         Foreground="{TemplateBinding Foreground}"
                                         IsEnabled="{TemplateBinding IsEnabled}"
                                         Padding="10,0,0,0" />
-                                <Rectangle Grid.Column="1"
+                                <Rectangle x:ConnectionId='5' Grid.Column="1"
                                            Width="{TemplateBinding Height}"
                                            Height="{TemplateBinding Height}"
                                            Fill="{StaticResource ClearDateTimePickerImageSourcePath}"
-                                           Stroke="{x:Null}" />
+                                           Stroke="{x:Null}"
+                                                                                />
 
                             </Grid>
                         </Border>
@@ -78,17 +81,20 @@
                                                   Style="{StaticResource HeaderContentPresenterStyle}" />-->
                                 <Button x:Name="FlyoutButton"
                                         Grid.Column="0"
+                                        HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         BorderThickness="0"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontWeight="Normal"
                                         Foreground="{TemplateBinding Foreground}"
                                         IsEnabled="{TemplateBinding IsEnabled}"
                                         Padding="10,0,0,0" />
-                                <Rectangle Grid.Column="1"
+                                <Rectangle x:ConnectionId='4' Grid.Column="1"
                                            Width="{TemplateBinding Height}"
                                            Height="{TemplateBinding Height}"
                                            Fill="{StaticResource ClearDateTimePickerImageSourcePath}"
-                                           Stroke="{x:Null}" />
+                                           Stroke="{x:Null}"
+                                                                                />
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -155,7 +161,9 @@
 
     </Page.Resources>
     <!--  Margin="{StaticResource NormalTasksContentMarginThickness}"  -->
-    <ScrollViewer Background="White" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer Background="White"
+                  Padding="{StaticResource NormalTasksContentMarginThickness}"
+                  VerticalScrollBarVisibility="Auto">
         <Grid x:Name="gridMain">
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
@@ -169,7 +177,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-            <TextBox x:ConnectionId='4' x:Name="txtTasksContent"
+            <TextBox x:ConnectionId='6' x:Name="txtTasksContent"
                      Grid.Row="0"
                      AcceptsReturn="True"
                      PlaceholderText="This is an example of an edit field that has two lines of text."
@@ -185,7 +193,7 @@
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <TextBox x:ConnectionId='9' x:Name="txtCheckListItemTitle"
+                <TextBox x:ConnectionId='11' x:Name="txtCheckListItemTitle"
                          Grid.Row="0"
                          Style="{StaticResource NormalTasksTitleStyle}"
                          Text="{Binding Tasks.Title}"
@@ -214,7 +222,7 @@
                     <TextBlock Grid.Row="0"
                                Style="{StaticResource NormalTasksDatePickerHeaderStyle}"
                                Text="截止时间" />
-                    <DatePicker x:ConnectionId='8' x:Name="dueDatePicker"
+                    <DatePicker x:ConnectionId='10' x:Name="dueDatePicker"
                                 Grid.Row="1"
                                 Date="{Binding Tasks.DueDate,
                                                Converter={StaticResource TasksDetailDueDateConverter},
@@ -239,7 +247,7 @@
                                Style="{StaticResource NormalTasksDatePickerHeaderStyle}"
                                Text="时间" />
 
-                    <TimePicker x:ConnectionId='7' x:Name="dueTimePicker"
+                    <TimePicker x:ConnectionId='9' x:Name="dueTimePicker"
                                 Grid.Row="1"
                                 Style="{StaticResource NormalTasksTimePickerStyle}"
                                 Time="{Binding Tasks.DueDate,
@@ -257,15 +265,15 @@
                 </Grid>
             </Grid>
             <!--  Margin="{StaticResource NormalComboboxMarginThickness}"  -->
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Margin="0,33.75,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Style="{StaticResource NormalTasksDatePickerHeaderStyle}"
                            Text="提前提醒" />
-                <ComboBox x:ConnectionId='6' x:Name="cmbTasksRemind"
+                <ComboBox x:ConnectionId='8' x:Name="cmbTasksRemind"
                           Grid.Row="1"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding RemindTimeSelectionList}"
@@ -287,15 +295,15 @@
                       SelectionChanged="RepeatTimeComboxItem_SelectionChanged"
                       Style="{StaticResource comboxPickerStyle}" />-->
             <!--  Margin="{StaticResource NormalComboboxMarginThickness}"  -->
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="4" Margin="0,33.75,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
                            Style="{StaticResource NormalTasksDatePickerHeaderStyle}"
                            Text="优先级" />
-                <ComboBox x:ConnectionId='5' x:Name="cmbTasksPriority"
+                <ComboBox x:ConnectionId='7' x:Name="cmbTasksPriority"
                           Grid.Row="1"
                           DisplayMemberPath="Name"
                           ItemsSource="{Binding PrioritiesEnumList}"
@@ -307,7 +315,7 @@
     </ScrollViewer>
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource NormalBottomMenuBarStyle}">
-            <AppBarButton x:ConnectionId='10' x:Name="appBarSwitchTasksMode"
+            <AppBarButton x:ConnectionId='12' x:Name="appBarSwitchTasksMode"
                                                        
                           Icon="AlignLeft"
                           Label="列表模式">
@@ -315,18 +323,18 @@
                     <BitmapIcon UriSource="ms-appx:///Assets/Images/Scale-100/ic_menu_check_list_light.png" />
                 </AppBarButton.Icon>-->
             </AppBarButton>
-            <AppBarButton x:ConnectionId='11'                            Label="移动">
+            <AppBarButton x:ConnectionId='13'                            Label="移动">
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Images/Scale-100/ic_menu_move_list_normal_light.png" />
                 </AppBarButton.Icon>
                 <FlyoutBase.AttachedFlyout>
-                    <ListPickerFlyout x:ConnectionId='12' x:Name="listPickerFlyoutMoveToProjects"
+                    <ListPickerFlyout x:ConnectionId='14' x:Name="listPickerFlyoutMoveToProjects"
                                       ItemTemplate="{StaticResource moveToProjectsTmpl}"
                                                                       />
                 </FlyoutBase.AttachedFlyout>
             </AppBarButton>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:ConnectionId='13'                                 Label="删除" />
+                <AppBarButton x:ConnectionId='15'                                 Label="删除" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
 

@@ -52,7 +52,7 @@
 
                     <Rectangle Grid.Column="0" Style="{StaticResource NormalProjectsListIconStyle}">
                         <Rectangle.Fill>
-                            <ImageBrush ImageSource="{Binding Name, Converter={StaticResource ProjectsListItemConverter}}" />
+                            <ImageBrush ImageSource="{Binding Converter={StaticResource ProjectsListItemConverter}, ConverterParameter=IntelligentProjects}" />
                         </Rectangle.Fill>
                     </Rectangle>
                     <TextBlock Grid.Column="1"
@@ -60,6 +60,7 @@
                                Style="{StaticResource NormalProjectsNameStyle}"
                                Text="{Binding Name}" />
                     <TextBlock Grid.Column="2"
+                               HorizontalAlignment="Right"
                                VerticalAlignment="Center"
                                Style="{StaticResource NormalProjectsTasksCountStyle}"
                                Text="{Binding TasksCount}" />
@@ -106,9 +107,18 @@
                             <ColumnDefinition Width="auto" />
                             <ColumnDefinition Width="auto" />
                         </Grid.ColumnDefinitions>
+                        <!--
+                            {Binding DueDate,
+                            Converter={StaticResource TasksListItemDateConverter},
+                            ConverterParameter=Foreground}
+                        -->
+                        <!--  Style="{StaticResource NormalTasksDateStyle}"  -->
                         <TextBlock x:Name="txtTasksDueTime"
                                    Grid.Column="0"
-                                   Style="{StaticResource NormalTasksDateStyle}"
+                                   FontSize="{StaticResource NormalDateFontSize}"
+                                   Foreground="{Binding DueDate,
+                                                        Converter={StaticResource TasksListItemDateConverter},
+                                                        ConverterParameter=Foreground}"
                                    Text="{Binding DueDate,
                                                   Converter={StaticResource TasksListItemDateConverter}}" />
                         <Rectangle x:Name="rectTasksReminder"
@@ -231,7 +241,7 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Button x:ConnectionId='16' Grid.Column="0"
+                        <Button x:ConnectionId='14' Grid.Column="0"
                                 HorizontalAlignment="Center"
                                 BorderBrush="#dcdcdc"
                                 BorderThickness="1"
@@ -239,7 +249,7 @@
                                 Content="推迟"
                                 FontSize="22.5"
                                 Foreground="#5f7fb0" />
-                        <Button x:ConnectionId='17' Grid.Column="1"
+                        <Button x:ConnectionId='15' Grid.Column="1"
                                 HorizontalAlignment="Center"
                                 BorderBrush="#dcdcdc"
                                 BorderThickness="1"
@@ -260,7 +270,7 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Rectangle x:ConnectionId='15' x:Name="DrawerIcon"
+            <Rectangle x:ConnectionId='13' x:Name="DrawerIcon"
                        Grid.Column="0"
                        Style="{StaticResource NormalTitleBarIconStyle}"
                                                  >
@@ -280,11 +290,11 @@
             <!--  DrawerLayout code goes here  -->
             <Grid x:Name="gridMain" Background="White">
                 <FlyoutBase.AttachedFlyout>
-                    <ListPickerFlyout x:ConnectionId='12' x:Name="listViewSort"
+                    <ListPickerFlyout x:ConnectionId='10' x:Name="listViewSort"
                                       ItemTemplate="{StaticResource tmplSortList}"
                                                                         />
                 </FlyoutBase.AttachedFlyout>
-                <ScrollViewer x:ConnectionId='13' Style="{StaticResource NormalMainGridStyle}"
+                <ScrollViewer x:ConnectionId='11' Style="{StaticResource NormalMainGridStyle}"
                               VerticalScrollBarVisibility="Visible"
                               VerticalScrollMode="Enabled"
                                                                         >
@@ -299,7 +309,7 @@
                                       Foreground="Blue"
                                       IsActive="True" />-->
 
-                        <ListView x:ConnectionId='14' x:Name="listViewTasks"
+                        <ListView x:ConnectionId='12' x:Name="listViewTasks"
                                   Grid.Row="0"
                                                                                                
                                   IsItemClickEnabled="false"
@@ -359,6 +369,7 @@
                                         </DataTemplate>
                                     </TextBox.HeaderTemplate>
                                 </TextBox>
+                                <TextBlock Text="注意：按下返回键表示放弃修改" />
                             </StackPanel>
                             <Grid Grid.Row="1">
                                 <Grid.ColumnDefinitions>
@@ -367,7 +378,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Button x:ConnectionId='4' Grid.Column="0"
                                                                              
-                                        Content="确认修改" />
+                                        Content="确认" />
                                 <Button x:ConnectionId='5' Grid.Column="1"
                                                                         
                                         Content="删除" />
@@ -379,79 +390,82 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="*" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <!--<RowDefinition Height="*" />-->
                         </Grid.RowDefinitions>
 
                         <Grid Grid.Row="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
-                                <RowDefinition Height="auto" />
-                                <RowDefinition Height="auto" />
-                            </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                            <Rectangle Grid.Row="0"
-                                       Grid.RowSpan="3"
-                                       Grid.Column="0"
-                                       Style="{StaticResource NormalAvatarStyle}">
+                            <Rectangle Grid.Column="0" Style="{StaticResource NormalAvatarStyle}">
                                 <Rectangle.Fill>
                                     <ImageBrush ImageSource="ms-appx:///Assets/Images/avatar.jpg" />
                                 </Rectangle.Fill>
                             </Rectangle>
-                            <TextBlock Grid.Row="1"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource NormalUserNameStyle}"
-                                       Text="{Binding UserInfo.UserName,
-                                                      Mode=OneWay,
-                                                      UpdateSourceTrigger=PropertyChanged}" />
-                            <TextBlock Grid.Row="2"
-                                       Grid.Column="1"
-                                       VerticalAlignment="Center"
-                                       Style="{StaticResource NormalUserEmailStyle}"
-                                       Text="{Binding UserInfo.UserName,
-                                                      Mode=OneWay,
-                                                      UpdateSourceTrigger=PropertyChanged}" />
+                            <Grid Grid.Column="1" Margin="10,25,0,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto" />
+                                    <RowDefinition Height="auto" />
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0"
+                                           VerticalAlignment="Bottom"
+                                           Style="{StaticResource NormalUserNameStyle}"
+                                           Text="{Binding UserInfo.UserName,
+                                                          Mode=OneWay,
+                                                          UpdateSourceTrigger=PropertyChanged}" />
+                                <TextBlock Grid.Row="1"
+                                           VerticalAlignment="Bottom"
+                                           Style="{StaticResource NormalUserEmailStyle}"
+                                           Text="{Binding UserInfo.UserName,
+                                                          Mode=OneWay,
+                                                          UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
                         </Grid>
                         <!--  x:Name="listViewIntelligentProject"  -->
-                        <ListView x:ConnectionId='8' Grid.Row="1"
+                        <!--  Margin="{StaticResource NormalListViewMarginThickness}"  -->
+                        <ListView x:ConnectionId='8' x:Name="listViewIntelligentProject"
+                                  Grid.Row="1"
                                   Margin="{StaticResource NormalListViewMarginThickness}"
                                   IsItemClickEnabled="True"
                                                                       
+                                  ItemContainerStyle="{StaticResource NormalProjectsListItemContainerStyle}"
                                   ItemTemplate="{StaticResource tmplProjectList}"
                                   ItemsSource="{Binding IntelligentProjects}" />
                         <!--  x:Name="listViewProject"  -->
                         <ListView x:ConnectionId='9' Grid.Row="2"
-                                  Margin="{StaticResource NormalListViewMarginThickness}"
                                   IsItemClickEnabled="True"
                                                                       
+                                  ItemContainerStyle="{StaticResource NormalProjectsListItemContainerStyle}"
                                   ItemTemplate="{StaticResource tmplProjectList}"
                                   ItemsSource="{Binding Projects}" />
-                        <StackPanel Grid.Row="3">
+                        <!--<StackPanel Grid.Row="3">
 
-                            <!--  TODO 这个地方不需要了  -->
+                        -->
+                        <!--  TODO 这个地方不需要了  -->
+                        <!--
                             <StackPanel x:Name="stackAddProject" Visibility="Collapsed">
                                 <TextBox x:Name="txtAddProject" PlaceholderText="请输入新的清单名称" />
                                 <StackPanel Orientation="Horizontal">
-                                    <Button x:ConnectionId='10'                                     
+                                    <Button Click="BtnConfirmAddProject_Clicked"
                                             Content="确认添加"
                                             Foreground="Black" />
-                                    <Button x:ConnectionId='11'                                    
+                                    <Button Click="BtnCancelAddProject_Clicked"
                                             Content="取消"
                                             Foreground="Black" />
                                 </StackPanel>
                             </StackPanel>
-                            <!--<controls:AppBarBtnControl BtnContent="添加清单"
+                        -->
+                        <!--<controls:AppBarBtnControl BtnContent="添加清单"
                                                        BtnFontSize="20"
                                                        BtnSymbol="Add"
                                                        Foreground="Black"
                                                        Tapped="AppBarBtnAddProjects_Tapped" />-->
-                        </StackPanel>
+                        <!--
+                        </StackPanel>-->
                     </Grid>
                 </ScrollViewer>
                 <Border Grid.Row="1" Style="{StaticResource NormalBottomBarStyle}">
@@ -506,17 +520,17 @@
     <Page.BottomAppBar>
         <CommandBar Style="{StaticResource NormalBottomMenuBarStyle}">
 
-            <AppBarButton x:ConnectionId='18'                           Style="{StaticResource NormalBottomMenuAppBarStyle}">
+            <AppBarButton x:ConnectionId='16'                           Style="{StaticResource NormalBottomMenuAppBarStyle}">
                 <AppBarButton.Icon>
                     <BitmapIcon UriSource="ms-appx:///Assets/Images/Scale-100/list_add_btn_icon_pressed_light.png" />
                 </AppBarButton.Icon>
             </AppBarButton>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:ConnectionId='19'                                    Label="隐藏已完成" />
-                <AppBarButton x:ConnectionId='20'                            Label="排序" />
-                <AppBarButton Label="选择" />
+                <AppBarButton x:ConnectionId='17'                                    Label="隐藏已完成" />
+                <AppBarButton x:ConnectionId='18'                            Label="排序" />
+                <!--<AppBarButton Label="选择" />-->
                 <AppBarButton Label="添加至桌面" />
-                <AppBarButton x:ConnectionId='21'                                   Label="编辑清单" />
+                <AppBarButton x:ConnectionId='19'                                   Label="编辑清单" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

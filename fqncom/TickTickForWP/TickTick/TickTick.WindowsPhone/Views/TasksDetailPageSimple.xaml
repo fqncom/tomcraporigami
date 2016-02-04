@@ -38,9 +38,11 @@
                                           Style="{StaticResource HeaderContentPresenterStyle}" />-->
                                 <Button x:Name="FlyoutButton"
                                         Grid.Column="0"
+                                        HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         BorderThickness="0"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontWeight="Normal"
                                         Foreground="{TemplateBinding Foreground}"
                                         IsEnabled="{TemplateBinding IsEnabled}"
                                         Padding="10,0,0,0" />
@@ -48,7 +50,8 @@
                                            Width="{TemplateBinding Height}"
                                            Height="{TemplateBinding Height}"
                                            Fill="{StaticResource ClearDateTimePickerImageSourcePath}"
-                                           Stroke="{x:Null}" />
+                                           Stroke="{x:Null}"
+                                           Tapped="ClearDatePickerValue_Tapped" />
 
                             </Grid>
                         </Border>
@@ -78,9 +81,11 @@
                                                   Style="{StaticResource HeaderContentPresenterStyle}" />-->
                                 <Button x:Name="FlyoutButton"
                                         Grid.Column="0"
+                                        HorizontalAlignment="Stretch"
                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
                                         BorderThickness="0"
                                         FontSize="{TemplateBinding FontSize}"
+                                        FontWeight="Normal"
                                         Foreground="{TemplateBinding Foreground}"
                                         IsEnabled="{TemplateBinding IsEnabled}"
                                         Padding="10,0,0,0" />
@@ -88,7 +93,8 @@
                                            Width="{TemplateBinding Height}"
                                            Height="{TemplateBinding Height}"
                                            Fill="{StaticResource ClearDateTimePickerImageSourcePath}"
-                                           Stroke="{x:Null}" />
+                                           Stroke="{x:Null}"
+                                           Tapped="ClearTimePickerValue_Tapped" />
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -155,7 +161,9 @@
 
     </Page.Resources>
     <!--  Margin="{StaticResource NormalTasksContentMarginThickness}"  -->
-    <ScrollViewer Background="White" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer Background="White"
+                  Padding="{StaticResource NormalTasksContentMarginThickness}"
+                  VerticalScrollBarVisibility="Auto">
         <Grid x:Name="gridMain">
             <Grid.ChildrenTransitions>
                 <TransitionCollection>
@@ -257,9 +265,9 @@
                 </Grid>
             </Grid>
             <!--  Margin="{StaticResource NormalComboboxMarginThickness}"  -->
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Margin="0,33.75,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"
@@ -287,9 +295,9 @@
                       SelectionChanged="RepeatTimeComboxItem_SelectionChanged"
                       Style="{StaticResource comboxPickerStyle}" />-->
             <!--  Margin="{StaticResource NormalComboboxMarginThickness}"  -->
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="4" Margin="0,33.75,0,0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="*" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0"

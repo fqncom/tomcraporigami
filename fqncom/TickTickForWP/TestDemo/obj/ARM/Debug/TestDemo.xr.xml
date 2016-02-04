@@ -9,7 +9,6 @@
       <RootProperty Name="Content" />
       <RootProperty Name="Resources" />
       <RootProperty Name="BottomAppBar" />
-      <RootProperty Name="Transitions" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Controls.Grid">
@@ -63,6 +62,7 @@
       <RootProperty Name="HorizontalAlignment" />
       <RootProperty Name="VerticalAlignment" />
       <RootProperty Name="FontWeight" />
+      <RootProperty Name="TextWrapping" />
     </RootType>
     <RootType FullName="TestDemo.BackTaskDemo" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
@@ -72,7 +72,6 @@
     </RootType>
     <RootType FullName="TestDemo.BasicPage1" />
     <RootType FullName="TestDemo.DataDemo" />
-    <RootType FullName="Windows.UI.Xaml.ResourceDictionary" />
     <RootType FullName="TestDemo.FontDemo" />
     <RootType FullName="TestDemo.JsonDemo" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.Storyboard">
@@ -193,26 +192,15 @@
       <RootProperty Name="Label" />
     </RootType>
     <RootType FullName="TestDemo.ToastDemo" />
-    <RootType FullName="Windows.UI.Xaml.Media.SolidColorBrush">
-      <RootProperty Name="Color" />
+    <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="Stroke" />
+      <RootProperty Name="StrokeThickness" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Thickness" />
-    <RootType FullName="Windows.UI.Xaml.Media.FontFamily" />
-    <RootType FullName="System.Double" />
-    <RootType FullName="Windows.UI.Xaml.Controls.ContentPresenter">
-      <RootProperty Name="Foreground" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Setter">
-      <RootProperty Name="Property" />
-      <RootProperty Name="Value" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.NavigationThemeTransition">
-      <RootProperty Name="DefaultNavigationTransitionInfo" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo">
-      <RootProperty Name="IsStaggeringEnabled" />
-      <RootMethod Name="GetIsStaggerElement" />
-      <RootMethod Name="SetIsStaggerElement" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Source" />
+      <RootProperty Name="Stretch" />
     </RootType>
     <RootType FullName="TestDemo.UIDemo" />
     <RootType FullName="DrawerLayout.DrawerLayout">

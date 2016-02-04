@@ -149,11 +149,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\add_members_btn_pressed.png" />
+    <Content Include="Assets\all_edit_index_light1.png" />
     <Content Include="Assets\avatar.jpg" />
     <Content Include="Assets\btn_check_on_holo_dark.png" />
     <Content Include="Assets\drawer_icon.png" />
+    <Content Include="Assets\ic_action_pressed1.scale-180.png" />
+    <Content Include="Assets\ic_action_today_pressed1.scale-100.png" />
+    <Content Include="Assets\ic_action_today_pressed1.scale-140.png" />
+    <Content Include="Assets\ic_action_today_pressed1.scale-180.png" />
+    <Content Include="Assets\ic_menu_check_list_light.png" />
     <Content Include="Assets\ic_menu_move_list_normal_light.png" />
     <Content Include="Assets\ic_mp_move_light.png" />
+    <Content Include="Assets\ic_today_pressed1.png" />
+    <Content Include="Assets\inbox_edit_index_light1.png" />
     <Content Include="Assets\list_add_btn_icon_pressed_light.png" />
     <Content Include="Assets\Logo.scale-240.png" />
     <Content Include="Assets\remind_icon.png" />
@@ -165,6 +173,22 @@
     <Content Include="Assets\task_move_add_group_light.png" />
     <Content Include="Assets\WideLogo.scale-240.png" />
     <Content Include="Assets\widget_btn_check_buttonless_off_blue.png" />
+    <Content Include="Assets\所有.scale-100.png" />
+    <Content Include="Assets\所有.scale-140.png" />
+    <Content Include="Assets\所有.scale-180.png" />
+    <Content Include="Assets\所有.scale-240.png" />
+    <Content Include="Assets\所有1.scale-100.png" />
+    <Content Include="Assets\所有1.scale-140.png" />
+    <Content Include="Assets\所有1.scale-180.png" />
+    <Content Include="Assets\所有1.scale-240.png" />
+    <Content Include="Assets\所有2.scale-100.png" />
+    <Content Include="Assets\所有2.scale-140.png" />
+    <Content Include="Assets\所有2.scale-180.png" />
+    <Content Include="Assets\所有2.scale-240.png" />
+    <Content Include="Assets\所有3.scale-100.png" />
+    <Content Include="Assets\所有3.scale-140.png" />
+    <Content Include="Assets\所有3.scale-180.png" />
+    <Content Include="Assets\所有3.scale-240.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -276,6 +300,9 @@
       <Project>{6e87464b-b064-40ca-8161-7c18c337adff}</Project>
       <Name>NotificationsExtensions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\scale_100\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>

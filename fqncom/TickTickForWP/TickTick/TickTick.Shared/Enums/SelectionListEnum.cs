@@ -28,7 +28,7 @@ namespace TickTick.Enums
             new SnoozeTimeSelection { Name = "提前1小时", SnoozeValue = MinuteIncrementEnum.One_Hour } ,
             //new RemindTimeSelection { Name = "4 hours", RemindValue = MinuteIncrementEnum.Four_Hours } ,
             //new RemindTimeSelection { Name = "18 hours", RemindValue = MinuteIncrementEnum.No_Reminder } ,
-            new SnoozeTimeSelection { Name = "提前1天", SnoozeValue = MinuteIncrementEnum.One_Day } 
+            //new SnoozeTimeSelection { Name = "提前1天", SnoozeValue = MinuteIncrementEnum.One_Day } 
         };
         public static List<SnoozeTimeSelection> SnoozeBackTimeSelectionList = new List<SnoozeTimeSelection> 
         { 

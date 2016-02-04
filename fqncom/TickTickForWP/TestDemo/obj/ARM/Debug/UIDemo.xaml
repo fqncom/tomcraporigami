@@ -9,7 +9,7 @@
       mc:Ignorable="d">
     <Page.Resources>
 
-        <SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="Transparent" />
+        <!--<SolidColorBrush x:Key="ComboBoxBackgroundThemeBrush" Color="Transparent" />
         <Thickness x:Key="ComboBoxBorderThemeThickness">2.5</Thickness>
         <FontFamily x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
         <x:Double x:Key="ContentControlFontSize">20.26</x:Double>
@@ -19,11 +19,11 @@
         <Style x:Key="PlaceholderContentPresenterStyle" TargetType="ContentPresenter">
             <Setter Property="Foreground" Value="Blue" />
         </Style>
-        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundThemeBrush" Color="Transparent" />
+        <SolidColorBrush x:Key="ComboBoxDisabledBackgroundThemeBrush" Color="Transparent" />-->
 
 
     </Page.Resources>
-    <Page.Transitions>
+    <!--<Page.Transitions>
         <TransitionCollection>
             <NavigationThemeTransition>
                 <NavigationThemeTransition.DefaultNavigationTransitionInfo>
@@ -31,12 +31,57 @@
                 </NavigationThemeTransition.DefaultNavigationTransitionInfo>
             </NavigationThemeTransition>
         </TransitionCollection>
-    </Page.Transitions>
+    </Page.Transitions>-->
+    <StackPanel Background="White">
+        <!--<StackPanel>
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   Source="Assets/all_edit_index_light1.png"
+                   Stretch="None" />
 
+            <Image Grid.Row="0"
+                   Grid.Column="1"
+                   Source="Assets/ic_action_today_pressed1.png"
+                   Stretch="None" />
+            <Image Grid.Row="0"
+                   Grid.Column="2"
+                   Source="Assets/list_edit_index_light1.png"
+                   Stretch="None" />
+            <Image Grid.Row="0"
+                   Grid.Column="3"
+                   Source="Assets/inbox_edit_index_light1.png"
+                   Stretch="None" />
 
+        </StackPanel>-->
+        <StackPanel x:Name="stack">
 
+            <Rectangle Width="40"
+                       Height="40"
+                       Stroke="Red"
+                       StrokeThickness="1" />
+            <Rectangle Width="32"
+                       Height="32"
+                       Stroke="Red"
+                       StrokeThickness="1" />
+            <Image Source="Assets/ic_today_pressed1.png" Stretch="None" />
+            <Image x:Name="ImageTemp"
+                   Source="Assets/ic_action_pressed1.png"
+                   Stretch="None" />
+            <Image x:Name="Image"
+                   Source="Assets/ic_action_today_pressed1.png"
+                   Stretch="None" />
+            <Image x:Name="ImageTest" Source="Assets/所有.png" Stretch="None" />
+            <Image Source="Assets/所有1.png" Stretch="None" />
+            <Image Source="Assets/所有2.png" Stretch="None" />
+            <Image Source="Assets/所有3.png" Stretch="None" />
+            <TextBlock x:Name="text"
+                       FontSize="30"
+                       Foreground="Black"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+    </StackPanel>
 
-    <StackPanel Background="Black" >
+    <!--<StackPanel Background="Black" >
         <ListView>
 
             <ListViewItem>
@@ -79,7 +124,8 @@
                 <TextBlock Text="ceshi " />
             </ListViewItem>
         </ListView>
-        <!--<ComboBox Foreground="Black" SelectedIndex="0">
+    -->
+    <!--<ComboBox Foreground="Black" SelectedIndex="0">
             <ComboBox.Resources>
                 <Style x:Key="PlaceholderContentPresenterStyle" TargetType="ContentPresenter">
                     <Setter Property="Foreground" Value="Yellow" />
@@ -91,7 +137,8 @@
             <ComboBoxItem Content="ceshi" />
             <ComboBoxItem Content="ceshi" />
         </ComboBox>-->
-    </StackPanel>
+    <!--
+    </StackPanel>-->
 
     <!--<Page.Resources>
     -->
