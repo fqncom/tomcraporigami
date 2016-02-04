@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8661048c5bf44eecb4dede24c64f735e" Name="关系图1">
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Articel_Words" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.BookComment" Width="1.5" PointX="7.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Books" Width="1.5" PointX="3" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Cart" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Categories" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.CheckEmail" Width="1.5" PointX="5.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.OrderBook" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Orders" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Publishers" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Settings" Width="1.5" PointX="7.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.sysdiagrams" Width="1.5" PointX="9.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.SysFun" Width="1.5" PointX="9.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.Users" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.UserStates" Width="1.5" PointX="1.5" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="fqn_WebMVC.Model.VidoFile" Width="1.5" PointX="5.75" PointY="11" IsExpanded="true" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Book_Category" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Books_Publishers" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Cart_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_OrderBook_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Cart_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_CheckEmail_CheckEmail" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_OrderBook_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Order_User" ManuallyRouted="false" />
+        <AssociationConnector Association="fqn_WebMVC.Model.FK_Users_UserStates" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
