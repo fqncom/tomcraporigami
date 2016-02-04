@@ -1,7 +1,0 @@
-/**/
-
-#tbOrderList { width:100%;}
-#divOrder li {  margin-right:20px; clear:both; margin-top:10px;}
-#divOrder li span.title { display:block; float:left; vertical-align:baseline; width:100px; text-align:right; margin-right:5px; font-weight:bold;}
-#divOrder li span.content { display:block; float:left; vertical-align:baseline; width:auto; text-decoration:underline;}
-#tbOrderItem { margin-top:20px;}
