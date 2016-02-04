@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<log4net>
+  <appender name="RollingFile" type="log4net.Appender.RollingFileAppender">
+    <file value="../Logs/managelog"/>
+    <appendToFile value="true"/>
+    <staticLogFileName value="false" />
+    <rollingStyle value="Composite" />
+    <datePattern value="yyyyMMdd" />
+    <maxSizeRollBackups value="10" />
+    <maximumFileSize value="1MB" />
+    <layout type="log4net.Layout.PatternLayout">
+      <conversionPattern value="%5level %date %message%newline"/>
+	  	<param name="Header" value="&#13;&#10;----------------------日志开始--------------------------&#13;&#10;" />
+	  	<param name="Footer" value="----------------------日志结束--------------------------&#13;&#10;" />
+    </layout>
+  </appender>
+  <root>
+    <level value="DEBUG"/>
+    <appender-ref ref="RollingFile"/>
+  </root>
+</log4net>

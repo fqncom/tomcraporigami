@@ -1,0 +1,31 @@
+/**/
+
+.tabmenu { }
+.tabmenu li { float:left; cursor:pointer; width:180px; height:25px; line-height:25px; text-align:center; vertical-align:middle; margin-right:1px; font-size:15px; background-color:#eee; border:1px solid #111; border-bottom:0px; }
+.tabmenu li.hover { font-weight:bold;}
+.tabmenu li.selected { font-weight:bold;cursor:default;background-color:#aaa; }
+.tabbox { clear:both; height:auto; min-height:200px; margin:0px;  padding:10px; border-top:1px solid #111; }
+.tabbox > div{background:#FFFFFF;}
+
+.tabbox { text-align:left;}
+.tabbox li { height:25px;}
+.tabbox li span { margin-right:3px;}
+.tabbox li input { margin-right:3px;}
+
+.tabitem {}
+
+#divCouponUseConfigEditor { width:600px;margin-left:0px; margin-top:10px;}
+#divCouponUseConfigEditor ul.SimpleEditor li span.Header { width:150px; }
+
+#divCouponGrantConfigEditor { width:800px;margin-left:0px; margin-top:10px;}
+#divCouponGrantConfigEditor ul.SimpleEditor li span.Header { width:100px; }
+
+#divCouponGrantAmountConfigEditor { width:600px; margin-top:10px; margin-left:0px;}
+#divCouponGrantAmountConfigEditor ul.SimpleEditor li span.Header { width:60px; }
+
+#divProductScopeEditor { width:600px;margin-left:0px; margin-top:10px;}
+#divProductScopeEditor ul.SimpleEditor li span.Header { width:60px; }
+
+#divProductScopeItemEditor { width:600px;margin-left:0px; margin-top:10px;}
+#divProductScopeItemEditor ul.SimpleEditor li span.Header { width:60px; }
+

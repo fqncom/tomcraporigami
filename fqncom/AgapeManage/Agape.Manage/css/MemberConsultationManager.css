@@ -1,0 +1,7 @@
+/**/
+
+#tbMemberConsultationList { width:100%;}
+#divMemberConsultation div { clear:both;}
+#divMemberConsultation li {  margin-right:20px; clear:both; margin-top:10px;}
+#divMemberConsultation li span.title { display:block; float:left; vertical-align:baseline; width:100px; text-align:right; margin-right:5px;}
+#divMemberConsultation li span.content { display:block; float:left; vertical-align:baseline; width:auto; text-decoration:underline;}

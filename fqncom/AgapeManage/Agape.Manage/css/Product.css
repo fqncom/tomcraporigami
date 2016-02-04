@@ -1,0 +1,138 @@
+﻿/*导航样式*/
+#divNavigator { width: 1000px; height:30px; margin-top: 10px; line-height:30px; vertical-align:middle; background:url(../images/common/navigator_bg.gif) no-repeat; }
+
+.sidebox { width: 200px; }
+.sidebox .header { width: 200px;}
+.sidebox .body { width:200px; }
+
+/*商品详细样式*/
+#divProductDetail { width:1000px; margin-top: 10px;}
+#divProductPicture { float:left; width:400px;}
+#divProductInfo { float:left; width:580px; margin-left:10px;}
+
+#divProductPicture .jqzoom{ border:1px solid #BBB; float:left; position:relative; padding:0px; cursor:pointer;}
+#divProductPicture .fs { width:380px; height:380px; }
+#divProductPicture span { display:block; text-align:center; padding-top:10px; padding-bottom:10px; width:310px; clear:both; }
+#divProductPicture span a:hover{ text-decoration:none;}
+#ulImageList{ height: 80px;}
+#ulImageList li { float:left; margin-right:10px; }
+#ulImageList li img { width:60px; height:60px; padding:1px; background:#EEE; cursor:pointer; }
+#ulImageList li img:hover { padding:1px; background:#999; }
+
+/*jQzoom*/
+div.zoomdiv { z-index: 999; position : absolute; top:0px; left:0px; width : 200px; height : 200px; background: #ffffff; border:1px solid #CCCCCC; display:none; text-align: center; overflow: hidden;}
+div.jqZoomPup { z-index : 999; visibility : hidden; position : absolute; top:0px; left:0px; width : 50px; height : 50px; border: 1px solid #aaa; background: #ffffff url(../images/zoomlens.gif) 50% top no-repeat; opacity: 0.5; -moz-opacity: 0.5; -khtml-opacity: 0.5; filter: alpha(Opacity=50);}
+
+#divProductInfo li { }
+#divProductInfo li.productname{font-size:16px; font-weight:bold; height:30px;}
+#divProductInfo li.productno{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.productcategory{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.productbrand{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.marketprice{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.salesprice{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.stock{ height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.spec{height:25px; line-height:25px; vertical-align:middle;}
+#divProductInfo li.specs { border:1px solid #CCC; padding:10px 10px 10px 10px; height:auto; width:400px;}
+#divProductInfo li.quantity{ height:25px; line-height:25px; vertical-align:middle; margin-top:10px;}
+#divProductInfo li.addtocart{ height:25px; line-height:25px; vertical-align:middle; margin-top:10px;}
+
+#divProductSpec { }
+#divProductSpec ul li { border:1px solid #BBB; float:left; margin-right:10px; margin-top:10px; padding-left:10px; padding-right:10px; height:18px; line-height:18px; vertical-align:middle; text-align:center; cursor:pointer;}
+#divProductSpec ul li.selected{ border-color:#FA4E86; cursor:default;}
+#divProductSpec ul li span.id{ display:none;}
+
+
+/*主体样式*/
+#divBody { width: 1000px; margin-top: 10px; }
+#divLeftBody { float:left; width:200px; }
+#divRightBody { float:right; width:795px; margin-left:0px; }
+
+#divAssoProductCategorySideBox { height:auto; }
+#divAssoProductBrandSideBox { margin-top:10px;height:auto;}
+#divViewThenBuyOtherProductSideBox { margin-top:10px;}
+
+
+/*相关类型样式*/
+#divAssoProductCategory {width: 170px; padding: 10px 15px 0px 15px; min-height:80px;}
+#divAssoProductCategory ul li { width:80px; float:left; display:inline; height:25px; text-align:left;}
+
+
+/*相关品牌样式*/
+#divAssoProductBrand {width: 170px; padding: 10px 15px 0px 15px; min-height:80px; }
+#divAssoProductBrand ul li { width:80px; float:left; display:inline; height:25px; text-align:left; overflow:hidden; }
+
+
+/*浏览后购买商品样式*/
+#divViewThenBuyOtherProduct {width: 170px; padding: 10px 15px 0px 15px; min-height:80px; }
+#divViewThenBuyOtherProduct ul li { width:70px; float:left; display:inline; height:25px; text-align:left;}
+
+
+/*商品选项卡*/
+#divProductTab { width:790px;}
+#divProductTab .tabmenu { clear:both; border-bottom:2px solid #e67817;}
+#divProductTab .tabmenu li { float:left; width:120px; height:30px; background-color:#b5d625; color:#666666; text-align:center; vertical-align:middle; line-height:30px; font-size:15px; font-weight:bold; border-top:solid 1px #dddddd; border-right:solid 1px #dddddd; cursor:pointer;}
+#divProductTab .tabmenu li.hover { font-weight:bold;}
+#divProductTab .tabmenu li.selected { color:#ffffff; background-color:#e67817; border-color:#e67817; }
+#divProductTab .tabbox { clear:both; height:auto; min-height:200px; margin-top:10px; margin-left:2px; }
+#divProductTab .tabbox > div{background:#FFFFFF;}
+
+
+
+#divProductDescription { width:790px; overflow:hidden;}
+
+#tblProductAttribute {border-left:1px solid #CCCCCC;border-top:1px solid #CCCCCC;}
+#tblProductAttribute tr {height: 25px;}
+#tblProductAttribute td {border-right:1px solid #CCCCCC;border-bottom:1px solid #CCCCCC;}
+#tblProductAttribute td.name { width:100px; background-color:#F5FAFE; text-align:right;vertical-align:middle; padding-right:8px;}
+#tblProductAttribute td.value { width:580px; text-align:left; vertical-align:middle; padding-left:8px;}
+
+
+/*会员评论样式*/
+#divMemberReviewList{ width:790px; }
+.memberreview{ margin-top:10px; width:790px; }
+.memberreview .left{ float:left; width:100px; text-align:center; margin-top:10px;}
+.memberreview ul.right{ float:left; width:570px; padding:10px 10px 10px 10px;  border:1px solid #898989; }
+.memberreview ul.right li{ height:20px; width:550px;}
+.memberreview ul.right li p{ float:left;}
+.memberreview ul.right li.header{ margin-bottom:10px;}
+.memberreview ul.right li.footer{ margin-top:10px; height:25px; line-height:25px; vertical-align:middle;}
+.memberreview ul.right li.footer input { margin-left:5px;}
+.memberreview ul.right p.title{ font-weight:bold;}
+.memberreview ul.right p.createtime{ float:right;}
+.memberreview ul.right p.detailkey{ width:70px; text-align:right; color:#FE8F02;}
+
+#divMemberUnreviewOrderList { margin-top:10px; display:none; }
+#divMemberUnreviewOrderList p.title { font-size:15px; font-weight:bold;}
+
+#divMemberReviewEditor{ border:1px solid #99C33D; margin-top:10px; display:none; }
+#divMemberReviewEditor .header{ background-color:#99C33D; text-align:left; padding-left:5px; height:25px; line-height:25px; vertical-align:middle;}
+#divMemberReviewEditor table { margin:10px 0px 10px 10px;}
+
+
+/*会员咨询样式*/
+#divMemberConsultationList{ width:790px;}
+.mcitem{ width:790px; border:1px solid #cccccc; margin-top:5px;}
+.mcitem .question{ margin:10px;}
+.mcitem .question span{ float:right; padding-right:10px;}
+.mcitem .answer{ width:790px; background:#F5F5F5; margin-top:10px; padding-bottom:5px; padding-top:5px;}
+.mcitem .answer li{ line-height:25px; padding-left:20px;}
+.mcitem .answer span{ color:#FA4E86;}
+
+#divMemberConsultationEditor{ border:1px solid #99C33D; margin-top:20px; }
+#divMemberConsultationEditor .header{ background-color:#99C33D; text-align:left; padding-left:5px; height:25px; line-height:25px; vertical-align:middle;}
+#divMemberConsultationEditor table { margin:10px 0px 10px 10px;}
+
+
+/*商品编辑样式*/
+p.pd_tilte{ margin-top:10px;}
+table.pd_breif { margin-bottom:10px; border-collapse:collapse;border:solid #E6E6E6;border-width:0 1px 1px 1px; width:788px; font-size:12px; } 
+table.pd_breif td{border:solid #E6E6E6;border-width:1px 0px 1px 1px;padding:5px 4px;text-align:center; height:30px;}
+table.pd_breif td.title{background-color:#dbf594; width:80px;}
+table.pd_breif td.content{ width:180px;}
+div.pd_section4 { width:770px; margin-left:5px; margin-top:5px; padding:10px; background:url(http://img.ibaby361.com/productpic/images/pdt_bg4.gif) repeat-x;}
+div.pd_section4 p {font-family: kaiti_gb2312;font-size: 18px; line-height: 28px;}
+div.pd_section6 {background:url(http://img.ibaby361.com/productpic/images/pdt_bg6.gif) repeat-x;}
+
+
+
+

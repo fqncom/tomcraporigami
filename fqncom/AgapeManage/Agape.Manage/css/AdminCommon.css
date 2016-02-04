@@ -1,0 +1,115 @@
+﻿h1{font-size:20px;font-family:Arial,Lucida,Verdana,"宋体",Helvetica,sans-serif;}
+h2{font-size:14px;}h3{font-size:14px;}h4{font-size:12px;}h5{font-size:12px;}h6{font-size:12px;}
+/*link*/
+a:link,a:visited{color:#333;text-decoration:none;}
+a:hover{color:#c00;text-decoration:underline;}
+a:active{color:#900;}
+
+
+.admin-header {height: 30px; line-height: 30px; vertical-align: middle;padding-left: 10px; background-color: Olive;}
+.admin-toolbar {height: 30px; line-height: 30px; padding-left: 10px;padding-top: 8px; vertical-align:middle;}
+.admin-toolbar input { margin-right:10px;}
+.admin-pager {margin-left: 10px;}
+
+input .readonly{  background-color:Gray;}
+input .required{  background-color:Yellow;}
+
+th .hide{ visibility:hidden;}
+tr .hide{ visibility:hidden;}
+
+table.list {border-collapse:collapse;border:solid #E6E6E6;border-width:0 1px 1px 1px; width:100%; } 
+table.list th{background-color:#f7f7f7;height:31px;color:#666666;font-weight:normal;border:solid #E6E6E6;border-width:1px 0 0 1px; text-align:center;}
+table.list td{border:solid #E6E6E6;border-width:1px 0px 1px 1px;padding:5px 4px;text-align:center}
+table.list td.Operation a {text-decoration:underline; color:#0065be;}
+
+table.editor {border-collapse:collapse;border:solid #E6E6E6;border-width:0 1px 1px 1px;} 
+table.editor th{background-color:#f7f7f7;height:31px;color:#666666;font-weight:normal;border:solid #E6E6E6;border-width:1px 0 0 1px;}
+table.editor td{border:solid #E6E6E6;border-width:1px 0px 1px 1px;padding:5px 4px;text-align:center}
+table.editor td.title{text-align:right; width:100px;}
+table.editor td.content{text-align:left;}
+table.editor td.content input{ width:250px;}
+
+
+
+.MemberFrame{width:980px;margin:0 auto;margin-bottom:10px;}
+
+.MemberMenu{float:left;width:165px;margin-right:10px}
+.MemberMenu h2{background:url(http://misc.agapeimg.com/jd2008/201010/skin/i/bg_user.jpg) #CE2020 no-repeat;padding-top:3px;height:24px;line-height:24px;color:#fff;float:none;text-align:center}
+.MemberMenu .left_box1{padding:2px 0 0;border:solid #C40000;border-width:0 1px 1px;}
+.MemberMenu h3{padding:0 10px;height:25px;line-height:25px;background:#FBF7EE;border-top:1px solid #f2dcb3;font-size:12px;text-align:center}
+.MemberMenu ul{padding:4px 0;text-align:left;}.left ul li{background:url(http://misc.agapeimg.com/jd2008/201010/skin/i/my_icon.gif) no-repeat 50px 7px;height:18px;padding-left:60px;padding-top:2px;}
+.MemberMenu li a:link, .left li a:visited {color: #005AA0;}
+.MemberMenu li a:hover, .left li a:active {color: #FF7403;}
+
+
+.MemberRight{width:805px;float:right;font-family:Verdana}
+.MemberRight .o-mt{border:1px solid #e6e6e6;border-bottom:2px solid #c30000;height:33px;line-height:33px;margin-bottom:10px;}
+.MemberRight .o-mt h2{color:#cc0000;padding-left:16px;float:left;}
+
+#myagape .mt{height:32px;padding:0 12px;background:url(i/bg_jdleft_title.png) #9E0000 no-repeat 0 0;line-height:32px;color:#fff;}
+#myagape .mt h2{float:left;background:none;padding-top:0;height:auto;line-height:32px}
+#myagape .mt a{color:#fff;}
+#myagape .mt .extra{cursor:pointer;color:#ffcccc}
+#myagape .mc{border:solid #E6E6E6;border-width:0 1px 1px;overflow:hidden;}
+#myagape dl dt{position:relative;margin-bottom:-1px;height:27px;padding:0 12px;border:solid #E6E6E6;border-width:1px 0;background:url(i/bg_jdleft.jpg) #E6E6E6 repeat-x 0 -30px;font-weight:bold;line-height:27px;cursor:pointer;}
+#myagape dl dt b{display:block;position:absolute;top:0;right:5px;width:19px;height:27px;background:url(i/bg_jdleft.jpg) no-repeat 0 -150px;}
+#myagape dl dt:hover{background-position:0 0;}
+#myagape dl dt:hover b{background-position:0 -90px;}
+#myagape dl.close dt b{background-position:0 -120px;}
+#myagape dl.close dt:hover b{background-position:0 -60px;}
+#myagape dl.close dd{display:none;}
+#myagape dd{padding:4px 0 5px;}
+#myagape dd .item{padding:2px 0 2px 24px;}
+#myagape dd .curr{font-weight:bold;}
+
+
+div.toolbar { height:35px; line-height:25px; margin:5px 10px 5px 10px;}
+div.toolbar ul li { float:left; margin-right:10px;}
+div.toolbar ul li span { margin-left:3px; margin-right:3px;}
+
+
+.Selector {position: absolute; display: none; border: 1px solid Gray; background-color: White; width: 300px;}
+.Selector a {text-decoration:underline; color:#0065be;}
+.Selector .SelectorHeader {background-color: #cccccc; width: 300px; height:25px; line-height:25px; vertical-align:middle; }
+.Selector .SelectorHeader span {display: block; float: left;margin-left:5px; font-weight:bold; }
+.Selector .SelectorHeader a {display: block; float: right;margin-right:5px;}
+
+.ProductSelector {width: 700px;}
+.ProductSelector .SelectorHeader {width: 700px;}
+.ProductSelector .SelectorBody .SelectorFilter { margin-top:5px; }
+.ProductSelector .SelectorBody .SelectorFilter ul li { float:left; margin-left:10px;}
+.ProductSelector .SelectorBody .SelectorFilter ul li span { margin-right:3px;}
+.ProductSelector .SelectorBody .SelectorFilter ul li input.QueryButton { width:60px;}
+.ProductSelector .SelectorBody .SelectorContent { margin-top:5px; min-height:300px; }
+
+.ProductBrandSelector {width: 700px;}
+.ProductBrandSelector .SelectorHeader {width: 700px;}
+.ProductBrandSelector .SelectorBody .SelectorFilter { margin-top:5px; }
+.ProductBrandSelector .SelectorBody .SelectorFilter ul li { float:left; margin-left:10px;}
+.ProductBrandSelector .SelectorBody .SelectorFilter ul li span { margin-right:3px;}
+.ProductBrandSelector .SelectorBody .SelectorFilter ul li input.QueryButton { width:60px;}
+.ProductBrandSelector .SelectorBody .SelectorContent { margin-top:5px; min-height:300px; }
+
+.ProductScopeSelector {width: 1000px;}
+.ProductScopeSelector .SelectorHeader {width: 1000px;}
+.ProductScopeSelector .SelectorBody .SelectorFilter { margin-top:5px; }
+.ProductScopeSelector .SelectorBody .SelectorFilter ul li { float:left; margin-left:10px;}
+.ProductScopeSelector .SelectorBody .SelectorFilter ul li span { margin-right:3px;}
+.ProductScopeSelector .SelectorBody .SelectorFilter ul li input.QueryButton { width:60px;}
+.ProductScopeSelector .SelectorBody .SelectorContent { margin-top:5px; min-height:300px; }
+
+.BatchSelector {width: 700px;}
+.BatchSelector .SelectorHeader {width: 700px;}
+.BatchSelector .SelectorBody .SelectorFilter { margin-top:5px; }
+.BatchSelector .SelectorBody .SelectorFilter ul li { float:left; margin-left:10px;}
+.BatchSelector .SelectorBody .SelectorFilter ul li span { margin-right:3px;}
+.BatchSelector .SelectorBody .SelectorFilter ul li input.QueryButton { width:60px;}
+.BatchSelector .SelectorBody .SelectorContent { margin-top:5px; min-height:300px; }
+
+ul.SimpleEditor { background-color:#eeeeee; border:solid 1px #aaaaaa; padding:5px;}
+ul.SimpleEditor li { vertical-align:middle; } 
+ul.SimpleEditor li span {display:block; float:left; }
+ul.SimpleEditor li span.Header { width:100px; text-align:right;}
+ul.SimpleEditor li input { display:block; float:left;}
+
+.SelectorButton {background:url(../images/common/DownArrow.png) no-repeat right center; background-color:#eeeeee; }

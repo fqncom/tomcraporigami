@@ -1,0 +1,121 @@
+* { margin:0; padding:0; word-wrap:break-word; word-break:break-all; }
+body { background:#FFF; color:#333; font:12px/1.6em Helvetica, Arial, sans-serif; }
+a { text-decoration:none; color:#666666; }
+a:hover { text-decoration:underline; }
+ul, li { list-style:none; }
+img { border:none; }
+h1, h2, h3, h4, h5, h6 { font-size:1em; }
+html { overflow:-moz-scrollbars-vertical; } /* 在Firefox下始终显示滚动条*/
+
+
+.line{ background:url(../images/head/bg.png) no-repeat -196px -110px; background:url(../images/head/bg.png) no-repeat -196px -113px\9; _background:url(../images/head/bg.png) no-repeat -196px -111px;}
+
+
+
+
+
+/*菜单样式*/
+.menusub{ border:2px solid #00733A;width:250px; height:402px; _height:406px; background:#FFF; margin-bottom:10px;}
+.list{ width:250px; clear:both; margin-top:5px}
+.list .h2_cat{width:250px;height:26px;text-align:left; background: url(../images/menu/submenu.gif) no-repeat;line-height:26px; position:relative;}
+.list h3{height:26px; display:block;padding-left:6px; font-size:12px;}
+.list .h3_cat{display:none;width:304px; position:absolute; visibility:visible; z-index:93; left:240px; cursor:auto;}
+.list .h3_cat#h3_cat_H{ margin-top:-72px; }
+.list .h3_cat#h3_cat_H1{ margin-top:-152px}
+.list .h3_cat#h3_cat_H2{ margin-top:-232px}
+.list .h3_cat#h3_cat_H3{ margin-top:-312px}
+.list .h3_cat#h3_cat_H4{ margin-top:-363px}
+.list .shadow_border{position:inherit; width:600px;border:1px solid #00733A; border-left:none;display:table; background:#FFF;margin:1px 0 3px 0;}
+.shadow_border#shadow1{background:#FFF url(../images/menu/line.gif) no-repeat 0px -341px;}
+.shadow_border#shadow2{background:#FFF url(../images/menu/line.gif) no-repeat 0px -261px;}
+.shadow_border#shadow3{background:#FFF url(../images/menu/line.gif) no-repeat 0px -181px;}
+.shadow_border#shadow4{background:#FFF url(../images/menu/line.gif) no-repeat 0px -101px;}
+.shadow_border#shadow5{background:#FFF url(../images/menu/line.gif) no-repeat 0px -50px;}
+.list .shad_subM { padding-left:5px; width:380px;  float:left; }
+.list .shad_subB {margin:10px 0 0 5px; padding:0 5px; width:190px;  float:right; border-left:1px solid #ddd}
+.list .shad_subM li {list-style:none;padding:5px 0 0 10px;letter-spacing:0px; white-space:inherit; white-space:nowrap} 
+.list .shad_subB li {list-style:none;padding:5px 0 0 10px;letter-spacing:0px;} 
+.list .shad_subM dl{ border-bottom:1px dotted #ddd; width:370px; float:left; clear:left}
+.list .shad_subM dt{ float:left; padding:0 5px 0 0;}
+.list .shad_subM dd{ text-align:left; float:left; padding:0 5px; white-space:nowrap}
+.list .shad_subB dt{ padding-top:5px}
+.list .shad_subB dd{ line-height:2em}
+.list .shadow_border span{ color:#FA4E86;}
+.list .active_cat{ z-index:1;background-position:0 -25px;cursor:pointer;}
+.list .active_cat h3 { font-weight:bold}
+.list .active_cat h3 span{ display:none;} 
+.list .active_cat div{display:block;} 
+.h2_cat_sub{ float:left; text-align:left; margin:0 0 5px 5px; _margin:0 0 5px 2px; white-space:inherit; line-height:2em; border-bottom:1px solid #DDD; width:240px}
+
+/*导航样式结束*/
+
+/*尾部样式开始*/
+#footer{
+	width:1000px; 
+	height:80px; 
+	margin:10px auto; 
+}
+
+/*友情链接*/
+#friendlink
+{
+    width: 1000px; 
+    height:30px;
+    margin: 0 auto; 
+    background: #fff;
+    text-align: center; 
+    overflow: hidden;
+    margin-bottom: 12px; 
+    font-size: 14px;
+	border: 1px solid #AAAAAA;
+}
+#friendlink a { 
+    float:left;
+	padding:5px 5px; 
+	font-size:11px;
+    color:#666666;
+}
+#friendlink a:hover { 
+	background:none; 
+}
+
+/*网站帮助*/
+#webhelp
+{
+    width: 1000px; 
+    margin: 0 auto; 
+    background: #fff;
+    text-align: center; 
+    overflow: hidden;
+    margin-bottom: 12px; 
+    font-size: 14px;
+}
+#webhelp span { 
+    float:left;
+	padding:0 5px; 
+	font-size:11px;
+    color:#666666;
+    width:150px;
+    height:150px;
+	border: 1px solid #AAAAAA;
+}
+#webhelp span ul li  
+{
+    text-align:left;
+    margin-left:10px;
+}
+#webhelp span ul li a 
+{
+    color:#666666;
+}
+
+/*网站信息*/
+#webinfo
+{
+    width: 1000px; 
+    height: 220px; 
+    margin: 0 auto; 
+    background: #fff;
+    text-align: center; 
+    overflow: hidden;
+}

@@ -1,0 +1,21 @@
+#divProductQuery ul li { float:left; margin-right:10px;}
+
+#divProductEditor {   }
+#divProductEditor .tabmenu { }
+#divProductEditor .tabmenu li { float:left; cursor:pointer; width:100px; height:25px; line-height:25px; text-align:center; vertical-align:middle; margin-right:1px; font-size:15px; background-color:#eee; border:1px solid #111; border-bottom:0px; }
+#divProductEditor .tabmenu li.hover { font-weight:bold;}
+#divProductEditor .tabmenu li.selected { font-weight:bold;cursor:default;background-color:#aaa; }
+#divProductEditor .tabbox { clear:both; height:auto; min-height:200px; margin:0px;  padding:10px; border-top:1px solid #111; }
+#divProductEditor .tabbox > div{background:#FFFFFF;}
+
+
+#tbProductSpecList { width:1000px;}
+#tbProductSpecEditor { width:600px; margin-top:20px;}
+#divProductSpecOperation { margin-top:20px;}
+#divProductSpecOperation input { width:100px;}
+
+
+#tbProductPictureList { width:1000px;}
+#tbProductPictureEditor { width:600px; margin-top:20px;}
+#divProductPictureOperation { margin-top:20px;}
+#divProductPictureOperation input { width:100px;}

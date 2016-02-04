@@ -1,0 +1,11 @@
+/**/
+
+#tbLimitSalesProductList { width:100%;}
+#divLimitSalesProduct div { clear:both; margin-left:10px;}
+#divLimitSalesProduct div.ProductSelector { width:800px; border:solid 1px #dddddd; padding-top:10px; }
+#divLimitSalesProduct div.ProductSelector li { float:left;}
+#divLimitSalesProduct div.ProductSelector li span { display:block; float:left; vertical-align:middle; text-align:right; width:70px; padding-right:3px;}
+
+#divLimitSalesProduct div.Editor { margin-top:10px;}
+#divLimitSalesProduct div.Editor li {  margin-right:20px; width:500px; margin-top:5px;}
+#divLimitSalesProduct div.Editor li span { display:block; float:left; vertical-align:middle; text-align:right; width:70px; padding-right:3px;}

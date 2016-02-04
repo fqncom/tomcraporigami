@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Database NameSpace="Leopard.Data" DllName="LeopardLibrary.dll">
+  <Table TableName="LPD_AssemblyClass" TableText="封装类" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="AssemblyClassName" FieldText="封装类名称" FieldType="varchar" FieldSize="100" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DllName" FieldText="动态库名称" FieldType="varchar" FieldSize="100" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="NameSpace" FieldText="命名空间" FieldType="varchar" FieldSize="100" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_ClientInfo" TableText="客户信息表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="ClientID" FieldText="客户ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="ClientName" FieldText="客户名称" FieldType="varchar" FieldSize="100" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Address" FieldText="地址" FieldType="varchar" FieldSize="200" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Telphone" FieldText="电话" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Mobilephone" FieldText="手机" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="EMail" FieldText="电子邮件" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Website" FieldText="网站" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_License" TableText="序列号表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="LicenseID" FieldText="客户ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="SoftwareCode" FieldText="软件代号" FieldType="char" FieldSize="30" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="LicenseData" FieldText="序列号数据" FieldType="varchar" FieldSize="100" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_Dict" TableText="数据字典表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="DictCode" FieldText="字典代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="DictName" FieldText="字典名称" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DictType" FieldText="字典类型" FieldType="varchar" FieldSize="50" DictCode="SD_DictType" DictConfigFileCode="Leopard" />
+	    <Field FieldName="DataType" FieldText="数据类型" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="MaxLength" FieldText="最大长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DecimalLength" FieldText="小数长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_DictItem" TableText="数据字典项">
+  	<Fields>
+	    <Field FieldName="DictCode" FieldText="字典代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="DictItemKey" FieldText="字典项键" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="DictItemOrder" FieldText="字典项序号" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DictItemValue" FieldText="字典项值" FieldType="varchar" FieldSize="200" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_Role" TableText="角色">
+    <Fields>
+      <Field FieldName="RoleCode" FieldText="角色代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+      <Field FieldName="RoleName" FieldText="角色名称" FieldType="varchar" FieldSize="200" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="Status" FieldText="状态" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+    </Fields>
+  </Table>
+  <Table TableName="LPD_RoleRight" TableText="角色权限" IdentityKey="">
+    <Fields>
+      <Field FieldName="RoleCode" FieldText="角色代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+      <Field FieldName="RightCode" FieldText="权限代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+    </Fields>
+  </Table>
+  <Table TableName="LPD_Right" TableText="权限" IdentityKey="">
+    <Fields>
+      <Field FieldName="RightCode" FieldText="权限代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+      <Field FieldName="RightName" FieldText="权限名称" FieldType="varchar" FieldSize="200" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="RightLevel" FieldText="权限级别" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="IsLeaf" FieldText="是否叶节点" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="ParentCode" FieldText="父权限代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="MenuFlag" FieldText="菜单标志" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+    </Fields>
+  </Table>
+  <Table TableName="LPD_Operator" TableText="操作员表" IdentityKey="OperatorID">
+  	<Fields>
+	    <Field FieldName="OperatorID" FieldText="操作员ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="OperatorNo" FieldText="操作员编号" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="OperatorName" FieldText="操作员姓名" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="UserName" FieldText="用户名" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Password" FieldText="密码" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+      <Field FieldName="RoleCode" FieldText="角色代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="JobTitle" FieldText="职务" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="WarehouseID" FieldText="仓库ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="EmployeeID" FieldText="员工号ID" FieldType="int" FieldSize="0" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="AddDate" FieldText="加入日期" FieldType="char" FieldSize="8" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Status" FieldText="状态" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_Tree" TableText="数据树枝表" IdentityKey="TreeID">
+  	<Fields>
+	    <Field FieldName="TreeID" FieldText="树枝ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="TreeCode" FieldText="树枝代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="TreeName" FieldText="树枝名称" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="TreeType" FieldText="树枝类型" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="RootID" FieldText="根节点" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DataType" FieldText="数据类型" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="MaxLength" FieldText="最大长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DecimalLength" FieldText="小数长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_TreeItem" TableText="数据树枝项表" IdentityKey="TreeItemID">
+  	<Fields>
+	    <Field FieldName="TreeID" FieldText="树枝ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="TreeItemID" FieldText="树枝项ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="TreeItemKey" FieldText="树枝项键" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="TreeItemValue" FieldText="树枝项值" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="TreeItemOrder" FieldText="排序号" FieldType="int" FieldSize="0" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="NodeLevel" FieldText="节点级次" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="NodeType" FieldText="节点类型" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="ParentID" FieldText="父节点ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Status" FieldText="状态" FieldType="int" FieldSize="0" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_Sequence" TableText="自增序列" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="SequenceCode" FieldText="自增序列代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="SequenceName" FieldText="自增序列名称" FieldType="varchar" FieldSize="200" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="SequenceText" FieldText="自增序列文本" FieldType="varchar" FieldSize="200" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="CurrentValue" FieldText="当前值" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="StartValue" FieldText="开始值" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="MaxValue" FieldText="最大值" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="RecycleFlag" FieldText="循环标志" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_Parameter" TableText="系统参数表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="ParameterName" FieldText="参数名称" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="ParameterValue" FieldText="参数值" FieldType="varchar" FieldSize="500" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="DataType" FieldText="数据类型" FieldType="varchar" FieldSize="20" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DecimalLength" FieldText="小数长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="DefaultValue" FieldText="默认值" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="CanNull" FieldText="可否为空" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Length" FieldText="长度" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="ParameterCategory" FieldText="参数类型" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="ParameterDescription" FieldText="参数说明" FieldType="varchar" FieldSize="500" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_VoucherNumber" TableText="凭证编号" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="VoucherNumberCode" FieldText="Code" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="VoucherNumberName" FieldText="凭证编号名称" FieldType="varchar" FieldSize="100" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="VoucherNumberType" FieldText="凭证编号类型" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_VoucherNumberItem" TableText="凭证编号单项" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="VoucherNumberCode" FieldText="凭证编号代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="VoucherNumberItemCode" FieldText="凭证编号单项代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="VoucherNumberItemType" FieldText="类型" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Align" FieldText="对齐方式" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="DefaultFillCharacter" FieldText="默认填充字符" FieldType="char" FieldSize="1" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Length" FieldText="长度" FieldType="int" FieldSize="0" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="OrderNo" FieldText="序号" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="SequenceCode" FieldText="自增序列代码" FieldType="varchar" FieldSize="50" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Text" FieldText="文本" FieldType="varchar" FieldSize="200" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="TextFormat" FieldText="文本格式化" FieldType="varchar" FieldSize="200" CanNull="True" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="True" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_WordKey" TableText="汉字拼音表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="Word" FieldText="汉字" FieldType="char" FieldSize="2" CanNull="False" PrimaryKey="True" />
+	    <Field FieldName="HeadLetter" FieldText="首字母" FieldType="char" FieldSize="1" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Transliterate" FieldText="拼音" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_OperationLog" TableText="操作日志表" IdentityKey="">
+  	<Fields>
+	    <Field FieldName="OperatorID" FieldText="操作员ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="OperationCode" FieldText="操作代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="LogDateTime" FieldText="日志时间" FieldType="datetime" FieldSize="0" CanNull="False" PrimaryKey="False" />
+	    <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="False" PrimaryKey="False" />
+  	</Fields>
+  </Table>
+  <Table TableName="LPD_AreaInfo" TableText="地区">
+    <Fields>
+      <Field FieldName="AreaCode" FieldText="地区代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="True" />
+      <Field FieldName="AreaName" FieldText="地区名称" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="AreaLevel" FieldText="地区级别" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="ParentCode" FieldText="父地区代码" FieldType="varchar" FieldSize="50" CanNull="False" PrimaryKey="False" />
+    </Fields>
+  </Table>
+  <Table TableName="LPD_ExpressFee" TableText="快递费用表" IdentityKey="ExpressFeeID">
+    <Fields>
+      <Field FieldName="ExpressFeeID" FieldText="快递费用ID" FieldType="int" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="ExpressCompanyCode" FieldText="快递公司代码" FieldType="char" FieldSize="10" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="AreaCodeList" FieldText="区域代码列表" FieldType="varchar" FieldSize="1000" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="FromWeight" FieldText="开始重量" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="ToWeight" FieldText="结束重量" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="BaseWeight" FieldText="基本重量" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="BaseFee" FieldText="基本费用" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="IncreaseWeight" FieldText="递增重量" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="IncreaseFee" FieldText="递增费用" FieldType="float" FieldSize="0" CanNull="False" PrimaryKey="False" />
+      <Field FieldName="Remark" FieldText="备注" FieldType="varchar" FieldSize="1000" CanNull="False" PrimaryKey="False" />
+    </Fields>
+  </Table>
+</Database>

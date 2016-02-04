@@ -1,0 +1,6 @@
+﻿#divBody {width: 400px; margin: 0px auto; margin-top: 100px;}
+#divTitle { height:80px; line-height:50px; font-size:20px; font-weight:bold; text-align:center;}
+#divLogin ul li { height: 30px; line-height: 30px;  vertical-align:middle;}
+#divLogin ul li.content span { display:block; float:left; width: 130px;text-align: right; margin-right:5px;}
+#divLogin ul li.content input { display: block;float:left; width: 150px; }
+#divLogin ul li.submit input {  margin-left:135px; width: 100px; }
