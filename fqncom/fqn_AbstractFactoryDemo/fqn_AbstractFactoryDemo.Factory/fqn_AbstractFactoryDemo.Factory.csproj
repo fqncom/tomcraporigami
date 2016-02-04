@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E6E3A924-2E08-4E6F-A27C-E706590010BE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>fqn_AbstractFactoryDemo.Factory</RootNamespace>
+    <AssemblyName>fqn_AbstractFactoryDemo.Factory</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserInfoFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\fqn_AbstractFactoryDemo.AccessDal\fqn_AbstractFactoryDemo.AccessDal.csproj">
+      <Project>{c030e672-c670-4dc9-87b7-8523ee42a826}</Project>
+      <Name>fqn_AbstractFactoryDemo.AccessDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fqn_AbstractFactoryDemo.IDal\fqn_AbstractFactoryDemo.IDal.csproj">
+      <Project>{19f55d67-5f94-4582-8404-5fb902bf172e}</Project>
+      <Name>fqn_AbstractFactoryDemo.IDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fqn_AbstractFactoryDemo.Model\fqn_AbstractFactoryDemo.Model.csproj">
+      <Project>{39640ab7-888d-4f41-814d-cf71d62849fd}</Project>
+      <Name>fqn_AbstractFactoryDemo.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fqn_AbstractFactoryDemo.SqliteDal\fqn_AbstractFactoryDemo.SqliteDal.csproj">
+      <Project>{6df61357-6ad3-45dd-9e57-ed89bed520fd}</Project>
+      <Name>fqn_AbstractFactoryDemo.SqliteDal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\fqn_AbstractFactoryDemo.SqlServerDal\fqn_AbstractFactoryDemo.SqlServerDal.csproj">
+      <Project>{1e01c672-b52a-4c07-870e-e9bff13ba7bb}</Project>
+      <Name>fqn_AbstractFactoryDemo.SqlServerDal</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
