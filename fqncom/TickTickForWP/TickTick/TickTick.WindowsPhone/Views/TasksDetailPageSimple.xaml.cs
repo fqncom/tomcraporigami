@@ -45,21 +45,19 @@ namespace TickTick.Views
         /// 导航过来是为了更新还是新增，true标识更新，false表示新增
         /// </summary>
         public bool IsNavigateForUpdate { get; set; }
+        /// <summary>
+        /// ViewModel对象
+        /// </summary>
         public TasksDetailPageViewModel ViewModel { get; set; }
         #endregion
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public TasksDetailPageSimple()
         {
             ViewModel = new TasksDetailPageViewModel();
-            try
-            {
-                this.InitializeComponent();
-            }
-            catch (Exception e)
-            {
 
-                throw e;
-            }
-            //this.NavigationCacheMode = NavigationCacheMode.Required;
+            this.InitializeComponent();
 
             HardwareButtons.BackPressed += HardwareButtons_BackPressed_DetailPage;
         }
@@ -69,9 +67,6 @@ namespace TickTick.Views
             e.Handled = true;
             if (string.IsNullOrEmpty(ViewModel.Tasks.Title))
             {
-                //var confirm = new UICommand("确认") { Invoked = async (e1) => { NavigateHelper.NavigateToPage(typeof(MainPage)); } };
-                //var cancel = new UICommand("取消") { Invoked = async (e1) => { return; } };
-                //await MessageDialogHelper.MessageDialogShowAsync("标题为空，不能创建。是否放弃创建？", "提示", confirm, cancel);
                 NavigateHelper.NavigateToPage(typeof(MainPage));
                 return;
             }
@@ -81,22 +76,14 @@ namespace TickTick.Views
             if (this.IsNavigateForUpdate)//true表示更新
             {
                 // 修改的数据
-                //ViewModel.Tasks.Content = this.txtContent.Text;
                 param.UpdateTasks = ViewModel.Tasks;
                 taskNeedAwait = ViewModel.UpdateTasks();
             }
             else//false 表示新增
             {
                 param.NewTasks = ViewModel.Tasks;
-                //ViewModel.Tasks.Title = this.txtContent.Text;
-                //ViewModel.Tasks = tasks;
                 taskNeedAwait = ViewModel.AddTasks();
             }
-            //var frame = Window.Current.Content as Frame;
-            //if (frame.Navigate(typeof(MainPage)))
-            //{
-            //    e.Handled = true;
-            //}
             // 在跳转前取消注册
             HardwareButtons.BackPressed -= HardwareButtons_BackPressed_DetailPage;
             NavigateHelper.NavigateToPageWithParam(typeof(MainPage), param);
@@ -125,14 +112,11 @@ namespace TickTick.Views
             {
                 //获取最新的projects和tasks
                 await Task.WhenAll(ViewModel.GetTasksByTasksId(param.Tasks.Id), ViewModel.GetProjectsByProjectId());
-                //await ViewModel.GetTasksByTasksId(param.Tasks.Id);
-                //await ViewModel.GetProjectsByProjectId();
 
                 this.IsNavigateForUpdate = true;
-                //this.txtDueDate.Text = ViewModel.Tasks.DueDate.ToString("");
 
                 // TODO 可能有问题
-                ViewModel.BatchAddCheckListItems(ViewModel.Tasks.ChecklistItems);//.TrulyCheckListItems = new Library.TrulyObservableCollection<ChecklistItem>(ViewModel.Tasks.ChecklistItems);
+                ViewModel.BatchAddCheckListItems(ViewModel.Tasks.ChecklistItems);
                 //切换显示样式：文本模式--列表模式
                 SwitchTasksMode();
             }
@@ -195,7 +179,6 @@ namespace TickTick.Views
             InitialTasksPickerAndCombobox();
         }
 
-
         private void InitialTasksPickerAndCombobox()
         {
             if (this.IsNavigateForUpdate)
@@ -218,7 +201,6 @@ namespace TickTick.Views
             }
         }
 
-
         /// <summary>
         /// 点击任务删除按钮
         /// </summary>
@@ -232,8 +214,6 @@ namespace TickTick.Views
                 {
                     await ViewModel.DeleteTasks();
                     NavigateHelper.NavigateToPage(typeof(MainPage));
-                    //var frame = Window.Current.Content as Frame;
-                    //frame.Navigate(typeof (MainPage));
                 }
             };
             var cancel = new UICommand("取消") { Invoked = (c) => { return; } };
@@ -282,7 +262,6 @@ namespace TickTick.Views
             ViewModel.ChangeDueDate(newDate.DateTime.Date);// TODO Utc时间
 
             ChangeRemindCmbSelectionToDefault();
-
         }
 
         private void DueTime_Changed(object sender, TimePickerValueChangedEventArgs e)
@@ -308,8 +287,6 @@ namespace TickTick.Views
             ViewModel.ChangeDueTime(newTime);// TODO 此处时间有问题，Utc时间
 
             ChangeRemindCmbSelectionToDefault();
-
-            
         }
         /// <summary>
         /// 提醒，选中默认的“在开始时间”
@@ -354,12 +331,8 @@ namespace TickTick.Views
 
         private void SwithTaskMode_Clicked(object sender, RoutedEventArgs e)
         {
-
             ViewModel.SwitchTaskMode();
-
-
             SwitchTasksMode();
-
         }
 
         public bool IsSwitchChecklistMode = false;
@@ -397,8 +370,6 @@ namespace TickTick.Views
             }
         }
 
-
-
         /// <summary>
         /// 当内容文本框失去焦点的时候
         /// </summary>
@@ -421,14 +392,6 @@ namespace TickTick.Views
             }
             ViewModel.Tasks.Title = content.Substring(0, content.IndexOf("\r\n", 0, StringComparison.Ordinal));
             ViewModel.Tasks.Content = content.Substring(content.IndexOf("\r\n", 0, StringComparison.Ordinal));
-        }
-        public bool IsOnChecklistMode()
-        {
-            if (ViewModel.Tasks == null)
-            {
-                return false;
-            }
-            return ViewModel.Tasks.IsChecklistMode();
         }
 
         private void CheckListItemContent_GotFocus(object sender, RoutedEventArgs e)
@@ -546,7 +509,11 @@ namespace TickTick.Views
             }
             ViewModel.ChangeTitle(textBox.Text);
         }
-
+        /// <summary>
+        /// 选择重复任务时，进行重复rrule字符串的生成——暂时不用（未找到合适的rrule解析器）
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RepeatTimeComboxItem_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedItem = e.AddedItems.FirstOrDefault() as RepeatTimeSelection;
@@ -641,16 +608,5 @@ namespace TickTick.Views
             button.Foreground = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             ViewModel.Tasks.DueDate = null;
         }
-
-
-    }
-    /// <summary>
-    /// 临时使用的类
-    /// </summary>
-    public class SnoozeTimeSelection
-    {
-        public string Name { get; set; }
-        public string SnoozeValue { get; set; }
-        public int SnoozeBackValue { get; set; }
     }
 }

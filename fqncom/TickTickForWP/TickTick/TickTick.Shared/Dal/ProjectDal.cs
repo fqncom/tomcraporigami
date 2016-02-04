@@ -395,7 +395,8 @@ namespace TickTick.Dal
             foreach (var item in projectsList)
             {
                 var id = item.Id.ToString();
-                item.TasksCount = await (from t in tasksList where t.ProjectId == id select t).CountAsync();
+                var notCompleted = ModelStatusEnum.NOT_COMPLETED;
+                item.TasksCount = await tasksList.Where(t => t.ProjectId == id && t.TaskStatus == notCompleted).CountAsync();
             }
             return projectsList;
         }

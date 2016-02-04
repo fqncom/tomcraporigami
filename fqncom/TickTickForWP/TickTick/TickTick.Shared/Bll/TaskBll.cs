@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using TickTick.Dal;
@@ -10,6 +12,7 @@ using TickTick.Helper;
 using TickTick.Models;
 using TickTick.Utilities;
 using WindowsUniversalLogger.Interfaces;
+using SQLite;
 
 namespace TickTick.Bll
 {
@@ -1043,101 +1046,119 @@ namespace TickTick.Bll
         ///与上面不同的是，这个方法可以查找所有task，然后在外面进行删选，这样在多次处理同一个表数据时，这个效率更高
         /// </summary>
         /// <returns></returns>
-        public async Task<List<Tasks>> GetAllTasksDeletedNo()
+        public async Task<List<Tasks>> GetAllTasks()
         {
-            return await GetAllTasksByProjectIdDeletedNo(string.Empty);
+            return await GetTasksByProjectId(string.Empty);
         }
-        public async Task<List<Tasks>> GetAllTasksByProjectIdDeletedNo(string proId)
+
+        public async Task<List<Tasks>> GetTasksByProjectId(string proId)
         {
-            return await GetAllTasksByProjectIdDeletedNo(proId, TasksSortEnum.Custom_Sort);
+            return await (await GetTasksByProjectIdAsync(proId)).ToListAsync();
         }
-        public async Task<List<Tasks>> GetAllTasksByProjectIdDeletedNo(string proId, TasksSortEnum tasksSortEnum)
+
+        public async Task<List<Tasks>> GetTasksByProjectIdAndSortOrder(string proId, TasksSortEnum tasksSortEnum)
         {
-            var queryResultTask = (await TaskDal.ExecuteAsyncQueryTable()).Where((t) => t.Type == ModelStatusEnum.SYNC_TYPE_TASK_CONTENT);
+            var queryResultTask = await GetTasksByProjectIdAsync(proId);
+            Expression<Func<Tasks, object>> orderExpr = t => t.SortOrder;
+            switch (tasksSortEnum)
+            {
+                case TasksSortEnum.Custom_Sort:
+                    orderExpr = t => t.SortOrder;
+                    break;
+                case TasksSortEnum.DateTime_Sort:
+                    orderExpr = t => t.DueDate;
+                    break;
+                case TasksSortEnum.Title_Sort:
+                    orderExpr = t => t.Title;
+                    break;
+                case TasksSortEnum.Priorities_Sort:
+                    orderExpr = t => t.Priority;
+                    break;
+            }
+            ExecuteAsyncTableByOrder(queryResultTask, false, orderExpr);
+            return await queryResultTask.ToListAsync();
+        }
+        public async Task<AsyncTableQuery<Tasks>> GetTasksByProjectIdAsync(string proId)
+        {
+            //return await GetTasksByProjectIdAndSortOrder(proId, TasksSortEnum.Custom_Sort);
+            var queryResultTask = await ExecuteAllTasks();
 
             if (!string.IsNullOrEmpty(proId))
             {
                 queryResultTask = queryResultTask.Where((t) => t.ProjectId == proId);
             }
-            switch (tasksSortEnum)
-            {
-                case TasksSortEnum.Custom_Sort:
-                    queryResultTask = queryResultTask.OrderBy((t) => t.SortOrder);
-                    break;
-                case TasksSortEnum.DateTime_Sort:
-                    queryResultTask = queryResultTask.OrderBy((t) => t.DueDate);
-                    break;
-                case TasksSortEnum.Title_Sort:
-                    queryResultTask = queryResultTask.OrderBy((t) => t.Title);
-                    break;
-                case TasksSortEnum.Priorities_Sort:
-                    queryResultTask = queryResultTask.OrderBy((t) => t.Priority);
-                    break;
-                default:
-                    queryResultTask = queryResultTask.OrderBy((t) => t.SortOrder);
-                    break;
-            }
-            return await queryResultTask.ToListAsync();
+            return queryResultTask;
         }
+
+        public async Task<AsyncTableQuery<Tasks>> ExecuteAllTasks()
+        {
+            return await ExecuteAsyncTableQueryByExpression(null, false, null);
+        }
+        public async Task<List<Tasks>> GetTodayTasks()
+        {
+            var dateNow = DateTime.UtcNow.Date;
+            var queryResult = await ExecuteTableQueryByExpression(null, false, t => t.DueDate != null);
+            queryResult = queryResult.Where(t => t.DueDate != null && t.DueDate.Value.Date == dateNow).ToList();
+            return queryResult;
+        }
+
+        public async Task<List<Tasks>> GetSevenTasks()
+        {
+            var dateNow = DateTime.UtcNow.Date;
+            var timeSpan = TimeSpan.FromDays(7);
+            var queryResult = await ExecuteTableQueryByExpression(null, false, t => t.DueDate != null);
+            queryResult = queryResult.Where(t => t.DueDate != null && t.DueDate.Value.Date - dateNow <= timeSpan).ToList();
+            return queryResult;
+        }
+
+        public async Task<List<Tasks>> GetCompletedTasks()
+        {
+            var queryResult = await ExecuteTableQueryByExpression(null, false, null);
+            queryResult = queryResult.Where(t => t.IsCompleted).ToList();
+            return queryResult;
+        }
+
+        public async Task<List<Tasks>> GetInboxTasks()
+        {
+            var inboxId = App.SignUserInfo.InboxId;
+            var queryResult = await ExecuteTableQueryByExpression(null, false, t => t.ProjectSid == inboxId);
+            return queryResult;
+        }
+
+        public async Task<List<Tasks>> ExecuteTableQueryByExpression(Expression<Func<Tasks, object>> orderExpr,
+            bool isDesc, params Expression<Func<Tasks, bool>>[] whereExprs)
+        {
+            return await (await ExecuteAsyncTableQueryByExpression(orderExpr, isDesc, whereExprs)).ToListAsync();
+        }
+
+        public async Task<AsyncTableQuery<Tasks>> ExecuteAsyncTableQueryByExpression(Expression<Func<Tasks, object>> orderExpr, bool isDesc, params Expression<Func<Tasks, bool>>[] whereExprs)
+        {
+            var queryResult = (await TaskDal.ExecuteAsyncQueryTable()).Where(t => t.Type == ModelStatusEnum.SYNC_TYPE_TASK_CONTENT);
+            if (whereExprs != null && whereExprs.Length > 0)
+            {
+                foreach (var whereExpr in whereExprs)
+                {
+                    queryResult = ExecuteAsyncTableByWhere(queryResult, whereExpr);
+                }
+            }
+            if (orderExpr != null)
+            {
+                queryResult = ExecuteAsyncTableByOrder(queryResult, isDesc, orderExpr);
+            }
+            return queryResult;
+        }
+
+        public AsyncTableQuery<Tasks> ExecuteAsyncTableByOrder(AsyncTableQuery<Tasks> queryResultTask, bool isDesc, Expression<Func<Tasks, object>> orderExpr)
+        {
+            return isDesc ? queryResultTask.OrderByDescending(orderExpr) : queryResultTask.OrderBy(orderExpr);
+        }
+        public AsyncTableQuery<Tasks> ExecuteAsyncTableByWhere(AsyncTableQuery<Tasks> queryResultTask, Expression<Func<Tasks, bool>> whereExpr)
+        {
+            return queryResultTask.Where(whereExpr);
+        }
+
         #endregion
 
-        #region android代码
-        //    public void batchUpdateTasksFromRemote(final TaskSyncBean taskSyncBean) {
-        //    dbHelper.doInTransaction(new Transactable<Void>() {
-
-        //        @Override
-        //        public Void doIntransaction(GTasksDBHelper dbHelper) {
-
-        //            //云端修改覆盖本地，无需再Post该Task
-        //            for (Task2 update : taskSyncBean.getUpdated()) {
-        //                task2Dao.updateTaskWithoutModifyDate(update);
-        //                saveMergedChecklistItems(update);
-        //            }
-
-        //            //云端和本地Task执行合并操作后，需要把更新内容Post到云端
-        //            for (Task2 updating : taskSyncBean.getUpdating()) {
-        //                if (task2Dao.updateTaskContentWithoutModifyDate(updating)) {
-        //                    syncStatusService.addSyncStatus(updating, Status.SYNC_TYPE_TASK_CONTENT);
-        //                }
-        //                saveMergedChecklistItems(updating);
-        //            }
-        //            return null;
-        //        }
-        //    });
-        //}
-        //    private void fillAttachmentMap(HashMap<Long, ArrayList<Attachment>> attachmentMap,
-        //        ArrayList<Attachment> attachments) {
-        //    for (Attachment attachment : attachments) {
-        //        if (attachmentMap.containsKey(attachment.getTaskId())) {
-        //            attachmentMap.get(attachment.getTaskId()).add(attachment);
-        //        } else {
-        //            ArrayList<Attachment> values = new ArrayList<Attachment>();
-        //            values.add(attachment);
-        //            attachmentMap.put(attachment.getTaskId(), values);
-        //        }
-        //    }
-        //}
-        //    private void fillChecklistItemMap(HashMap<Long, ArrayList<ChecklistItem>> itemMap,
-        //        ArrayList<ChecklistItem> checklistItems) {
-        //    for (ChecklistItem item : checklistItems) {
-        //        if (itemMap.containsKey(item.getTaskId())) {
-        //            itemMap.get(item.getTaskId()).add(item);
-        //        } else {
-        //            ArrayList<ChecklistItem> values = new ArrayList<ChecklistItem>();
-        //            values.add(item);
-        //            itemMap.put(item.getTaskId(), values);
-        //        }
-        //    }
-        //}
-        //    private void fillLocationMap(HashMap<Long, Location> locationMap,
-        //        ArrayList<Location> locations) {
-        //    for (Location location : locations) {
-        //        if (!locationMap.containsKey(location.getTaskId())) {
-        //            locationMap.put(location.getTaskId(), location);
-        //        }
-        //    }
-        //}
-        #endregion
 
         protected override void SetCurrentDal()
         {
@@ -1146,7 +1167,7 @@ namespace TickTick.Bll
 
         public async Task DeleteForeverByProjectId(string proId)
         {
-            var queryResult = await GetAllTasksByProjectIdDeletedNo(proId);
+            var queryResult = await GetTasksByProjectId(proId);
             await DeleteTaskIntoTrash(queryResult);
         }
         public async Task<Tasks> AddTasks(Tasks task)

@@ -189,6 +189,8 @@
     <Content Include="Assets\所有3.scale-140.png" />
     <Content Include="Assets\所有3.scale-180.png" />
     <Content Include="Assets\所有3.scale-240.png" />
+    <Content Include="Assets\所有4.svg" />
+    <Content Include="Assets\提醒.svg" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

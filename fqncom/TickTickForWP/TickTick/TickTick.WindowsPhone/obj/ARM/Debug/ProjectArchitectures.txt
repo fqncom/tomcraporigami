@@ -1,2 +1,2 @@
-D:\---vs_projects\TickTick_BackUp\TickTick for WP_14\NotificationsExtensions\NotificationsExtensions.csproj;arm
-D:\---vs_projects\TickTick_BackUp\TickTick for WP_14\TickTick\TickTick.WindowsPhone\TickTick.WindowsPhone.csproj;arm
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_16\NotificationsExtensions\NotificationsExtensions.csproj;arm
+D:\---vs_projects\TickTick_BackUp\TickTick for WP_16\TickTick\TickTick.WindowsPhone\TickTick.WindowsPhone.csproj;arm

@@ -20,6 +20,7 @@
   </Prerequisites>
   <Resources>
     <Resource Language="ZH-CN" />
+    <Resource Language="qps-ploc" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="TickTick.WindowsPhone.exe" EntryPoint="TickTick.WindowsPhone.App">

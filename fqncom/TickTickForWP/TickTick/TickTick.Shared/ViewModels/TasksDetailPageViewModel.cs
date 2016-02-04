@@ -16,15 +16,27 @@ using TickTick.Views.ViewService;
 
 namespace TickTick.ViewModels
 {
+    /// <summary>
+    /// 任务详情ViewModel类
+    /// </summary>
     public class TasksDetailPageViewModel : INotifyPropertyChanged
     {
         #region 自定义属性
+        /// <summary>
+        /// 操作清单业务逻辑对象
+        /// </summary>
         public ProjectBll ProjectBll = new ProjectBll();
+        /// <summary>
+        /// CheckList视图服务对象
+        /// </summary>
         public CheckListViewService CheckListViewService = new CheckListViewService();
         /// <summary>
         /// 经过修改之后的tasks
         /// </summary>
         private Tasks _tasks;
+        /// <summary>
+        /// 任务对象
+        /// </summary>
         public Tasks Tasks
         {
             get { return _tasks; }
@@ -38,14 +50,27 @@ namespace TickTick.ViewModels
         /// projects对象
         /// </summary>
         public Projects Projects { get; set; }
+        /// <summary>
+        /// 操作任务业务逻辑对象
+        /// </summary>
         public TaskBll TaskBll = new TaskBll();
-
+        /// <summary>
+        /// 提醒Combobox下拉列表
+        /// </summary>
         public List<SnoozeTimeSelection> RemindTimeSelectionList { get; set; }
-        //public List<> RemindTimeSelectionList { get; set; }
+        /// <summary>
+        /// 优先级Combobox下拉列表
+        /// </summary>
         public List<PrioritySelection> PrioritiesEnumList { get; set; }
+        /// <summary>
+        /// 重复Combobox下拉列表
+        /// </summary>
         public List<RepeatTimeSelection> RepeatTimeSelectionList { get; set; }
 
         private ObservableCollection<ChecklistItem> _trulyChecklistItems;
+        /// <summary>
+        /// 列表模式对象展示
+        /// </summary>
         public IList<ChecklistItem> TrulyCheckListItems
         {
             get
@@ -61,7 +86,10 @@ namespace TickTick.ViewModels
                 }
             }
         }
-
+        /// <summary>
+        /// 列表模式的列表项变动
+        /// </summary>
+        /// <param name="newCheckListitem"></param>
         public void BatchAddCheckListItems(IEnumerable<ChecklistItem> newCheckListitem)
         {
             var currentCheckListItem = _trulyChecklistItems;
@@ -74,7 +102,9 @@ namespace TickTick.ViewModels
         }
 
         #endregion
-
+        /// <summary>
+        /// 初始化ViewModel
+        /// </summary>
         public TasksDetailPageViewModel()
         {
             _tasks = new Tasks();
@@ -85,18 +115,28 @@ namespace TickTick.ViewModels
             //初始化界面combox选项
             InitializationComboxList();
         }
-
+        /// <summary>
+        /// 初始化Combobox列表
+        /// </summary>
         private void InitializationComboxList()
         {
             this.PrioritiesEnumList = SelectionListEnum.PrioritySelectionList;
             this.RemindTimeSelectionList = SelectionListEnum.SnoozeTimeSelectionList;
             this.RepeatTimeSelectionList = SelectionListEnum.RepeatTimeSelection;
         }
+        /// <summary>
+        /// 添加任务
+        /// </summary>
+        /// <returns></returns>
         public async Task AddTasks()
         {
             Tasks.ChecklistItems = new List<ChecklistItem>(TrulyCheckListItems);
             await TaskBll.SaveTask(this.OriginalTasks, this.Tasks);
         }
+        /// <summary>
+        /// 更新任务
+        /// </summary>
+        /// <returns></returns>
         public async Task UpdateTasks()
         {
             Tasks.ChecklistItems = new List<ChecklistItem>(TrulyCheckListItems);
@@ -110,13 +150,19 @@ namespace TickTick.ViewModels
         {
             await TaskBll.DeleteForever(this.Tasks);
         }
-
+        /// <summary>
+        /// 获取所有的清单列表，初始化“移动到清单”Combobox列表
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Projects>> GetAllProjects()
         {
             return await ProjectBll.GetAllProjectsDeletedNo();
         }
 
-
+        /// <summary>
+        /// 改变优先级
+        /// </summary>
+        /// <param name="prioritiesItem"></param>
         public void ChangePriority(PrioritySelection prioritiesItem)
         {
             //PrioritySelection prioritiesValue;
@@ -145,69 +191,54 @@ namespace TickTick.ViewModels
 
             this.Tasks.Priority = prioritiesItem.PrioritiesEnum;
         }
-
+        /// <summary>
+        /// 改变提醒时间
+        /// </summary>
+        /// <param name="selectedItem"></param>
         public void ChangeRemindTime(SnoozeTimeSelection selectedItem)
         {
             this.Tasks.Reminder = selectedItem.SnoozeValue;
         }
-
+        /// <summary>
+        /// 改变到期时间——日期
+        /// </summary>
+        /// <param name="newDate"></param>
         public void ChangeDueDate(DateTime? newDate)
         {
             if (this.Tasks.DueDate != null)
             {
-                UpdateDueDate(newDate, this.Tasks.DueDate.Value.TimeOfDay);
+                UpdateDueDate(newDate, this.Tasks.DueDate.Value.ToLocalTime().TimeOfDay);
             }
             else
             {
                 UpdateDueDate(newDate, DateTime.Now.TimeOfDay);// TODO Utc时间
             }
         }
-
+        /// <summary>
+        /// 改变到期时间——时间
+        /// </summary>
+        /// <param name="newTime"></param>
         public void ChangeDueTime(TimeSpan newTime)
         {
             if (this.Tasks.DueDate != null)
             {
-                UpdateDueDate(this.Tasks.DueDate.Value.Date, newTime);
+                UpdateDueDate(this.Tasks.DueDate.Value.ToLocalTime().Date, newTime);
             }
             else
             {
-                UpdateDueDate(DateTime.UtcNow.Date, newTime);
+                UpdateDueDate(DateTime.Now.Date, newTime);
             }
         }
 
         private void UpdateDueDate(DateTime? newDate, TimeSpan? newTime)
         {
-            var dueDate = newDate ?? DateTime.Now.Date;
-            var dueDateTime = newTime ?? DateTime.Now.TimeOfDay;
-
             //2015-03-29T16:00:00.000+0000
             //strDate = dt.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss.fffffffK"); // 2007-07-21T15:11:19.1250000+05:30   
             var localTime = new DateTime(newDate.Value.Year, newDate.Value.Month, newDate.Value.Day, newTime.Value.Hours, newTime.Value.Minutes, newTime.Value.Seconds, newTime.Value.Milliseconds, DateTimeKind.Local);
             this.Tasks.DueDate = localTime.ToUniversalTime();
-            //this.Tasks.DueDate = string.Format("{0}T{1}.000+0000", dueDate.ToStringDateyMd(), (dueDateTime).ToStringTimeSpanHms())).ToUniversalTime();
         }
-        public bool Composing;
-        /// <summary>
-        /// 弃用
-        /// </summary>
-        /// <param name="content"></param>
-        public void SaveToTask(string content)
-        {
-            if (Tasks.IsChecklistMode())
-            {
-                // task title has been updated
-                Tasks.Content = CheckListViewService.GetCompositeContent(Tasks);
-            }
-            else
-            {
-                if (Composing)
-                {
-                    String[] tstr = StringUtils.ParseCompositeNotes(content);
-                    Tasks.Title = tstr[0];
-                    Tasks.Content = tstr[1];
-                }
-            }
-        }
+       
+        
         /// <summary>
         /// 暂时弃用
         /// </summary>
@@ -248,33 +279,44 @@ namespace TickTick.ViewModels
             }
         }
 
+        /// <summary>
+        /// 通过projectId获取清单
+        /// </summary>
+        /// <returns></returns>
         public async Task GetProjectsByProjectId()
         {
             this.Projects = await ProjectBll.GetProjectByProjectId(Convert.ToInt32(this.Tasks.ProjectId));
         }
-
+        /// <summary>
+        /// 通过taskId获取任务
+        /// </summary>
+        /// <param name="tasksId"></param>
+        /// <returns></returns>
         public async Task GetTasksByTasksId(int tasksId)
         {
             this.Tasks = await TaskBll.GetFullTaskById(tasksId);
             //this.Tasks = await TaskBll.GetTasksWithCheckListByTasksId(tasksId);
         }
-
-
-        public void SwitchCheckListMode()
-        {
-            CheckListViewService.SwitchToChecklist(Tasks);
-        }
-
+        /// <summary>
+        /// 移动任务
+        /// </summary>
+        /// <param name="projectId"></param>
         public void ChangeBelongProjectId(string projectId)
         {
             this.Tasks.ProjectId = projectId;
         }
-
+        /// <summary>
+        /// 改变任务标题
+        /// </summary>
+        /// <param name="title"></param>
         public void ChangeTitle(string title)
         {
             this.Tasks.Title = title;
         }
-
+        /// <summary>
+        /// 改变重复时间
+        /// </summary>
+        /// <param name="repeatTimeEnum"></param>
         public void ChangeRepeatTime(int repeatTimeEnum)
         {
             if (repeatTimeEnum.Equals(TaskRepeatItemEnum.DOES_NOT_REPEAT))
@@ -574,10 +616,15 @@ namespace TickTick.ViewModels
         public int RepeatTimeEnum { get; set; }
     }
 
-
-
-
-
+    /// <summary>
+    /// 临时使用的类
+    /// </summary>
+    public class SnoozeTimeSelection
+    {
+        public string Name { get; set; }
+        public string SnoozeValue { get; set; }
+        public int SnoozeBackValue { get; set; }
+    }
 
     public class PrioritySelection
     {

@@ -1,0 +1,2448 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TickTick.WindowsPhone</name>
+    </assembly>
+    <members>
+        <member name="T:TickTick.Common.NavigationHelper">
+            <summary>
+            NavigationHelper 协助在页面间进行导航。 它提供一些命令，用于
+            前后导航以及注册用于前进和后退的标准鼠标和键盘
+            导航请求快捷方式和 Windows Phone 中的
+            硬件“后退”按钮。此外，它集成了 SuspensionManger 以在页面之间导航时处理
+            进程生存期管理和状态管理。
+            </summary>
+            <example>
+            若要利用 NavigationHelper，请执行下面两步或
+            以 BasicPage 或除 BlankPage 以外的任何页项开始。
+            
+            1) 在某处创建一个 NavigationHelper 实例(如
+                页面的构造函数中)，并注册 LoadState 和
+                SaveState 事件的回调。
+            <code>
+                public MyPage()
+                {
+                    this.InitializeComponent();
+                    var navigationHelper = new NavigationHelper(this);
+                    this.navigationHelper.LoadState += navigationHelper_LoadState;
+                    this.navigationHelper.SaveState += navigationHelper_SaveState;
+                }
+                
+                private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+                { }
+                private async void navigationHelper_SaveState(object sender, LoadStateEventArgs e)
+                { }
+            </code>
+            
+            2) 在以下情况下注册页面以调入 NavigationHelper: 该页面
+                 通过重写 <see cref="M:Windows.UI.Xaml.Controls.Page.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)"/> 
+                和 <see cref="M:Windows.UI.Xaml.Controls.Page.OnNavigatedFrom(Windows.UI.Xaml.Navigation.NavigationEventArgs)"/> 事件以参与导航。
+            <code>
+                protected override void OnNavigatedTo(NavigationEventArgs e)
+                {
+                    navigationHelper.OnNavigatedTo(e);
+                }
+                
+                protected override void OnNavigatedFrom(NavigationEventArgs e)
+                {
+                    navigationHelper.OnNavigatedFrom(e);
+                }
+            </code>
+            </example>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.#ctor(Windows.UI.Xaml.Controls.Page)">
+            <summary>
+            初始化 <see cref="T:TickTick.Common.NavigationHelper"/> 类的新实例。
+            </summary>
+            <param name="page">对当前页面的引用，用于导航。 
+            此引用可操纵帧，并确保
+            仅在页面占用整个窗口时产生导航请求。</param>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.CanGoBack">
+            <summary>
+            <see cref="P:TickTick.Common.NavigationHelper.GoBackCommand"/> 属性使用的虚拟方法，用于
+            确定 <see cref="P:TickTick.Common.NavigationHelper.Frame"/> 能否后退。
+            </summary>
+            <returns>
+            如果 <see cref="P:TickTick.Common.NavigationHelper.Frame"/> 至少在
+            后退导航历史记录中有一个条目，则为 true。
+            </returns>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.CanGoForward">
+            <summary>
+            <see cref="P:TickTick.Common.NavigationHelper.GoForwardCommand"/> 属性使用的虚拟方法，用于
+            确定 <see cref="P:TickTick.Common.NavigationHelper.Frame"/> 能否前进。
+            </summary>
+            <returns>
+            如果 <see cref="P:TickTick.Common.NavigationHelper.Frame"/> 至少在
+            前进导航历史记录中有一个条目，则为 true。
+            </returns>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.GoBack">
+            <summary>
+            <see cref="P:TickTick.Common.NavigationHelper.GoBackCommand"/> 属性使用的虚拟方法，用于
+            调用 <see cref="M:Windows.UI.Xaml.Controls.Frame.GoBack"/> 方法。
+            </summary>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.GoForward">
+            <summary>
+            <see cref="P:TickTick.Common.NavigationHelper.GoForwardCommand"/> 属性使用的虚拟方法，用于
+            调用 <see cref="M:Windows.UI.Xaml.Controls.Frame.GoForward"/> 方法。
+            </summary>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.HardwareButtons_BackPressed(System.Object,Windows.Phone.UI.Input.BackPressedEventArgs)">
+            <summary>
+            在按下硬件“后退”按钮时调用。仅适用于 Windows Phone。
+            </summary>
+            <param name="sender">触发事件的实例。</param>
+            <param name="e">描述导致事件的条件的事件数据。</param>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            即将在 Frame 中显示此页时调用。 
+            此方法调用 <see cref="E:TickTick.Common.NavigationHelper.LoadState"/>，应在此处放置所有
+            导航和进程生命周期管理逻辑。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。    Parameter
+            属性提供要显示的组。</param>
+        </member>
+        <member name="M:TickTick.Common.NavigationHelper.OnNavigatedFrom(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            当此页不再在 Frame 中显示时调用。
+            此方法调用 <see cref="E:TickTick.Common.NavigationHelper.SaveState"/>，应在此处放置所有
+            导航和进程生命周期管理逻辑。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。    Parameter
+            属性提供要显示的组。</param>
+        </member>
+        <member name="P:TickTick.Common.NavigationHelper.GoBackCommand">
+             <summary>
+             如果 Frame 管理其导航历史记录，则 <see cref="T:TickTick.Common.RelayCommand"/> 用于绑定到后退按钮的 Command 属性
+             以导航到后退导航历史记录中的最新项
+            。
+             
+             <see cref="T:TickTick.Common.RelayCommand"/> 被设置为使用虚拟方法 <see cref="M:TickTick.Common.NavigationHelper.GoBack"/>
+             作为执行操作，并将 <see cref="M:TickTick.Common.NavigationHelper.CanGoBack"/> 用于 CanExecute。
+             </summary>
+        </member>
+        <member name="P:TickTick.Common.NavigationHelper.GoForwardCommand">
+            <summary>
+            如果 Frame 管理其导航历史记录，则 <see cref="T:TickTick.Common.RelayCommand"/> 用于导航到
+            前进历史记录中的最新项。
+            
+            <see cref="T:TickTick.Common.RelayCommand"/> 被设置为使用虚拟方法 <see cref="M:TickTick.Common.NavigationHelper.GoForward"/>
+            作为执行操作，并将 <see cref="M:TickTick.Common.NavigationHelper.CanGoForward"/> 用于 CanExecute。
+            </summary>
+        </member>
+        <member name="E:TickTick.Common.NavigationHelper.LoadState">
+            <summary>
+            在当前页上注册此事件以向该页填入
+            在导航过程中传递的内容以及任何
+            在从以前的会话重新创建页时提供的已保存状态。
+            </summary>
+        </member>
+        <member name="E:TickTick.Common.NavigationHelper.SaveState">
+            <summary>
+            在当前页上注册此事件以保留
+            与当前页关联的状态，以防
+            应用程序挂起或从导航缓存中丢弃
+            该页。
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.LoadStateEventHandler">
+            <summary>
+            代表将处理 <see cref="E:TickTick.Common.NavigationHelper.LoadState"/> 事件的方法
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.SaveStateEventHandler">
+            <summary>
+            代表将处理 <see cref="E:TickTick.Common.NavigationHelper.SaveState"/> 事件的方法
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.LoadStateEventArgs">
+            <summary>
+            一个类，用于存放在某页尝试加载状态时所需的事件数据。
+            </summary>
+        </member>
+        <member name="M:TickTick.Common.LoadStateEventArgs.#ctor(System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            初始化 <see cref="T:TickTick.Common.LoadStateEventArgs"/> 类的新实例。
+            </summary>
+            <param name="navigationParameter">
+            最初请求此页时传递给 <see cref="M:Windows.UI.Xaml.Controls.Frame.Navigate(System.Type,System.Object)"/> 
+            的参数值。
+            </param>
+            <param name="pageState">
+            此页在以前会话期间保留的状态
+            的字典。 首次访问某页时，此项将为 null。
+            </param>
+        </member>
+        <member name="P:TickTick.Common.LoadStateEventArgs.NavigationParameter">
+            <summary>
+            最初请求此页时传递给 <see cref="M:Windows.UI.Xaml.Controls.Frame.Navigate(System.Type,System.Object)"/> 
+            的参数值。
+            </summary>
+        </member>
+        <member name="P:TickTick.Common.LoadStateEventArgs.PageState">
+            <summary>
+            此页在以前会话期间保留的状态
+            的字典。 首次访问某页时，此项将为 null。
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.SaveStateEventArgs">
+            <summary>
+            一个类，用于存放在某页尝试保存状态时所需的事件数据。
+            </summary>
+        </member>
+        <member name="M:TickTick.Common.SaveStateEventArgs.#ctor(System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            初始化 <see cref="T:TickTick.Common.SaveStateEventArgs"/> 类的新实例。
+            </summary>
+            <param name="pageState">要使用可序列化状态填充的空字典。</param>
+        </member>
+        <member name="P:TickTick.Common.SaveStateEventArgs.PageState">
+            <summary>
+            要填入可序列化状态的空字典。
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.ObservableDictionary">
+            <summary>
+            支持重新进入以用作默认视图模型的 IObservableMap 的
+            实现。
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.RelayCommand">
+             <summary>
+             专门用于中继自身功能的命令
+             通过调用委托分配给其他对象。
+            CanExecute 方法的默认返回值为“true”。
+             在下列情况中，始终需要调用 <see cref="M:TickTick.Common.RelayCommand.RaiseCanExecuteChanged"/>
+             <see cref="M:TickTick.Common.RelayCommand.CanExecute(System.Object)"/> 应返回其他的值。
+             </summary>
+        </member>
+        <member name="M:TickTick.Common.RelayCommand.#ctor(System.Action)">
+            <summary>
+            创建可始终执行的新命令。
+            </summary>
+            <param name="execute">执行逻辑。</param>
+        </member>
+        <member name="M:TickTick.Common.RelayCommand.#ctor(System.Action,System.Func{System.Boolean})">
+            <summary>
+            创建新命令。
+            </summary>
+            <param name="execute">执行逻辑。</param>
+            <param name="canExecute">执行状态逻辑。</param>
+        </member>
+        <member name="M:TickTick.Common.RelayCommand.CanExecute(System.Object)">
+            <summary>
+            确定此 <see cref="T:TickTick.Common.RelayCommand"/> 是否可在其当前状态下执行。
+            </summary>
+            <param name="parameter">
+            命令使用的数据。如果不需要向命令传递数据，则可将此对象设置为 null。
+            </param>
+            <returns>如果可执行此命令，则返回 true；否则返回 false。</returns>
+        </member>
+        <member name="M:TickTick.Common.RelayCommand.Execute(System.Object)">
+            <summary>
+            对当前命令目标执行 <see cref="T:TickTick.Common.RelayCommand"/>。
+            </summary>
+            <param name="parameter">
+            命令使用的数据。如果不需要向命令传递数据，则可将此对象设置为 null。
+            </param>
+        </member>
+        <member name="M:TickTick.Common.RelayCommand.RaiseCanExecuteChanged">
+            <summary>
+            用于引发 <see cref="E:TickTick.Common.RelayCommand.CanExecuteChanged"/> 事件的方法
+            执行 <see cref="M:TickTick.Common.RelayCommand.CanExecute(System.Object)"/> 的返回值
+            方法已更改。
+            </summary>
+        </member>
+        <member name="E:TickTick.Common.RelayCommand.CanExecuteChanged">
+            <summary>
+            调用 RaiseCanExecuteChanged 时引发。
+            </summary>
+        </member>
+        <member name="T:TickTick.Common.SuspensionManager">
+            <summary>
+            SuspensionManager 捕获全局会话状态以简化应用程序的
+            进程生命期管理。  请注意会话状态在许多条件下将自动清除，
+            因此应该只用于存储方便
+            在会话之间传递，但在应用程序崩溃时应放弃
+            升级时应丢弃的信息。
+            </summary>
+        </member>
+        <member name="M:TickTick.Common.SuspensionManager.SaveAsync">
+            <summary>
+            保存当前 <see cref="P:TickTick.Common.SuspensionManager.SessionState"/>。  任何 <see cref="T:Windows.UI.Xaml.Controls.Frame"/> 实例
+            (已向 <see cref="M:TickTick.Common.SuspensionManager.RegisterFrame(Windows.UI.Xaml.Controls.Frame,System.String,System.String)"/> 注册)都还将保留其当前的
+            导航堆栈，从而使其活动 <see cref="T:Windows.UI.Xaml.Controls.Page"/> 可以
+            保存其状态。
+            </summary>
+            <returns>反映会话状态保存时间的异步任务。</returns>
+        </member>
+        <member name="M:TickTick.Common.SuspensionManager.RestoreAsync(System.String)">
+            <summary>
+            还原之前保存的 <see cref="P:TickTick.Common.SuspensionManager.SessionState"/>。  任何 <see cref="T:Windows.UI.Xaml.Controls.Frame"/> 实例
+            (已向 <see cref="M:TickTick.Common.SuspensionManager.RegisterFrame(Windows.UI.Xaml.Controls.Frame,System.String,System.String)"/> 注册)都还将还原其先前的导航
+            状态，从而使其活动 <see cref="T:Windows.UI.Xaml.Controls.Page"/> 可以还原其
+            状态。
+            </summary>
+            <param name="sessionBaseKey">标识会话类型的可选密钥。
+            这可用于区分多个应用程序启动方案。</param>
+            <returns>反映何时读取会话状态的异步任务。
+            在此任务完成之前，不应依赖 <see cref="P:TickTick.Common.SuspensionManager.SessionState"/>
+            完成。</returns>
+        </member>
+        <member name="M:TickTick.Common.SuspensionManager.RegisterFrame(Windows.UI.Xaml.Controls.Frame,System.String,System.String)">
+            <summary>
+            注册 <see cref="T:Windows.UI.Xaml.Controls.Frame"/> 实例以允许将其导航历史记录保存到
+            <see cref="P:TickTick.Common.SuspensionManager.SessionState"/> 并从中还原。  如果框架将参与会话状态管理，
+            则应在创建框架后立即注册。  在
+            注册时，如果已还原指定键的状态，
+            则将立即还原导航历史记录。
+            <see cref="M:TickTick.Common.SuspensionManager.RestoreAsync(System.String)"/> 还将还原导航历史记录。
+            </summary>
+            <param name="frame">其导航历史记录应由
+            <see cref="T:TickTick.Common.SuspensionManager"/></param>
+            <param name="sessionStateKey"><see cref="P:TickTick.Common.SuspensionManager.SessionState"/> 的唯一键，用于
+            存储与导航相关的信息。</param>
+            <param name="sessionBaseKey">标识会话类型的可选密钥。
+            这可用于区分多个应用程序启动方案。</param>
+        </member>
+        <member name="M:TickTick.Common.SuspensionManager.UnregisterFrame(Windows.UI.Xaml.Controls.Frame)">
+            <summary>
+            解除之前由 <see cref="M:TickTick.Common.SuspensionManager.RegisterFrame(Windows.UI.Xaml.Controls.Frame,System.String,System.String)"/> 注册的 <see cref="T:Windows.UI.Xaml.Controls.Frame"/>
+            与 <see cref="P:TickTick.Common.SuspensionManager.SessionState"/> 的关联。  之前捕获的任何导航状态都将
+            已移除。
+            </summary>
+            <param name="frame">其导航历史记录不应再
+            托管。</param>
+        </member>
+        <member name="M:TickTick.Common.SuspensionManager.SessionStateForFrame(Windows.UI.Xaml.Controls.Frame)">
+            <summary>
+            为与指定的 <see cref="T:Windows.UI.Xaml.Controls.Frame"/> 相关联的会话状态提供存储。
+            之前已向 <see cref="M:TickTick.Common.SuspensionManager.RegisterFrame(Windows.UI.Xaml.Controls.Frame,System.String,System.String)"/> 注册的框架已自动
+            保存其会话状态且还原为全局
+            <see cref="P:TickTick.Common.SuspensionManager.SessionState"/> 的一部分。  未注册的框架具有
+            在还原已从导航缓存中丢弃的页面时仍然有用的
+            导航缓存。
+            </summary>
+            <remarks>应用程序可能决定依靠 <see cref="T:TickTick.Common.NavigationHelper"/> 管理
+            特定于页面的状态，而非直接使用框架会话状态。</remarks>
+            <param name="frame">需要会话状态的实例。</param>
+            <returns>状态集合受限于与
+            <see cref="P:TickTick.Common.SuspensionManager.SessionState"/>。</returns>
+        </member>
+        <member name="P:TickTick.Common.SuspensionManager.SessionState">
+            <summary>
+            提供对当前会话的全局会话状态的访问。  此状态
+            由 <see cref="M:TickTick.Common.SuspensionManager.SaveAsync"/> 序列化并由
+            <see cref="M:TickTick.Common.SuspensionManager.RestoreAsync(System.String)"/> 还原，因此这些值必须可由
+            <see cref="T:System.Runtime.Serialization.DataContractSerializer"/> 序列化且应尽可能紧凑。  强烈建议使用
+            字符串和其他自包含数据类型。
+            </summary>
+        </member>
+        <member name="P:TickTick.Common.SuspensionManager.KnownTypes">
+            <summary>
+            读取和写入会话状态时向 <see cref="T:System.Runtime.Serialization.DataContractSerializer"/> 提供的
+            自定义类型的列表。  最初为空，可能会
+            添加其他类型以自定义序列化进程。
+            </summary>
+        </member>
+        <member name="P:TickTick.Controls.AppBarBtnControl.BtnSymbol">
+            <summary>
+            用于控件的图标
+            </summary>
+        </member>
+        <member name="P:TickTick.Controls.AppBarBtnControl.BtnContent">
+            <summary>
+            用于控件的名称
+            </summary>
+        </member>
+        <member name="P:TickTick.Controls.AppBarBtnControl.BtnFontSize">
+            <summary>
+            用于控件的字体大小
+            </summary>
+        </member>
+        <member name="T:SQLite.SQLiteConnection">
+            <summary>
+            Represents an open connection to a SQLite database.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.#ctor(System.String,System.Boolean)">
+            <summary>
+            Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
+            </summary>
+            <param name="databasePath">
+            Specifies the path to the database file.
+            </param>
+            <param name="storeDateTimeAsTicks">
+            Specifies whether to store DateTime properties as ticks (true) or strings (false). You
+            absolutely do want to store them as Ticks in all new projects. The default of false is
+            only here for backwards compatibility. There is a *significant* speed advantage, with no
+            down sides, when setting storeDateTimeAsTicks = true.
+            </param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.#ctor(System.String,SQLite.SQLiteOpenFlags,System.Boolean)">
+            <summary>
+            Constructs a new SQLiteConnection and opens a SQLite database specified by databasePath.
+            </summary>
+            <param name="databasePath">
+            Specifies the path to the database file.
+            </param>
+            <param name="storeDateTimeAsTicks">
+            Specifies whether to store DateTime properties as ticks (true) or strings (false). You
+            absolutely do want to store them as Ticks in all new projects. The default of false is
+            only here for backwards compatibility. There is a *significant* speed advantage, with no
+            down sides, when setting storeDateTimeAsTicks = true.
+            </param>
+        </member>
+        <member name="F:SQLite.SQLiteConnection._preserveDuringLinkMagic">
+            <summary>
+            Used to list some code that we want the MonoTouch linker
+            to see, but that we never want to actually execute.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.GetMapping(System.Type,SQLite.CreateFlags)">
+            <summary>
+            Retrieves the mapping that is automatically generated for the given type.
+            </summary>
+            <param name="type">
+            The type whose mapping to the database is returned.
+            </param>         
+            <param name="createFlags">
+            Optional flags allowing implicit PK and indexes based on naming conventions
+            </param>     
+            <returns>
+            The mapping represents the schema of the columns of the database and contains 
+            methods to set and get properties of objects.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.GetMapping``1">
+            <summary>
+            Retrieves the mapping that is automatically generated for the given type.
+            </summary>
+            <returns>
+            The mapping represents the schema of the columns of the database and contains 
+            methods to set and get properties of objects.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.DropTable``1">
+            <summary>
+            Executes a "drop table" on the database.  This is non-recoverable.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateTable``1(SQLite.CreateFlags)">
+            <summary>
+            Executes a "create table if not exists" on the database. It also
+            creates any specified indexes on the columns of the table. It uses
+            a schema automatically generated from the specified type. You can
+            later access this schema by calling GetMapping.
+            </summary>
+            <returns>
+            The number of entries added to the database schema.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateTable(System.Type,SQLite.CreateFlags)">
+            <summary>
+            Executes a "create table if not exists" on the database. It also
+            creates any specified indexes on the columns of the table. It uses
+            a schema automatically generated from the specified type. You can
+            later access this schema by calling GetMapping.
+            </summary>
+            <param name="ty">Type to reflect to a database table.</param>
+            <param name="createFlags">Optional flags allowing implicit PK and indexes based on naming conventions.</param>  
+            <returns>
+            The number of entries added to the database schema.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateIndex(System.String,System.String,System.String[],System.Boolean)">
+            <summary>
+            Creates an index for the specified table and columns.
+            </summary>
+            <param name="indexName">Name of the index to create</param>
+            <param name="tableName">Name of the database table</param>
+            <param name="columnNames">An array of column names to index</param>
+            <param name="unique">Whether the index should be unique</param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateIndex(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates an index for the specified table and column.
+            </summary>
+            <param name="indexName">Name of the index to create</param>
+            <param name="tableName">Name of the database table</param>
+            <param name="columnName">Name of the column to index</param>
+            <param name="unique">Whether the index should be unique</param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateIndex(System.String,System.String,System.Boolean)">
+            <summary>
+            Creates an index for the specified table and column.
+            </summary>
+            <param name="tableName">Name of the database table</param>
+            <param name="columnName">Name of the column to index</param>
+            <param name="unique">Whether the index should be unique</param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateIndex(System.String,System.String[],System.Boolean)">
+            <summary>
+            Creates an index for the specified table and columns.
+            </summary>
+            <param name="tableName">Name of the database table</param>
+            <param name="columnNames">An array of column names to index</param>
+            <param name="unique">Whether the index should be unique</param>
+        </member>
+        <!-- 对于成员“M:SQLite.SQLiteConnection.CreateIndex``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Boolean)”忽略有格式错误的 XML 注释 -->
+        <member name="M:SQLite.SQLiteConnection.NewCommand">
+            <summary>
+            Creates a new SQLiteCommand. Can be overridden to provide a sub-class.
+            </summary>
+            <seealso cref="M:SQLite.SQLiteCommand.OnInstanceCreated(System.Object)"/>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.CreateCommand(System.String,System.Object[])">
+            <summary>
+            Creates a new SQLiteCommand given the command text with arguments. Place a '?'
+            in the command text for each of the arguments.
+            </summary>
+            <param name="cmdText">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the command text.
+            </param>
+            <returns>
+            A <see cref="T:SQLite.SQLiteCommand"/>
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Execute(System.String,System.Object[])">
+            <summary>
+            Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+            in the command text for each of the arguments and then executes that command.
+            Use this method instead of Query when you don't expect rows back. Such cases include
+            INSERTs, UPDATEs, and DELETEs.
+            You can set the Trace or TimeExecution properties of the connection
+            to profile execution.
+            </summary>
+            <param name="query">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the query.
+            </param>
+            <returns>
+            The number of rows modified in the database as a result of this execution.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Query``1(System.String,System.Object[])">
+            <summary>
+            Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+            in the command text for each of the arguments and then executes that command.
+            It returns each row of the result using the mapping automatically generated for
+            the given type.
+            </summary>
+            <param name="query">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the query.
+            </param>
+            <returns>
+            An enumerable with one result for each row returned by the query.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.DeferredQuery``1(System.String,System.Object[])">
+            <summary>
+            Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+            in the command text for each of the arguments and then executes that command.
+            It returns each row of the result using the mapping automatically generated for
+            the given type.
+            </summary>
+            <param name="query">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the query.
+            </param>
+            <returns>
+            An enumerable with one result for each row returned by the query.
+            The enumerator will call sqlite3_step on each call to MoveNext, so the database
+            connection must remain open for the lifetime of the enumerator.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Query(SQLite.TableMapping,System.String,System.Object[])">
+            <summary>
+            Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+            in the command text for each of the arguments and then executes that command.
+            It returns each row of the result using the specified mapping. This function is
+            only used by libraries in order to query the database via introspection. It is
+            normally not used.
+            </summary>
+            <param name="map">
+            A <see cref="T:SQLite.TableMapping"/> to use to convert the resulting rows
+            into objects.
+            </param>
+            <param name="query">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the query.
+            </param>
+            <returns>
+            An enumerable with one result for each row returned by the query.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.DeferredQuery(SQLite.TableMapping,System.String,System.Object[])">
+            <summary>
+            Creates a SQLiteCommand given the command text (SQL) with arguments. Place a '?'
+            in the command text for each of the arguments and then executes that command.
+            It returns each row of the result using the specified mapping. This function is
+            only used by libraries in order to query the database via introspection. It is
+            normally not used.
+            </summary>
+            <param name="map">
+            A <see cref="T:SQLite.TableMapping"/> to use to convert the resulting rows
+            into objects.
+            </param>
+            <param name="query">
+            The fully escaped SQL.
+            </param>
+            <param name="args">
+            Arguments to substitute for the occurences of '?' in the query.
+            </param>
+            <returns>
+            An enumerable with one result for each row returned by the query.
+            The enumerator will call sqlite3_step on each call to MoveNext, so the database
+            connection must remain open for the lifetime of the enumerator.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Table``1">
+            <summary>
+            Returns a queryable interface to the table represented by the given type.
+            </summary>
+            <returns>
+            A queryable object that is able to translate Where, OrderBy, and Take
+            queries into native SQL.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Get``1(System.Object)">
+            <summary>
+            Attempts to retrieve an object with the given primary key from the table
+            associated with the specified type. Use of this method requires that
+            the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+            </summary>
+            <param name="pk">
+            The primary key.
+            </param>
+            <returns>
+            The object with the given primary key. Throws a not found exception
+            if the object is not found.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Get``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Attempts to retrieve the first object that matches the predicate from the table
+            associated with the specified type. 
+            </summary>
+            <param name="predicate">
+            A predicate for which object to find.
+            </param>
+            <returns>
+            The object that matches the given predicate. Throws a not found exception
+            if the object is not found.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Find``1(System.Object)">
+            <summary>
+            Attempts to retrieve an object with the given primary key from the table
+            associated with the specified type. Use of this method requires that
+            the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+            </summary>
+            <param name="pk">
+            The primary key.
+            </param>
+            <returns>
+            The object with the given primary key or null
+            if the object is not found.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Find(System.Object,SQLite.TableMapping)">
+            <summary>
+            Attempts to retrieve an object with the given primary key from the table
+            associated with the specified type. Use of this method requires that
+            the given type have a designated PrimaryKey (using the PrimaryKeyAttribute).
+            </summary>
+            <param name="pk">
+            The primary key.
+            </param>
+            <param name="map">
+            The TableMapping used to identify the object type.
+            </param>
+            <returns>
+            The object with the given primary key or null
+            if the object is not found.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Find``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Attempts to retrieve the first object that matches the predicate from the table
+            associated with the specified type. 
+            </summary>
+            <param name="predicate">
+            A predicate for which object to find.
+            </param>
+            <returns>
+            The object that matches the given predicate or null
+            if the object is not found.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.BeginTransaction">
+            <summary>
+            Begins a new transaction. Call <see cref="M:SQLite.SQLiteConnection.Commit"/> to end the transaction.
+            </summary>
+            <example cref="T:System.InvalidOperationException">Throws if a transaction has already begun.</example>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.SaveTransactionPoint">
+            <summary>
+            Creates a savepoint in the database at the current point in the transaction timeline.
+            Begins a new transaction if one is not in progress.
+            
+            Call <see cref="M:SQLite.SQLiteConnection.RollbackTo(System.String)"/> to undo transactions since the returned savepoint.
+            Call <see cref="M:SQLite.SQLiteConnection.Release(System.String)"/> to commit transactions after the savepoint returned here.
+            Call <see cref="M:SQLite.SQLiteConnection.Commit"/> to end the transaction, committing all changes.
+            </summary>
+            <returns>A string naming the savepoint.</returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Rollback">
+            <summary>
+            Rolls back the transaction that was begun by <see cref="M:SQLite.SQLiteConnection.BeginTransaction"/> or <see cref="M:SQLite.SQLiteConnection.SaveTransactionPoint"/>.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.RollbackTo(System.String)">
+            <summary>
+            Rolls back the savepoint created by <see cref="M:SQLite.SQLiteConnection.BeginTransaction"/> or SaveTransactionPoint.
+            </summary>
+            <param name="savepoint">The name of the savepoint to roll back to, as returned by <see cref="M:SQLite.SQLiteConnection.SaveTransactionPoint"/>.  If savepoint is null or empty, this method is equivalent to a call to <see cref="M:SQLite.SQLiteConnection.Rollback"/></param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.RollbackTo(System.String,System.Boolean)">
+            <summary>
+            Rolls back the transaction that was begun by <see cref="M:SQLite.SQLiteConnection.BeginTransaction"/>.
+            </summary>
+            <param name="noThrow">true to avoid throwing exceptions, false otherwise</param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Release(System.String)">
+            <summary>
+            Releases a savepoint returned from <see cref="M:SQLite.SQLiteConnection.SaveTransactionPoint"/>.  Releasing a savepoint 
+               makes changes since that savepoint permanent if the savepoint began the transaction,
+               or otherwise the changes are permanent pending a call to <see cref="M:SQLite.SQLiteConnection.Commit"/>.
+            
+            The RELEASE command is like a COMMIT for a SAVEPOINT.
+            </summary>
+            <param name="savepoint">The name of the savepoint to release.  The string should be the result of a call to <see cref="M:SQLite.SQLiteConnection.SaveTransactionPoint"/></param>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Commit">
+            <summary>
+            Commits the transaction that was begun by <see cref="M:SQLite.SQLiteConnection.BeginTransaction"/>.
+            </summary>
+        </member>
+        <!-- 对于成员“M:SQLite.SQLiteConnection.RunInTransaction(System.Action)”忽略有格式错误的 XML 注释 -->
+        <member name="M:SQLite.SQLiteConnection.InsertAll(System.Collections.IEnumerable)">
+            <summary>
+            Inserts all specified objects.
+            </summary>
+            <param name="objects">
+            An <see cref="!:IEnumerable"/> of the objects to insert.
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.InsertAll(System.Collections.IEnumerable,System.String)">
+            <summary>
+            Inserts all specified objects.
+            </summary>
+            <param name="objects">
+            An <see cref="!:IEnumerable"/> of the objects to insert.
+            </param>
+            <param name="extra">
+            Literal SQL code that gets placed into the command. INSERT {extra} INTO ...
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.InsertAll(System.Collections.IEnumerable,System.Type)">
+            <summary>
+            Inserts all specified objects.
+            </summary>
+            <param name="objects">
+            An <see cref="!:IEnumerable"/> of the objects to insert.
+            </param>
+            <param name="objType">
+            The type of object to insert.
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Insert(System.Object)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.InsertOrReplace(System.Object)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            If a UNIQUE constraint violation occurs with
+            some pre-existing object, this function deletes
+            the old object.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <returns>
+            The number of rows modified.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Insert(System.Object,System.Type)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <param name="objType">
+            The type of object to insert.
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.InsertOrReplace(System.Object,System.Type)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            If a UNIQUE constraint violation occurs with
+            some pre-existing object, this function deletes
+            the old object.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <param name="objType">
+            The type of object to insert.
+            </param>
+            <returns>
+            The number of rows modified.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Insert(System.Object,System.String)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <param name="extra">
+            Literal SQL code that gets placed into the command. INSERT {extra} INTO ...
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Insert(System.Object,System.String,System.Type)">
+            <summary>
+            Inserts the given object and retrieves its
+            auto incremented primary key if it has one.
+            </summary>
+            <param name="obj">
+            The object to insert.
+            </param>
+            <param name="extra">
+            Literal SQL code that gets placed into the command. INSERT {extra} INTO ...
+            </param>
+            <param name="objType">
+            The type of object to insert.
+            </param>
+            <returns>
+            The number of rows added to the table.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Update(System.Object)">
+            <summary>
+            Updates all of the columns of a table using the specified object
+            except for its primary key.
+            The object is required to have a primary key.
+            </summary>
+            <param name="obj">
+            The object to update. It must have a primary key designated using the PrimaryKeyAttribute.
+            </param>
+            <returns>
+            The number of rows updated.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Update(System.Object,System.Type)">
+            <summary>
+            Updates all of the columns of a table using the specified object
+            except for its primary key.
+            The object is required to have a primary key.
+            </summary>
+            <param name="obj">
+            The object to update. It must have a primary key designated using the PrimaryKeyAttribute.
+            </param>
+            <param name="objType">
+            The type of object to insert.
+            </param>
+            <returns>
+            The number of rows updated.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.UpdateAll(System.Collections.IEnumerable)">
+            <summary>
+            Updates all specified objects.
+            </summary>
+            <param name="objects">
+            An <see cref="!:IEnumerable"/> of the objects to insert.
+            </param>
+            <returns>
+            The number of rows modified.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Delete(System.Object)">
+            <summary>
+            Deletes the given object from the database using its primary key.
+            </summary>
+            <param name="objectToDelete">
+            The object to delete. It must have a primary key designated using the PrimaryKeyAttribute.
+            </param>
+            <returns>
+            The number of rows deleted.
+            </returns>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.Delete``1(System.Object)">
+            <summary>
+            Deletes the object with the specified primary key.
+            </summary>
+            <param name="primaryKey">
+            The primary key of the object to delete.
+            </param>
+            <returns>
+            The number of objects deleted.
+            </returns>
+            <typeparam name='T'>
+            The type of object.
+            </typeparam>
+        </member>
+        <member name="M:SQLite.SQLiteConnection.DeleteAll``1">
+            <summary>
+            Deletes all the objects from the specified table.
+            WARNING WARNING: Let me repeat. It deletes ALL the objects from the
+            specified table. Do you really want to do that?
+            </summary>
+            <returns>
+            The number of objects deleted.
+            </returns>
+            <typeparam name='T'>
+            The type of objects to delete.
+            </typeparam>
+        </member>
+        <member name="P:SQLite.SQLiteConnection.BusyTimeout">
+            <summary>
+            Sets a busy handler to sleep the specified amount of time when a table is locked.
+            The handler will sleep multiple times until a total time of <see cref="P:SQLite.SQLiteConnection.BusyTimeout"/> has accumulated.
+            </summary>
+        </member>
+        <member name="P:SQLite.SQLiteConnection.TableMappings">
+            <summary>
+            Returns the mappings from types to tables that the connection
+            currently understands.
+            </summary>
+        </member>
+        <member name="P:SQLite.SQLiteConnection.IsInTransaction">
+            <summary>
+            Whether <see cref="M:SQLite.SQLiteConnection.BeginTransaction"/> has been called and the database is waiting for a <see cref="M:SQLite.SQLiteConnection.Commit"/>.
+            </summary>
+        </member>
+        <member name="T:SQLite.SQLiteConnectionString">
+            <summary>
+            Represents a parsed connection string.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteCommand.OnInstanceCreated(System.Object)">
+             <summary>
+             Invoked every time an instance is loaded from the database.
+             </summary>
+             <param name="obj">
+             The newly created object.
+             </param>
+             <remarks>
+             This can be overridden in combination with the <see cref="M:SQLite.SQLiteConnection.NewCommand"/>
+             method to hook into the life-cycle of objects.
+            
+             Type safety is not possible because MonoTouch does not support virtual generic methods.
+             </remarks>
+        </member>
+        <member name="T:SQLite.PreparedSqlLiteInsertCommand">
+            <summary>
+            Since the insert never changed, we only need to prepare once.
+            </summary>
+        </member>
+        <member name="M:SQLite.TableQuery`1.CompileNullBinaryExpression(System.Linq.Expressions.BinaryExpression,SQLite.TableQuery{`0}.CompileResult)">
+            <summary>
+            Compiles a BinaryExpression where one of the parameters is null.
+            </summary>
+            <param name="parameter">The non-null parameter</param>
+        </member>
+        <member name="M:SQLite.SQLiteConnectionPool.Reset">
+            <summary>
+            Closes all connections managed by this pool.
+            </summary>
+        </member>
+        <member name="M:SQLite.SQLiteConnectionPool.ApplicationSuspended">
+            <summary>
+            Call this method when the application is suspended.
+            </summary>
+            <remarks>Behaviour here is to close any open connections.</remarks>
+        </member>
+        <member name="P:SQLite.SQLiteConnectionPool.Shared">
+            <summary>
+            Gets the singleton instance of the connection tool.
+            </summary>
+        </member>
+        <member name="T:TickTick.Views.BasicPage">
+            <summary>
+            可独立使用或用于导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.BasicPage.NavigationHelper_LoadState(System.Object,TickTick.Common.LoadStateEventArgs)">
+            <summary>
+            使用在导航过程中传递的内容填充页。  在从以前的会话
+            重新创建页时，也会提供任何已保存状态。
+            </summary>
+            <param name="sender">
+            事件的来源; 通常为 <see cref="P:TickTick.Views.BasicPage.NavigationHelper"/>
+            </param>
+            <param name="e">事件数据，其中既提供在最初请求此页时传递给
+            <see cref="M:Windows.UI.Xaml.Controls.Frame.Navigate(System.Type,System.Object)"/> 的导航参数，又提供
+            此页在以前会话期间保留的状态的
+            字典。 首次访问页面时，该状态将为 null。</param>
+        </member>
+        <member name="M:TickTick.Views.BasicPage.NavigationHelper_SaveState(System.Object,TickTick.Common.SaveStateEventArgs)">
+             <summary>
+             保留与此页关联的状态，以防挂起应用程序或
+             从导航缓存中放弃此页。值必须符合
+             <see cref="P:TickTick.Common.SuspensionManager.SessionState"/> 的序列化要求。
+             </summary>
+             <param name="sender">事件的来源；通常为 <see cref="P:TickTick.Views.BasicPage.NavigationHelper"/></param>
+            <param name="e">提供要使用可序列化状态填充的空字典
+            的事件数据。</param>
+        </member>
+        <member name="M:TickTick.Views.BasicPage.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            此部分中提供的方法只是用于使
+            NavigationHelper 可响应页面的导航方法。
+            <para>
+            应将页面特有的逻辑放入用于
+            <see cref="!:NavigationHelper.LoadState"/>
+            和 <see cref="!:NavigationHelper.SaveState"/> 的事件处理程序中。
+            除了在会话期间保留的页面状态之外
+            LoadState 方法中还提供导航参数。
+            </para>
+            </summary>
+            <param name="e">提供导航方法数据和
+            无法取消导航请求的事件处理程序。</param>
+        </member>
+        <member name="P:TickTick.Views.BasicPage.NavigationHelper">
+            <summary>
+            获取与此 <see cref="T:Windows.UI.Xaml.Controls.Page"/> 关联的 <see cref="P:TickTick.Views.BasicPage.NavigationHelper"/>。
+            </summary>
+        </member>
+        <member name="P:TickTick.Views.BasicPage.DefaultViewModel">
+            <summary>
+            获取此 <see cref="T:Windows.UI.Xaml.Controls.Page"/> 的视图模型。
+            可将其更改为强类型视图模型。
+            </summary>
+        </member>
+        <member name="T:TickTick.Views.MainPage">
+            <summary>
+            可用于自身或导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.MainPage.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            在此页将要在 Frame 中显示时进行调用。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。
+            此参数通常用于配置页。</param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.InitialAsyncAndBindingResource(TickTick.Enums.TasksSortEnum)">
+            <summary>
+            初始化
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AddTasksReminderIntoToastNotification">
+            <summary>
+            将任务提醒添加进toast通知
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.MainPage.ProjectsListItem_Clicked(System.Object,Windows.UI.Xaml.Controls.ItemClickEventArgs)">
+            <summary>
+            点击projects列表项触发，显示对应task
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarAdd_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            点击新增按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarBtnAsync_Tapped(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            projects列表页的同步按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarBtnSetting_Tapped(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            projects列表页设置按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarShowComplete_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            显示已完成
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarSort_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            排序
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.SortListItem_Picked(Windows.UI.Xaml.Controls.ListPickerFlyout,Windows.UI.Xaml.Controls.ItemsPickedEventArgs)">
+            <summary>
+            选择排序项
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.BtnConfirmEditProject_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            确认修改projects
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.BtnDeleleProject_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            删除数据
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.AppBarBtnAddProjects_Tapped(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            单击添加清单按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.ToastTasksCompleted_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            toastTasks点击完成之后内容
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.ToastTasksSnooze_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            toastTasks点击推迟之后内容
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.MainPage.ScrollViewer_OnViewChanging(System.Object,Windows.UI.Xaml.Controls.ScrollViewerViewChangingEventArgs)">
+            <summary>
+            以下方法命中两次，第一次是非惯性条件下的位移，第二次是惯性条件下的位移。
+            ScrollViewer_OnViewChanging，ScrollViewer.VerticalOffset是滚动条的起始位置，e.FinalView.VerticalOffset是非惯性移动到的位置，
+            第二次的时候起始位置变成上一次非惯性移动的位置，而e.FinalView.VerticalOffset是惯性移动的位置，根据这几个值可以对scrollView的滚动方向进行判断
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:TickTick.Views.MainPage.ViewModel">
+            <summary>
+            视图模型
+            </summary>
+        </member>
+        <member name="T:TickTick.Views.SettingDetailPage">
+            <summary>
+            可用于自身或导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.SettingDetailPage.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            在此页将要在 Frame 中显示时进行调用。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。
+            此参数通常用于配置页。</param>
+        </member>
+        <member name="T:TickTick.Views.SettingPage">
+            <summary>
+            可用于自身或导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.SettingPage.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            在此页将要在 Frame 中显示时进行调用。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。
+            此参数通常用于配置页。</param>
+        </member>
+        <member name="T:TickTick.Views.SignInPage">
+            <summary>
+            可用于自身或导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.SignInPage.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            在此页将要在 Frame 中显示时进行调用。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。
+            此参数通常用于配置页。</param>
+        </member>
+        <member name="F:TickTick.Views.SignInPage.IsDida365Logo">
+            <summary>
+            当前logo是否是滴答logo
+            </summary>
+        </member>
+        <member name="F:TickTick.Views.SignInPage.IsSignInType">
+            <summary>
+            当前是登入操作还是注册操作
+            </summary>
+        </member>
+        <member name="T:TickTick.Views.TasksDetailPageSimple">
+            <summary>
+            可用于自身或导航至 Frame 内部的空白页。
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            在此页将要在 Frame 中显示时进行调用。
+            </summary>
+            <param name="e">描述如何访问此页的事件数据。
+            此参数通常用于配置页。</param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.AppBarBtnDelete_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            点击任务删除按钮
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.ChangeRemindCmbSelectionToDefault">
+            <summary>
+            提醒，选中默认的“在开始时间”
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.MovePicker_Picked(Windows.UI.Xaml.Controls.ListPickerFlyout,Windows.UI.Xaml.Controls.ItemsPickedEventArgs)">
+            <summary>
+            移动列表选择项单击触发cmbTasksRemind
+            </summary>
+            <param name="sender"></param>
+            <param name="args"></param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.AppBarMove_Clicked(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            单击移动触发
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.TxtContent_LostFocus(System.Object,Windows.UI.Xaml.RoutedEventArgs)">
+            <summary>
+            当内容文本框失去焦点的时候
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:TickTick.Views.TasksDetailPageSimple.IsCheckListItemGotFocus">
+            <summary>
+            标记列表项是否获得焦点
+            </summary>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.CheckListItemDelete_Tapped(System.Object,Windows.UI.Xaml.Input.TappedRoutedEventArgs)">
+            <summary>
+            删除单项checklistitem
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.CheckListItemContent_TextChanged(System.Object,Windows.UI.Xaml.Controls.TextChangedEventArgs)">
+            <summary>
+            checkListItme的内容改变的时候会触发
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:TickTick.Views.TasksDetailPageSimple.CheckListItemContent_KeyDown(System.Object,Windows.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <summary>
+            当checklistitem的内容编辑状态，获取键盘输入，进行判断操作
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="P:TickTick.Views.TasksDetailPageSimple.IsNavigateForUpdate">
+            <summary>
+            导航过来是为了更新还是新增，true标识更新，false表示新增
+            </summary>
+        </member>
+        <member name="T:TickTick.Views.SnoozeTimeSelection">
+            <summary>
+            临时使用的类
+            </summary>
+        </member>
+        <member name="T:TickTick.App">
+            <summary>
+            提供特定于应用程序的行为，以补充默认的应用程序类。
+            </summary>
+        </member>
+        <member name="M:TickTick.App.#ctor">
+            <summary>
+            初始化单一实例应用程序对象。这是执行的创作代码的第一行，
+            逻辑上等同于 main() 或 WinMain()。
+            </summary>
+        </member>
+        <member name="M:TickTick.App.OnLaunched(Windows.ApplicationModel.Activation.LaunchActivatedEventArgs)">
+            <summary>
+            在应用程序由最终用户正常启动时进行调用。
+            当启动应用程序以打开特定的文件或显示搜索结果等操作时，
+            将使用其他入口点。
+            </summary>
+            <param name="e">有关启动请求和过程的详细信息。</param>
+        </member>
+        <member name="M:TickTick.App.RootFrame_FirstNavigated(System.Object,Windows.UI.Xaml.Navigation.NavigationEventArgs)">
+            <summary>
+            启动应用程序后还原内容转换。
+            </summary>
+            <param name="sender">附加了处理程序的对象。</param>
+            <param name="e">有关导航事件的详细信息。</param>
+        </member>
+        <member name="M:TickTick.App.OnSuspending(System.Object,Windows.ApplicationModel.SuspendingEventArgs)">
+            <summary>
+            在将要挂起应用程序执行时调用。    将保存应用程序状态
+            将被终止还是恢复的情况下保存应用程序状态，
+            并让内存内容保持不变。
+            </summary>
+            <param name="sender">挂起的请求的源。</param>
+            <param name="e">有关挂起的请求的详细信息。</param>
+        </member>
+        <member name="M:TickTick.App.RegisterBackPressed">
+            <summary>
+            注册后退按钮事件
+            </summary>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.ExecuteTable">
+            <summary>
+            返回指定表的所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.DeleteData(`0)">
+            <summary>
+            直接删除传入的项
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.InsertAsync(`0)">
+            <summary>
+            插入一条数据
+            </summary>
+            <param name="t">插入数据类型</param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.InsertAllAsync(System.Collections.Generic.List{`0})">
+            <summary>
+            一次插入多条插入数据
+            </summary>
+            <param name="t">插入数据类型</param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.UpdateAsync(`0)">
+            <summary>
+            更新一条数据
+            </summary>
+            <param name="t"></param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Bll.IBaseBll`1.UpdateAllAsync(System.Collections.Generic.List{`0})">
+            <summary>
+            更新多条数据
+            </summary>
+            <param name="t"></param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="F:TickTick.Bll.ProjectBll.ProjectDal">
+            <summary>
+            Projects的dal层对象
+            </summary>
+        </member>
+        <member name="M:TickTick.Bll.ProjectBll.DeleteForeverWithTasks(TickTick.Entity.Projects)">
+            <summary>
+            删除projects以及其下所有tasks到垃圾桶
+            </summary>
+            <param name="projects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Bll.ProjectBll.GetLocalProjectDic(System.String)">
+            <summary>
+            获取所有的projects以及其下tasks的数量
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Bll.ProjectBll.GetProjectSidToIdsDic(System.String)">
+            <summary>
+            获取本地所有projects和其sid的字典
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Bll.ReminderTaskBll.UpdateTaskStatus(TickTick.Entity.Tasks)">
+            <summary>
+            
+            </summary>
+            <param name="tasks"></param>
+            <param name="isChecked"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.Bll.TaskBll.TaskDal">
+            <summary>
+            Tasks的dal层对象
+            </summary>
+        </member>
+        <member name="M:TickTick.Bll.TaskBll.GetAllTasks">
+             <summary>
+            与上面不同的是，这个方法可以查找所有task，然后在外面进行删选，这样在多次处理同一个表数据时，这个效率更高
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="F:TickTick.Bll.UserBll.UserDal">
+            <summary>
+            用户dal层对象
+            </summary>
+        </member>
+        <member name="F:TickTick.Common.FileLimiter._staticFileLimiter">
+            the max File size allow to upload without wifi 0 
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.CreateTableAsync">
+            <summary>
+            创建数据表，存在则不创建而是打开
+            </summary>
+            <returns>返回连接对象</returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.ExecuteNonQuery``1(System.String,System.Object[])">
+            <summary>
+            基本查询
+            </summary>
+            <returns>返回查询的结果</returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.ExecuteAsyncQueryTable">
+            <summary>
+            返回指定表的asyncTableQuery数据，方便进行where语句的使用
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.ExecuteTable">
+            <summary>
+            返回指定表的所有数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.GetDataTableByExpression(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            根据具体的需求，返回具体的内容
+            </summary>
+            <param name="whereExpr"></param>
+            <param name="orderByExpr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.DeleteData(`0)">
+            <summary>
+            直接删除传入的项
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.InsertAsync(`0)">
+            <summary>
+            插入一条数据
+            </summary>
+            <param name="t">插入数据类型</param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.InsertAllAsync(System.Collections.Generic.List{`0})">
+            <summary>
+            一次插入多条插入数据
+            </summary>
+            <param name="t">插入数据类型</param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.UpdateAsync(`0)">
+            <summary>
+            更新一条数据
+            </summary>
+            <param name="t"></param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Dal.IBaseDal`1.UpdateAllAsync(System.Collections.Generic.List{`0})">
+            <summary>
+            更新多条数据
+            </summary>
+            <param name="t"></param>
+            <returns>返回受影响的行数</returns>
+        </member>
+        <member name="M:TickTick.Dal.ProjectDal.DeleteProjectForever(System.String)">
+            <summary>
+            删除整个表，慎用！！！
+            </summary>
+            <returns>返回删除条数</returns>
+        </member>
+        <member name="M:TickTick.Dal.ProjectDal.GetAllSidIntoProjectsDic(System.String)">
+            <summary>
+            获取本地所有projects和其sid的字典
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.ProjectDal.SaveServerMergeData(System.Collections.Generic.List{TickTick.Entity.Projects},System.Collections.Generic.List{TickTick.Entity.Projects},System.Collections.Generic.List{TickTick.Entity.Projects})">
+            <summary>
+            本地与服务器内容融合，考虑是否使用异步，
+            </summary>
+            <param name="added"></param>
+            <param name="updated"></param>
+            <param name="deleted"></param>
+        </member>
+        <member name="M:TickTick.Dal.TaskDal.GetNeedPostCreatedTasks(System.String)">
+            <summary>
+            获取需要提交的被创建的tasks
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.TaskDal.GetAllSidToTasksDic(System.String)">
+            <summary>
+            根据proid找到对应project下的tasks列表
+            </summary>
+            <param name="proId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.UserDal.GetUserByID(System.String)">
+            <summary>
+            异步创建person数据库，若存在则不重复创建
+            </summary>
+            <returns>返回链接对象</returns>
+        </member>
+        <member name="M:TickTick.Dal.UserDal.GetLocalLastSignUserInfo">
+            <summary>
+            查询最近登入且未注销的本地用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Dal.UserProfileDal.GetUserProfileByUserId(System.String)">
+            <summary>
+            返回用户设置
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.Entity.BaseEntity._type">
+            task or calendar event
+        </member>
+        <member name="F:TickTick.Entity.BaseEntity._googleId">
+            由Google账户下合并过来的Id *
+        </member>
+        <member name="F:TickTick.Entity.BaseEntity._localId">
+            temp of merge data,used for googleId is null *
+        </member>
+        <member name="M:TickTick.Entity.BaseEntity.OnPropertyChanged(System.String)">
+            <summary>
+            属性变化
+            </summary>
+            <param name="propertyName">属性名称</param>
+        </member>
+        <member name="M:TickTick.Entity.BaseEntity.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            设置属性变化，内部通知修改
+            </summary>
+            <typeparam name="T">属性类型</typeparam>
+            <param name="current">当前属性</param>
+            <param name="value">新设置的值</param>
+            <param name="propertyName">属性名称</param>
+        </member>
+        <member name="F:TickTick.Entity.Attachment._localPath">
+            Absolutely Path
+        </member>
+        <member name="F:TickTick.Entity.Attachment._manualUploading">
+            Use for detector if manual uploading
+        </member>
+        <member name="F:TickTick.Entity.ChecklistItem._googleId">
+            由Google账户下合并过来的Id *
+        </member>
+        <member name="F:TickTick.Entity.ChecklistItem._localId">
+            temp of merge data,used for googleId is null *
+        </member>
+        <member name="F:TickTick.Entity.Items._id">
+            <summary>
+            项目Id
+            </summary>
+        </member>
+        <member name="F:TickTick.Entity.Items._itemName">
+            <summary>
+            项目名
+            </summary>
+        </member>
+        <member name="F:TickTick.Entity.Items._taskId">
+            <summary>
+            所属任务名
+            </summary>
+        </member>
+        <member name="F:TickTick.Entity.Projects._closed">
+            <summary>
+            关闭标识，默认为不关闭，使用枚举
+            </summary>
+        </member>
+        <member name="F:TickTick.Entity.Projects._needPullTasks">
+            <summary>
+            是否需要推送提醒？默认是不需要，可以设置枚举
+            </summary>
+        </member>
+        <member name="P:TickTick.Entity.Projects.IsIntelligentProjects">
+            <summary>
+            是否是智能清单
+            </summary>
+        </member>
+        <member name="P:TickTick.Entity.Projects.SortType">
+            <summary>
+            排序类型，===========未设置默认值
+            </summary>
+        </member>
+        <member name="F:TickTick.Entity.Tasks._repeatReminderTime">
+            用于方便查询repeat任务是否需要近期安排Reminder
+        </member>
+        <member name="F:TickTick.Entity.User._requestToken">
+            一般都为null，只有通过Google账户登陆注册GTasks账户时有效 *
+        </member>
+        <member name="F:TickTick.Entity.User._lastLocalLoginTime">
+            <summary>
+            本地数据，无需同步
+            </summary>
+        </member>
+        <member name="M:TickTick.Entity.User.GetDefaultSignUserInfo">
+            <summary>
+            创建临时用户
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Entity.UserProfile.CreateDefaultUserProfile(System.String)">
+            <summary>
+            创建默认userProfile
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.Enums.ModelStatusEnum.SYNC_TYPE_TASK_CONTENT">
+            sync status
+        </member>
+        <member name="F:TickTick.Enums.PrioritiesEnum.HighPriorities">
+            <summary>
+            高优先级
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.PrioritiesEnum.MiddlePriorities">
+            <summary>
+            中优先级
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.PrioritiesEnum.LowPriorities">
+            <summary>
+            低优先级
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.PrioritiesEnum.NonePriorities">
+            <summary>
+            无优先级
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.ProjectsListStatus.Show">
+            <summary>
+            显示
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.ProjectsListStatus.Hide">
+            <summary>
+            隐藏
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.TasksSortEnum.Custom_Sort">
+            <summary>
+            自定义排序
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.TasksSortEnum.DateTime_Sort">
+            <summary>
+            日期排序
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.TasksSortEnum.Title_Sort">
+            <summary>
+            标题排序
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.TasksSortEnum.Priorities_Sort">
+            <summary>
+            优先级排序
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.UserStatus.UserLogin">
+            <summary>
+            用户登入
+            </summary>
+        </member>
+        <member name="F:TickTick.Enums.UserStatus.UserLogout">
+            <summary>
+            用户注销
+            </summary>
+        </member>
+        <member name="M:TickTick.Handler.TaskBatchHandler.SaveTaskOtherEntity(TickTick.Models.TaskSyncModel)">
+            批量保存Task下面的Location和Attachment
+            @param taskSyncModel
+        </member>
+        <member name="M:TickTick.Helper.HttpHelper.PostForObject``1(System.Uri,System.Object)">
+            <summary>
+            发送请求从服务器获取对象
+            </summary>
+            <param name="uri"></param>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Helper.HttpHelper.GetForObject``1(System.Uri)">
+            <summary>
+            根据api拿数据对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Helper.HttpHelper.GetForString(System.Uri)">
+            <summary>
+            根据api拿字符串
+            </summary>
+            <param name="uri"></param>
+            <returns></returns>
+        </member>
+        <member name="P:TickTick.Helper.HttpHelper.ConnectionProfile">
+            <summary>
+            网络连接对象
+            </summary>
+        </member>
+        <member name="P:TickTick.Helper.HttpHelper.IsConnectedToNetwork">
+            <summary>
+            检测是否连接网络
+            </summary>
+        </member>
+        <member name="M:TickTick.Helper.NavigateHelper.NavigateToPage(System.Type)">
+            <summary>
+            导航页面方法
+            </summary>
+            <param name="type"></param>
+        </member>
+        <member name="F:TickTick.Helper.RegexHelper.EmailPattern">
+            <summary>
+            邮箱验证
+            </summary>
+        </member>
+        <member name="M:TickTick.Helper.RegexHelper.IsMatchEmail(System.String)">
+            <summary>
+            判断是否满足email的格式
+            </summary>
+            <param name="email"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Helper.RegexHelper.IsMatch(System.String,System.String)">
+            <summary>
+            验证输入字符串是否与模式字符串匹配，匹配返回true
+            </summary>
+            <param name="input">输入字符串</param>
+            <param name="pattern">模式字符串</param>        
+        </member>
+        <member name="M:TickTick.Helper.RegexHelper.IsMatch(System.String,System.String,System.Text.RegularExpressions.RegexOptions)">
+            <summary>
+            验证输入字符串是否与模式字符串匹配，匹配返回true
+            </summary>
+            <param name="input">输入的字符串</param>
+            <param name="pattern">模式字符串</param>
+            <param name="options">筛选条件</param>
+        </member>
+        <member name="P:TickTick.Models.SettingItem.Name">
+            <summary>
+            设置项的名字
+            </summary>
+        </member>
+        <member name="P:TickTick.Models.SettingItem.SettingItemType">
+            <summary>
+            设置项类型
+            </summary>
+        </member>
+        <member name="M:TickTick.Synchronous.Collector.TaskSyncCollector.UpdateChangeToTasks(System.Collections.Generic.List{TickTick.Entity.Tasks})">
+            <summary>
+            转换，暂时弃用
+            </summary>
+            <param name="update"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.Synchronous.Communicator.SiteDomain">
+            <summary>
+            主域地址
+            </summary>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.GetUri(System.String)">
+            <summary>
+            根据api地址，返回对应Uri对象
+            </summary>
+            <param name="api"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.SignOn(System.String,System.String)">
+            <summary>
+            用户登入
+            </summary>
+            <param name="username"></param>
+            <param name="password"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.BatchCheck(System.Int64)">
+            <summary>
+            首次获取同步数据SyncBean
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.BatchUpdateTask(TickTick.Models.SyncTaskBean)">
+            <summary>
+            更新Task
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.BatchUpdateProject(TickTick.Models.SyncProjectBean)">
+            <summary>
+            更新Projects
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.BatchUpdateTaskProject(TickTick.Models.MoveProject[])">
+            <summary>
+            更新task和projects
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.GetAvatar">
+            <summary>
+            获取头像
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.Communicator.GetAvatarByUserId(System.Int64)">
+            <summary>
+            根据用户Id获取头像
+            </summary>
+            <param name="userId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.Synchronous.SyncBll.DoAsync(System.Int32)">
+            <summary>
+            开始同步
+            </summary>
+        </member>
+        <member name="M:TickTick.Synchronous.SyncBll.Pull">
+            <summary>
+            开始获取
+            </summary>
+        </member>
+        <member name="M:TickTick.Synchronous.SyncBll.CommitProject(System.Boolean)">
+            <summary>
+            提交Projects
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.TickTickApplicationBase._staticApplication">
+            <summary>
+            单例化当前对象
+            </summary>
+        </member>
+        <member name="T:TickTick.Utilities.ConverterUtility.TasksListItemDateConverter">
+            <summary>
+            tasksListItem的日期转换辅助类
+            </summary>
+        </member>
+        <member name="M:System.DateTimeUtils.GetAllMilliSeconds(System.DateTime)">
+            <summary>
+            将时间转换为完全的milliseconds
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.DateTimeUtils.IsAfterNow(System.DateTime)">
+            <summary>
+             TODO 是否是UTC时间
+            </summary>
+            <param name="date"></param>
+            <returns></returns>
+        </member>
+        <member name="T:DiffMatchPatch.Operation">
+            -
+            The data structure representing a diff is a List of Diff objects:
+            {Diff(Operation.DELETE, "Hello"), Diff(Operation.INSERT, "Goodbye"),
+             Diff(Operation.EQUAL, " world.")}
+            which means: delete "Hello", add "Goodbye" and keep " world."
+        </member>
+        <member name="T:DiffMatchPatch.Diff">
+            Class representing one diff operation.
+        </member>
+        <member name="M:DiffMatchPatch.Diff.#ctor(DiffMatchPatch.Operation,System.String)">
+            Constructor.  Initializes the diff with the provided values.
+            @param operation One of INSERT, DELETE or EQUAL.
+            @param text The text being applied.
+        </member>
+        <member name="M:DiffMatchPatch.Diff.ToString">
+            Display a human-readable version of this Diff.
+            @return text version.
+        </member>
+        <member name="M:DiffMatchPatch.Diff.Equals(System.Object)">
+            Is this Diff equivalent to another Diff?
+            @param d Another Diff to compare against.
+            @return true or false.
+        </member>
+        <member name="T:DiffMatchPatch.Patch">
+            Class representing one patch operation.
+        </member>
+        <member name="T:DiffMatchPatch.diff_match_patch">
+            Class containing the diff, match and patch methods.
+            Also Contains the behaviour settings.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_main(System.String,System.String)">
+            Find the differences between two texts.
+            Run a faster, slightly less optimal diff.
+            This method allows the 'checklines' of diff_main() to be optional.
+            Most of the time checklines is wanted, so default to true.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_main(System.String,System.String,System.Boolean)">
+            Find the differences between two texts.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param checklines Speedup flag.  If false, then don't run a
+                line-level diff first to identify the changed areas.
+                If true, then run a faster slightly less optimal diff.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_main(System.String,System.String,System.Boolean,System.DateTime)">
+            Find the differences between two texts.  Simplifies the problem by
+            stripping any common prefix or suffix off the texts before diffing.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param checklines Speedup flag.  If false, then don't run a
+                line-level diff first to identify the changed areas.
+                If true, then run a faster slightly less optimal diff.
+            @param deadline Time when the diff should be complete by.  Used
+                internally for recursive calls.  Users should set DiffTimeout
+                instead.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_compute(System.String,System.String,System.Boolean,System.DateTime)">
+            Find the differences between two texts.  Assumes that the texts do not
+            have any common prefix or suffix.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param checklines Speedup flag.  If false, then don't run a
+                line-level diff first to identify the changed areas.
+                If true, then run a faster slightly less optimal diff.
+            @param deadline Time when the diff should be complete by.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_lineMode(System.String,System.String,System.DateTime)">
+            Do a quick line-level diff on both strings, then rediff the parts for
+            greater accuracy.
+            This speedup can produce non-minimal diffs.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param deadline Time when the diff should be complete by.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_bisect(System.String,System.String,System.DateTime)">
+            Find the 'middle snake' of a diff, split the problem in two
+            and return the recursively constructed diff.
+            See Myers 1986 paper: An O(ND) Difference Algorithm and Its Variations.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param deadline Time at which to bail if not yet complete.
+            @return List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_bisectSplit(System.String,System.String,System.Int32,System.Int32,System.DateTime)">
+            Given the location of the 'middle snake', split the diff in two parts
+            and recurse.
+            @param text1 Old string to be diffed.
+            @param text2 New string to be diffed.
+            @param x Index of split point in text1.
+            @param y Index of split point in text2.
+            @param deadline Time at which to bail if not yet complete.
+            @return LinkedList of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_linesToChars(System.String,System.String)">
+            Split two texts into a list of strings.  Reduce the texts to a string of
+            hashes where each Unicode character represents one line.
+            @param text1 First string.
+            @param text2 Second string.
+            @return Three element Object array, containing the encoded text1, the
+                encoded text2 and the List of unique strings.  The zeroth element
+                of the List of unique strings is intentionally blank.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_linesToCharsMunge(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            Split a text into a list of strings.  Reduce the texts to a string of
+            hashes where each Unicode character represents one line.
+            @param text String to encode.
+            @param lineArray List of unique strings.
+            @param lineHash Map of strings to indices.
+            @return Encoded string.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_charsToLines(System.Collections.Generic.ICollection{DiffMatchPatch.Diff},System.Collections.Generic.List{System.String})">
+            Rehydrate the text in a diff from a string of line hashes to real lines
+            of text.
+            @param diffs List of Diff objects.
+            @param lineArray List of unique strings.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_commonPrefix(System.String,System.String)">
+            Determine the common prefix of two strings.
+            @param text1 First string.
+            @param text2 Second string.
+            @return The number of characters common to the start of each string.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_commonSuffix(System.String,System.String)">
+            Determine the common suffix of two strings.
+            @param text1 First string.
+            @param text2 Second string.
+            @return The number of characters common to the end of each string.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_commonOverlap(System.String,System.String)">
+            Determine if the suffix of one string is the prefix of another.
+            @param text1 First string.
+            @param text2 Second string.
+            @return The number of characters common to the end of the first
+                string and the start of the second string.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_halfMatch(System.String,System.String)">
+            Do the two texts share a Substring which is at least half the length of
+            the longer text?
+            This speedup can produce non-minimal diffs.
+            @param text1 First string.
+            @param text2 Second string.
+            @return Five element String array, containing the prefix of text1, the
+                suffix of text1, the prefix of text2, the suffix of text2 and the
+                common middle.  Or null if there was no match.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_halfMatchI(System.String,System.String,System.Int32)">
+            Does a Substring of shorttext exist within longtext such that the
+            Substring is at least half the length of longtext?
+            @param longtext Longer string.
+            @param shorttext Shorter string.
+            @param i Start index of quarter length Substring within longtext.
+            @return Five element string array, containing the prefix of longtext, the
+                suffix of longtext, the prefix of shorttext, the suffix of shorttext
+                and the common middle.  Or null if there was no match.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_cleanupSemantic(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Reduce the number of edits by eliminating semantically trivial
+            equalities.
+            @param diffs List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_cleanupSemanticLossless(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Look for single edits surrounded on both sides by equalities
+            which can be shifted sideways to align the edit to a word boundary.
+            e.g: The c<ins>at c</ins>ame. -> The <ins>cat </ins>came.
+            @param diffs List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_cleanupSemanticScore(System.String,System.String)">
+            Given two strings, comAdde a score representing whether the internal
+            boundary falls on logical boundaries.
+            Scores range from 6 (best) to 0 (worst).
+            @param one First string.
+            @param two Second string.
+            @return The score.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_cleanupEfficiency(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Reduce the number of edits by eliminating operationally trivial
+            equalities.
+            @param diffs List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_cleanupMerge(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Reorder and merge like edit sections.  Merge equalities.
+            Any edit section can move as long as it doesn't cross an equality.
+            @param diffs List of Diff objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_xIndex(System.Collections.Generic.List{DiffMatchPatch.Diff},System.Int32)">
+            loc is a location in text1, comAdde and return the equivalent location in
+            text2.
+            e.g. "The cat" vs "The big cat", 1->1, 5->8
+            @param diffs List of Diff objects.
+            @param loc Location within text1.
+            @return Location within text2.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_prettyHtml(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Convert a Diff list into a pretty HTML report.
+            @param diffs List of Diff objects.
+            @return HTML representation.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_text1(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Compute and return the source text (all equalities and deletions).
+            @param diffs List of Diff objects.
+            @return Source text.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_text2(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Compute and return the destination text (all equalities and insertions).
+            @param diffs List of Diff objects.
+            @return Destination text.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.diff_levenshtein(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Compute the Levenshtein distance; the number of inserted, deleted or
+            substituted characters.
+            @param diffs List of Diff objects.
+            @return Number of changes.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.match_main(System.String,System.String,System.Int32)">
+            Locate the best instance of 'pattern' in 'text' near 'loc'.
+            Returns -1 if no match found.
+            @param text The text to search.
+            @param pattern The pattern to search for.
+            @param loc The location to search around.
+            @return Best match index or -1.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.match_bitap(System.String,System.String,System.Int32)">
+            Locate the best instance of 'pattern' in 'text' near 'loc' using the
+            Bitap algorithm.  Returns -1 if no match found.
+            @param text The text to search.
+            @param pattern The pattern to search for.
+            @param loc The location to search around.
+            @return Best match index or -1.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.match_bitapScore(System.Int32,System.Int32,System.Int32,System.String)">
+            Compute and return the score for a match with e errors and x location.
+            @param e Number of errors in match.
+            @param x Location of match.
+            @param loc Expected location of match.
+            @param pattern Pattern being sought.
+            @return Overall score for match (0.0 = good, 1.0 = bad).
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.match_alphabet(System.String)">
+            Initialise the alphabet for the Bitap algorithm.
+            @param pattern The text to encode.
+            @return Hash of character locations.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_addContext(DiffMatchPatch.Patch,System.String)">
+            Increase the context until it is unique,
+            but don't let the pattern expand beyond Match_MaxBits.
+            @param patch The patch to grow.
+            @param text Source text.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_make(System.String,System.String)">
+            Compute a list of patches to turn text1 into text2.
+            A set of diffs will be computed.
+            @param text1 Old text.
+            @param text2 New text.
+            @return List of Patch objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_make(System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Compute a list of patches to turn text1 into text2.
+            text1 will be derived from the provided diffs.
+            @param diffs Array of Diff objects for text1 to text2.
+            @return List of Patch objects.
+        </member>
+        <!-- 对于成员“M:DiffMatchPatch.diff_match_patch.patch_make(System.String,System.String,System.Collections.Generic.List{DiffMatchPatch.Diff})”忽略有格式错误的 XML 注释 -->
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_make(System.String,System.Collections.Generic.List{DiffMatchPatch.Diff})">
+            Compute a list of patches to turn text1 into text2.
+            text2 is not provided, diffs are the delta between text1 and text2.
+            @param text1 Old text.
+            @param diffs Array of Diff objects for text1 to text2.
+            @return List of Patch objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_deepCopy(System.Collections.Generic.List{DiffMatchPatch.Patch})">
+            Given an array of patches, return another array that is identical.
+            @param patches Array of Patch objects.
+            @return Array of Patch objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_apply(System.Collections.Generic.List{DiffMatchPatch.Patch},System.String)">
+            Merge a set of patches onto the text.  Return a patched text, as well
+            as an array of true/false values indicating which patches were applied.
+            @param patches Array of Patch objects
+            @param text Old text.
+            @return Two element Object array, containing the new text and an array of
+                 bool values.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_addPadding(System.Collections.Generic.List{DiffMatchPatch.Patch})">
+            Add some padding on text start and end so that edges can match something.
+            Intended to be called only from within patch_apply.
+            @param patches Array of Patch objects.
+            @return The padding string added to each side.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_splitMax(System.Collections.Generic.List{DiffMatchPatch.Patch})">
+            Look through the patches and break up any which are longer than the
+            maximum limit of the match algorithm.
+            Intended to be called only from within patch_apply.
+            @param patches List of Patch objects.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.patch_toText(System.Collections.Generic.List{DiffMatchPatch.Patch})">
+            Take a list of patches and return a textual representation.
+            @param patches List of Patch objects.
+            @return Text representation of patches.
+        </member>
+        <member name="M:DiffMatchPatch.diff_match_patch.unescapeForEncodeUriCompatability(System.String)">
+             Unescape selected chars for compatability with JavaScript's encodeURI.
+             In speed critical applications this could be dropped since the
+             receiving application will certainly decode these fine.
+             Note that this function is case-sensitive.  Thus "%3F" would not be
+             unescaped.  But this is ok because it is only called with the output of
+             HttpUtility.UrlEncode which returns lowercase hex.
+            
+             Example: "%3f" -> "?", "%24" -> "$", etc.
+            
+             @param str The string to escape.
+             @return The escaped string.
+        </member>
+        <member name="T:ObjectCopier">
+            <summary>
+            Reference Article http://www.codeproject.com/KB/tips/SerializedObjectCloner.aspx
+            Provides a method for performing a deep copy of an object.
+            Binary Serialization is used to perform the copy.
+            </summary>
+        </member>
+        <member name="M:ObjectCopier.Clone``1(``0)">
+            <summary>
+            Perform a deep Copy of the object.
+            </summary>
+            <typeparam name="T">The type of object being copied.</typeparam>
+            <param name="source">The object instance to copy.</param>
+            <returns>The copied object.</returns>
+        </member>
+        <member name="M:TickTick.Utilities.RepeatUtils.ConvertDateToUTCDate(System.DateTime,Windows.Globalization.Calendar,Windows.Globalization.Calendar)">
+             This isn't a regular method, because there isn't exist utc date. It
+             convert date for example 2014/1/1 09:00 +0800 -> 2014/1/1 09:00 +0000
+            
+             @return utc date
+        </member>
+        <member name="M:TickTick.Utilities.StringUtils.GenerateShortStringGuid">
+            <summary>
+            生成一个24位的短Guid字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel._projectsSelected">
+            <summary>
+            当前页面的Projects，默认是“所有”
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel._toastTasks">
+            <summary>
+            toast传来的数据，之后使用列表list来展示
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel.ProjectBll">
+            <summary>
+            Projects的bll层对象
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel.TaskBll">
+            <summary>
+            Tasks的bll层对象
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel._userInfo">
+            <summary>
+            存储用户信息
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.MainPageViewModel.SyncBll">
+            <summary>
+            进行同步操作
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.DeleteProjects(TickTick.Entity.Projects)">
+            <summary>
+            删除projects，到垃圾箱去
+            </summary>
+            <param name="projects"></param>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.LoadProjectsList">
+            <summary>
+            查询所有projects
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.AddProjects(TickTick.Entity.Projects)">
+            <summary>
+            新增一条数据
+            </summary>
+            <param name="projects"></param>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.GetAllTasksList">
+            <summary>
+            查询所有tasks
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.GetTasksByProjectId(System.String)">
+            <summary>
+            根据projectsId查询tasks
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.FinishTask(TickTick.Entity.Tasks)">
+            <summary>
+            删除某个tasks
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.MainPageViewModel.SnoozeBackReminderTime(System.Int32)">
+            <summary>
+            推迟通知时间
+            </summary>
+            <param name="snoozeBackValue"></param>
+        </member>
+        <member name="P:TickTick.ViewModels.MainPageViewModel.IntelligentProjects">
+            <summary>
+            智能清单
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.MainPageViewModel.Projects">
+            <summary>
+            用于显示的Projects集合
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.MainPageViewModel.Tasks">
+            <summary>
+            用于显示的Tasks集合
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.MainPageViewModel.TasksFinished">
+            <summary>
+            用于显示的已完成Tasks集合
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.MainPageViewModel.TasksNeedNotification">
+            <summary>
+            用于存储需要被提示的信息
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.SettingDetailPageViewModel.ChangeTasksListShowContent(System.String,System.Boolean)">
+            <summary>
+            根据toggleSwitch中的tag判断要设置的内容，同时根据toggleSwitch是否启用来做调整
+            </summary>
+            <param name="p1"></param>
+            <param name="p2"></param>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.UserProfile">
+            <summary>
+            用户设置信息
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.ToggleSwitchItems">
+            <summary>
+            设置选项细节项目
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.SettingItemCommon">
+            <summary>
+            设置选项--通用
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.SettingItemProfile">
+            <summary>
+            设置选项--账户
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.SettingItemHelps">
+            <summary>
+            设置选项--帮助
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.SettingPageViewModel.SettingItemAbout">
+            <summary>
+            设置选项--关于
+            </summary>
+        </member>
+        <member name="F:TickTick.ViewModels.TasksDetailPageViewModel._tasks">
+            <summary>
+            经过修改之后的tasks
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.TasksDetailPageViewModel.DeleteTasks">
+            <summary>
+            彻底删除任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TickTick.ViewModels.TasksDetailPageViewModel.SaveToTask(System.String)">
+            <summary>
+            弃用
+            </summary>
+            <param name="content"></param>
+        </member>
+        <member name="M:TickTick.ViewModels.TasksDetailPageViewModel.SwitchTaskMode">
+            <summary>
+            暂时弃用
+            </summary>
+            <param name="kind"></param>
+        </member>
+        <member name="P:TickTick.ViewModels.TasksDetailPageViewModel.OriginalTasks">
+            <summary>
+            未修改的tasks
+            </summary>
+        </member>
+        <member name="P:TickTick.ViewModels.TasksDetailPageViewModel.Projects">
+            <summary>
+            projects对象
+            </summary>
+        </member>
+        <member name="M:TickTick.ViewModels.ViewModelBase.OnPropertyChanged(System.String)">
+            <summary>
+            属性变化
+            </summary>
+            <param name="propertyName">属性名称</param>
+        </member>
+        <member name="M:TickTick.ViewModels.ViewModelBase.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+            设置属性变化，内部通知修改
+            </summary>
+            <typeparam name="T">属性类型</typeparam>
+            <param name="current">当前属性</param>
+            <param name="value">新设置的值</param>
+            <param name="propertyName">属性名称</param>
+        </member>
+    </members>
+</doc>

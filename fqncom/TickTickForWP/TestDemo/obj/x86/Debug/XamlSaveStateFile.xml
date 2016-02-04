@@ -1,14 +1,14 @@
 <XamlCompilerSaveState>
   <ReferenceAssemblyList>
     <LocalAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_08\testdemo\obj\x86\debug\intermediatexaml\testdemo.exe" HashGuid="9e35f796-7dd3-fa2d-180f-2f0a0c783699" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\dday.ical.1.0.2.575\lib\dday.ical.dll" HashGuid="0910e1df-3a36-e726-db3c-896d3d1bd569" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\drawerlayout.1.0.4\lib\drawerlayout.dll" HashGuid="b0d3b3f8-90b7-6a66-b416-66f64dcf26fa" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\notificationsextensions\bin\x86\debug\notificationsextensions.winmd" HashGuid="71623a7a-63ca-f809-1344-0df1a606674a" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\winrtxamltoolkit.controls.calendar.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.calendar.dll" HashGuid="e2bb7d37-32d1-a043-8c23-fbe0ec2c168b" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\winrtxamltoolkit.controls.datavisualization.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.datavisualization.dll" HashGuid="9b581ce9-a3d5-c68e-4833-5c7b7f7772c7" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\winrtxamltoolkit.controls.gauge.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.gauge.dll" HashGuid="20b69e05-433d-7d04-9fd8-a9bca0e9d727" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\winrtxamltoolkit.debugging.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.debugging.dll" HashGuid="a67c5783-3e53-4090-3756-62b40f097383" />
-    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_14\packages\winrtxamltoolkit.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.dll" HashGuid="221e17c6-64f2-d53e-b7b5-145a2dbe921c" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\dday.ical.1.0.2.575\lib\dday.ical.dll" HashGuid="0910e1df-3a36-e726-db3c-896d3d1bd569" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\drawerlayout.1.0.4\lib\drawerlayout.dll" HashGuid="b0d3b3f8-90b7-6a66-b416-66f64dcf26fa" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\newtonsoft.json.6.0.8\lib\portable-net40+sl5+wp80+win8+wpa81\newtonsoft.json.dll" HashGuid="225745d8-3693-ad6f-ebd5-8845d81f8e0f" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\notificationsextensions\bin\x86\debug\notificationsextensions.winmd" HashGuid="71623a7a-63ca-f809-1344-0df1a606674a" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\winrtxamltoolkit.controls.calendar.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.calendar.dll" HashGuid="e2bb7d37-32d1-a043-8c23-fbe0ec2c168b" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\winrtxamltoolkit.controls.datavisualization.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.datavisualization.dll" HashGuid="9b581ce9-a3d5-c68e-4833-5c7b7f7772c7" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\winrtxamltoolkit.controls.gauge.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.controls.gauge.dll" HashGuid="20b69e05-433d-7d04-9fd8-a9bca0e9d727" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\winrtxamltoolkit.debugging.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.debugging.dll" HashGuid="a67c5783-3e53-4090-3756-62b40f097383" />
+    <ReferenceAssembly PathName="d:\---vs_projects\ticktick_backup\ticktick for wp_16\packages\winrtxamltoolkit.windowsphone.1.8.1.0\lib\wpa\winrtxamltoolkit.dll" HashGuid="221e17c6-64f2-d53e-b7b5-145a2dbe921c" />
   </ReferenceAssemblyList>
 </XamlCompilerSaveState>

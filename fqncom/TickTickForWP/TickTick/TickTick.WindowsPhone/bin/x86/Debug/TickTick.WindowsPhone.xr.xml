@@ -4,9 +4,9 @@
     <RootInterface FullName="Windows.UI.Xaml.Data.IValueConverter" />
   </Roots.Interfaces>
   <Roots.PropertyPathNames>
-    <RootPropertyPathName Name="ViewModel" />
-    <RootPropertyPathName Name="DueDate" />
     <RootPropertyPathName Name="Title" />
+    <RootPropertyPathName Name="DueDate" />
+    <RootPropertyPathName Name="ViewModel" />
     <RootPropertyPathName Name="IsCompleted" />
     <RootPropertyPathName Name="ActualWidth" />
     <RootPropertyPathName Name="TasksCount" />
@@ -16,8 +16,6 @@
     <RootPropertyPathName Name="IntelligentProjects" />
     <RootPropertyPathName Name="UserInfo" />
     <RootPropertyPathName Name="UserName" />
-    <RootPropertyPathName Name="TasksFinished" />
-    <RootPropertyPathName Name="Tasks" />
     <RootPropertyPathName Name="ToastTasks" />
     <RootPropertyPathName Name="DueTime" />
     <RootPropertyPathName Name="UserProfile" />
@@ -30,6 +28,7 @@
     <RootPropertyPathName Name="IsChecked" />
     <RootPropertyPathName Name="PrioritiesEnumList" />
     <RootPropertyPathName Name="RemindTimeSelectionList" />
+    <RootPropertyPathName Name="Tasks" />
     <RootPropertyPathName Name="TrulyCheckListItems" />
     <RootPropertyPathName Name="Content" />
   </Roots.PropertyPathNames>
@@ -44,14 +43,30 @@
     <RootType FullName="TickTick.Controls.AppBarBtnControl" />
     <RootType FullName="Windows.UI.Xaml.Controls.Control">
       <RootProperty Name="Template" />
-      <RootProperty Name="Foreground" />
       <RootProperty Name="Background" />
+      <RootProperty Name="Foreground" />
       <RootProperty Name="HorizontalContentAlignment" />
       <RootProperty Name="FontSize" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="Padding" />
       <RootProperty Name="VerticalContentAlignment" />
+    </RootType>
+    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemDateConverter" />
+    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Image">
+      <RootProperty Name="Stretch" />
+      <RootProperty Name="Source" />
+      <RootProperty Name="Style" />
+      <RootEvent Name="Tapped" />
+    </RootType>
+    <RootType FullName="TickTick.Controls.TasksItemStatusControl">
+      <RootProperty Name="HorizontalAlignment" />
+      <RootProperty Name="VerticalAlignment" />
+    </RootType>
+    <RootType FullName="TickTick.Controls.TasksItemControl">
+      <RootProperty Name="Margin" />
+      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Setter">
       <RootProperty Name="Property" />
@@ -62,17 +77,64 @@
       <RootProperty Name="Template" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Border">
-      <RootProperty Name="Margin" />
       <RootProperty Name="Background" />
       <RootProperty Name="BorderBrush" />
       <RootProperty Name="BorderThickness" />
       <RootProperty Name="Child" />
+      <RootProperty Name="Margin" />
       <RootProperty Name="Width" />
       <RootProperty Name="Style" />
       <RootProperty Name="Padding" />
       <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.TemplateBindingExtension" />
+    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
+      <RootProperty Name="ColumnDefinitions" />
+      <RootProperty Name="Children" />
+      <RootProperty Name="RowDefinitions" />
+      <RootProperty Name="ChildrenTransitions" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Background" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Height" />
+      <RootMethod Name="GetColumn" />
+      <RootMethod Name="SetColumn" />
+      <RootMethod Name="GetRow" />
+      <RootMethod Name="SetRow" />
+      <RootMethod Name="GetColumnSpan" />
+      <RootMethod Name="SetColumnSpan" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
+      <RootProperty Name="Width" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
+      <RootProperty Name="VerticalAlignment" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Text" />
+      <RootProperty Name="FontSize" />
+      <RootProperty Name="Foreground" />
+      <RootProperty Name="Margin" />
+      <RootProperty Name="CharacterSpacing" />
+      <RootProperty Name="HorizontalAlignment" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo">
+      <RootProperty Name="IsStaggeringEnabled" />
+      <RootMethod Name="GetIsStaggerElement" />
+      <RootMethod Name="SetIsStaggerElement" />
+    </RootType>
+    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
+    <RootType FullName="Windows.UI.Xaml.Data.Binding">
+      <RootProperty Name="Converter" />
+      <RootProperty Name="ConverterParameter" />
+      <RootProperty Name="RelativeSource" />
+      <RootProperty Name="ElementName" />
+      <RootProperty Name="Mode" />
+      <RootProperty Name="UpdateSourceTrigger" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
+      <RootProperty Name="Height" />
+    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.StackPanel">
       <RootProperty Name="Orientation" />
       <RootProperty Name="Children" />
@@ -81,18 +143,6 @@
     <RootType FullName="Windows.UI.Xaml.Controls.SymbolIcon">
       <RootProperty Name="Margin" />
       <RootProperty Name="Symbol" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.TextBlock">
-      <RootProperty Name="FontSize" />
-      <RootProperty Name="Text" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="CharacterSpacing" />
-      <RootProperty Name="VerticalAlignment" />
-      <RootProperty Name="Tag" />
-      <RootProperty Name="Foreground" />
-      <RootProperty Name="HorizontalAlignment" />
-      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.Page">
       <RootProperty Name="Background" />
@@ -103,63 +153,47 @@
       <RootProperty Name="BottomAppBar" />
     </RootType>
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.ThemeResourceExtension" />
-    <RootType FullName="Windows.UI.Xaml.Controls.Grid">
-      <RootProperty Name="ChildrenTransitions" />
-      <RootProperty Name="RowDefinitions" />
-      <RootProperty Name="Children" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="ColumnDefinitions" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Background" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="Height" />
-      <RootMethod Name="GetRow" />
-      <RootMethod Name="SetRow" />
-      <RootMethod Name="GetColumn" />
-      <RootMethod Name="SetColumn" />
-      <RootMethod Name="GetColumnSpan" />
-      <RootMethod Name="SetColumnSpan" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Media.Animation.TransitionCollection" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.EntranceThemeTransition" />
-    <RootType FullName="Windows.UI.Xaml.Controls.RowDefinition">
-      <RootProperty Name="Height" />
-    </RootType>
     <RootType FullName="TickTick.Views.BasicPage" />
-    <RootType FullName="Windows.UI.Xaml.Data.Binding">
-      <RootProperty Name="RelativeSource" />
-      <RootProperty Name="Converter" />
-      <RootProperty Name="ConverterParameter" />
-      <RootProperty Name="ElementName" />
-      <RootProperty Name="Mode" />
-      <RootProperty Name="UpdateSourceTrigger" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Data.RelativeSource" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.NavigationThemeTransition">
       <RootProperty Name="DefaultNavigationTransitionInfo" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Media.Animation.CommonNavigationTransitionInfo">
-      <RootProperty Name="IsStaggeringEnabled" />
-      <RootMethod Name="GetIsStaggerElement" />
-      <RootMethod Name="SetIsStaggerElement" />
+    <RootType FullName="TickTick.Utilities.ConverterUtility.ProjectsListItemConverter" />
+    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter" />
+    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="IsItemClickEnabled" />
+      <RootProperty Name="ItemContainerStyle" />
+      <RootProperty Name="ItemTemplate" />
+      <RootProperty Name="ItemsSource" />
+      <RootProperty Name="ShowsScrollingPlaceholders" />
+      <RootProperty Name="Style" />
+      <RootProperty Name="Visibility" />
+      <RootProperty Name="Header" />
+      <RootProperty Name="IsTapEnabled" />
+      <RootEvent Name="ItemClick" />
+    </RootType>
+    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
+      <RootProperty Name="Margin" />
+      <RootProperty Name="Width" />
+      <RootProperty Name="Height" />
+      <RootProperty Name="MinHeight" />
+      <RootProperty Name="VerticalAlignment" />
     </RootType>
     <RootType FullName="Windows.UI.Xaml.DataTemplate">
       <RootProperty Name="Template" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ColumnDefinition">
-      <RootProperty Name="Width" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Shapes.Rectangle">
       <RootProperty Name="Style" />
-      <RootProperty Name="Tag" />
       <RootProperty Name="Fill" />
-      <RootProperty Name="Visibility" />
       <RootProperty Name="Width" />
       <RootProperty Name="Height" />
+      <RootProperty Name="Tag" />
       <RootProperty Name="Stroke" />
       <RootEvent Name="Tapped" />
     </RootType>
-    <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.StaticResourceExtension" />
     <RootType FullName="Windows.UI.Xaml.Media.ImageBrush">
       <RootProperty Name="ImageSource" />
     </RootType>
@@ -230,20 +264,6 @@
       <RootMethod Name="GetVerticalScrollMode" />
       <RootMethod Name="SetVerticalScrollMode" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.ListView">
-      <RootProperty Name="Margin" />
-      <RootProperty Name="IsItemClickEnabled" />
-      <RootProperty Name="ItemContainerStyle" />
-      <RootProperty Name="ItemTemplate" />
-      <RootProperty Name="ItemsSource" />
-      <RootProperty Name="ShowsScrollingPlaceholders" />
-      <RootProperty Name="Style" />
-      <RootProperty Name="Visibility" />
-      <RootProperty Name="Header" />
-      <RootProperty Name="IsTapEnabled" />
-      <RootEvent Name="ItemClick" />
-      <RootEvent Name="ContainerContentChanging" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ListPickerFlyout">
       <RootProperty Name="ItemTemplate" />
       <RootEvent Name="ItemsPicked" />
@@ -305,13 +325,6 @@
       <RootProperty Name="Items" />
       <RootProperty Name="Title" />
     </RootType>
-    <RootType FullName="Windows.UI.Xaml.FrameworkElement">
-      <RootProperty Name="Width" />
-      <RootProperty Name="Height" />
-      <RootProperty Name="MinHeight" />
-      <RootProperty Name="Margin" />
-      <RootProperty Name="VerticalAlignment" />
-    </RootType>
     <RootType FullName="Windows.UI.Xaml.Controls.ContentControl">
       <RootProperty Name="Content" />
     </RootType>
@@ -326,10 +339,6 @@
       <RootProperty Name="Header" />
       <RootProperty Name="Content" />
       <RootProperty Name="Margin" />
-    </RootType>
-    <RootType FullName="Windows.UI.Xaml.Controls.Image">
-      <RootProperty Name="Source" />
-      <RootEvent Name="Tapped" />
     </RootType>
     <RootType FullName="TickTick.Views.SettingPage" />
     <RootType FullName="Windows.UI.Xaml.Media.Animation.Storyboard">
@@ -351,6 +360,8 @@
       <RootProperty Name="IsIndeterminate" />
     </RootType>
     <RootType FullName="TickTick.Views.SignInPage" />
+    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter" />
+    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksDetailContentConverter" />
     <RootType FullName="Windows.UI.Xaml.Controls.DatePicker">
       <RootProperty Name="Date" />
       <RootProperty Name="Style" />
@@ -364,13 +375,6 @@
     <RootType FullName="Microsoft.Xaml.Tools.DirectUI.ProxyTypes.NullExtension" />
     <RootType FullName="TickTick.Views.TasksDetailPageSimple" />
     <RootType FullName="System.String" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemDateConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksDetailCheckListItemConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksDetailContentConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.ProjectsListItemConverter" />
-    <RootType FullName="TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter" />
     <RootType FullName="Windows.UI.Xaml.Media.Imaging.BitmapImage">
       <RootProperty Name="UriSource" />
     </RootType>

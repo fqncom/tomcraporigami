@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources targetOsVersion="6.3.1" targetPlatform="WindowsPhone" majorVersion="1">
+  <index root="\" startIndexAt="obj\ARM\Debug\MultilingualAppToolkit.pri.xml">
+    <default>
+      <qualifier name="Language" value="zh-CN" />
+    </default>
+    <indexer-config type="priinfo" emitStrings="true" emitPaths="true" />
+  </index>
+  <index root="\" startIndexAt="bin/ARM/Debug/resources.pri">
+    <default>
+      <qualifier name="Language" value="zh-CN" />
+    </default>
+    <indexer-config type="PRI" />
+  </index>
+</resources>

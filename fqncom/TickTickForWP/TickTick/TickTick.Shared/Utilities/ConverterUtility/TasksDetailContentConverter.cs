@@ -30,7 +30,7 @@ namespace TickTick.Utilities.ConverterUtility
             catch (Exception e)
             {
                 
-                throw e;
+                throw;
             }
         }
 

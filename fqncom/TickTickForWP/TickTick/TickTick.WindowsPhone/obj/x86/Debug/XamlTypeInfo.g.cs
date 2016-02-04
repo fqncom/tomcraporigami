@@ -124,75 +124,77 @@ namespace TickTick.TickTick_WindowsPhone_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[33];
+            _typeNameTable = new string[34];
             _typeNameTable[0] = "TickTick.Controls.AppBarBtnControl";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Control";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.Symbol";
             _typeNameTable[3] = "String";
             _typeNameTable[4] = "Double";
-            _typeNameTable[5] = "TickTick.Views.BasicPage";
-            _typeNameTable[6] = "Windows.UI.Xaml.Controls.Page";
-            _typeNameTable[7] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[8] = "TickTick.Common.NavigationHelper";
-            _typeNameTable[9] = "Windows.UI.Xaml.DependencyObject";
-            _typeNameTable[10] = "TickTick.Common.ObservableDictionary";
-            _typeNameTable[11] = "Object";
-            _typeNameTable[12] = "DrawerLayout.DrawerLayout";
-            _typeNameTable[13] = "Windows.UI.Xaml.Controls.Grid";
-            _typeNameTable[14] = "Windows.UI.Xaml.Controls.Panel";
-            _typeNameTable[15] = "Boolean";
-            _typeNameTable[16] = "TickTick.Views.MainPage";
-            _typeNameTable[17] = "TickTick.ViewModels.MainPageViewModel";
-            _typeNameTable[18] = "TickTick.Views.SettingDetailPage";
-            _typeNameTable[19] = "TickTick.ViewModels.SettingDetailPageViewModel";
-            _typeNameTable[20] = "TickTick.Views.SettingPage";
-            _typeNameTable[21] = "TickTick.ViewModels.SettingPageViewModel";
-            _typeNameTable[22] = "TickTick.Views.SignInPage";
-            _typeNameTable[23] = "TickTick.ViewModels.SignInPageViewModel";
-            _typeNameTable[24] = "TickTick.Views.TasksDetailPageSimple";
-            _typeNameTable[25] = "TickTick.ViewModels.TasksDetailPageViewModel";
-            _typeNameTable[26] = "TickTick.Utilities.ConverterUtility.TasksListItemDateConverter";
-            _typeNameTable[27] = "TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter";
-            _typeNameTable[28] = "TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter";
-            _typeNameTable[29] = "TickTick.Utilities.ConverterUtility.TasksDetailCheckListItemConverter";
-            _typeNameTable[30] = "TickTick.Utilities.ConverterUtility.TasksDetailContentConverter";
-            _typeNameTable[31] = "TickTick.Utilities.ConverterUtility.ProjectsListItemConverter";
-            _typeNameTable[32] = "TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter";
+            _typeNameTable[5] = "TickTick.Utilities.ConverterUtility.TasksListItemDateConverter";
+            _typeNameTable[6] = "Object";
+            _typeNameTable[7] = "TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter";
+            _typeNameTable[8] = "TickTick.Controls.TasksItemStatusControl";
+            _typeNameTable[9] = "TickTick.Controls.TasksItemControl";
+            _typeNameTable[10] = "TickTick.Views.BasicPage";
+            _typeNameTable[11] = "Windows.UI.Xaml.Controls.Page";
+            _typeNameTable[12] = "Windows.UI.Xaml.Controls.UserControl";
+            _typeNameTable[13] = "TickTick.Common.NavigationHelper";
+            _typeNameTable[14] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[15] = "TickTick.Common.ObservableDictionary";
+            _typeNameTable[16] = "TickTick.Utilities.ConverterUtility.ProjectsListItemConverter";
+            _typeNameTable[17] = "TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter";
+            _typeNameTable[18] = "DrawerLayout.DrawerLayout";
+            _typeNameTable[19] = "Windows.UI.Xaml.Controls.Grid";
+            _typeNameTable[20] = "Windows.UI.Xaml.Controls.Panel";
+            _typeNameTable[21] = "Boolean";
+            _typeNameTable[22] = "TickTick.Views.MainPage";
+            _typeNameTable[23] = "TickTick.ViewModels.MainPageViewModel";
+            _typeNameTable[24] = "TickTick.Views.SettingDetailPage";
+            _typeNameTable[25] = "TickTick.ViewModels.SettingDetailPageViewModel";
+            _typeNameTable[26] = "TickTick.Views.SettingPage";
+            _typeNameTable[27] = "TickTick.ViewModels.SettingPageViewModel";
+            _typeNameTable[28] = "TickTick.Views.SignInPage";
+            _typeNameTable[29] = "TickTick.ViewModels.SignInPageViewModel";
+            _typeNameTable[30] = "TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter";
+            _typeNameTable[31] = "TickTick.Utilities.ConverterUtility.TasksDetailContentConverter";
+            _typeNameTable[32] = "TickTick.Views.TasksDetailPageSimple";
+            _typeNameTable[33] = "TickTick.ViewModels.TasksDetailPageViewModel";
 
-            _typeTable = new global::System.Type[33];
+            _typeTable = new global::System.Type[34];
             _typeTable[0] = typeof(global::TickTick.Controls.AppBarBtnControl);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Control);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.Symbol);
             _typeTable[3] = typeof(global::System.String);
             _typeTable[4] = typeof(global::System.Double);
-            _typeTable[5] = typeof(global::TickTick.Views.BasicPage);
-            _typeTable[6] = typeof(global::Windows.UI.Xaml.Controls.Page);
-            _typeTable[7] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[8] = typeof(global::TickTick.Common.NavigationHelper);
-            _typeTable[9] = typeof(global::Windows.UI.Xaml.DependencyObject);
-            _typeTable[10] = typeof(global::TickTick.Common.ObservableDictionary);
-            _typeTable[11] = typeof(global::System.Object);
-            _typeTable[12] = typeof(global::DrawerLayout.DrawerLayout);
-            _typeTable[13] = typeof(global::Windows.UI.Xaml.Controls.Grid);
-            _typeTable[14] = typeof(global::Windows.UI.Xaml.Controls.Panel);
-            _typeTable[15] = typeof(global::System.Boolean);
-            _typeTable[16] = typeof(global::TickTick.Views.MainPage);
-            _typeTable[17] = typeof(global::TickTick.ViewModels.MainPageViewModel);
-            _typeTable[18] = typeof(global::TickTick.Views.SettingDetailPage);
-            _typeTable[19] = typeof(global::TickTick.ViewModels.SettingDetailPageViewModel);
-            _typeTable[20] = typeof(global::TickTick.Views.SettingPage);
-            _typeTable[21] = typeof(global::TickTick.ViewModels.SettingPageViewModel);
-            _typeTable[22] = typeof(global::TickTick.Views.SignInPage);
-            _typeTable[23] = typeof(global::TickTick.ViewModels.SignInPageViewModel);
-            _typeTable[24] = typeof(global::TickTick.Views.TasksDetailPageSimple);
-            _typeTable[25] = typeof(global::TickTick.ViewModels.TasksDetailPageViewModel);
-            _typeTable[26] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemDateConverter);
-            _typeTable[27] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter);
-            _typeTable[28] = typeof(global::TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter);
-            _typeTable[29] = typeof(global::TickTick.Utilities.ConverterUtility.TasksDetailCheckListItemConverter);
-            _typeTable[30] = typeof(global::TickTick.Utilities.ConverterUtility.TasksDetailContentConverter);
-            _typeTable[31] = typeof(global::TickTick.Utilities.ConverterUtility.ProjectsListItemConverter);
-            _typeTable[32] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter);
+            _typeTable[5] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemDateConverter);
+            _typeTable[6] = typeof(global::System.Object);
+            _typeTable[7] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter);
+            _typeTable[8] = typeof(global::TickTick.Controls.TasksItemStatusControl);
+            _typeTable[9] = typeof(global::TickTick.Controls.TasksItemControl);
+            _typeTable[10] = typeof(global::TickTick.Views.BasicPage);
+            _typeTable[11] = typeof(global::Windows.UI.Xaml.Controls.Page);
+            _typeTable[12] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
+            _typeTable[13] = typeof(global::TickTick.Common.NavigationHelper);
+            _typeTable[14] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[15] = typeof(global::TickTick.Common.ObservableDictionary);
+            _typeTable[16] = typeof(global::TickTick.Utilities.ConverterUtility.ProjectsListItemConverter);
+            _typeTable[17] = typeof(global::TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter);
+            _typeTable[18] = typeof(global::DrawerLayout.DrawerLayout);
+            _typeTable[19] = typeof(global::Windows.UI.Xaml.Controls.Grid);
+            _typeTable[20] = typeof(global::Windows.UI.Xaml.Controls.Panel);
+            _typeTable[21] = typeof(global::System.Boolean);
+            _typeTable[22] = typeof(global::TickTick.Views.MainPage);
+            _typeTable[23] = typeof(global::TickTick.ViewModels.MainPageViewModel);
+            _typeTable[24] = typeof(global::TickTick.Views.SettingDetailPage);
+            _typeTable[25] = typeof(global::TickTick.ViewModels.SettingDetailPageViewModel);
+            _typeTable[26] = typeof(global::TickTick.Views.SettingPage);
+            _typeTable[27] = typeof(global::TickTick.ViewModels.SettingPageViewModel);
+            _typeTable[28] = typeof(global::TickTick.Views.SignInPage);
+            _typeTable[29] = typeof(global::TickTick.ViewModels.SignInPageViewModel);
+            _typeTable[30] = typeof(global::TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter);
+            _typeTable[31] = typeof(global::TickTick.Utilities.ConverterUtility.TasksDetailContentConverter);
+            _typeTable[32] = typeof(global::TickTick.Views.TasksDetailPageSimple);
+            _typeTable[33] = typeof(global::TickTick.ViewModels.TasksDetailPageViewModel);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -228,27 +230,28 @@ namespace TickTick.TickTick_WindowsPhone_XamlTypeInfo
         }
 
         private object Activate_0_AppBarBtnControl() { return new global::TickTick.Controls.AppBarBtnControl(); }
-        private object Activate_5_BasicPage() { return new global::TickTick.Views.BasicPage(); }
-        private object Activate_10_ObservableDictionary() { return new global::TickTick.Common.ObservableDictionary(); }
-        private object Activate_12_DrawerLayout() { return new global::DrawerLayout.DrawerLayout(); }
-        private object Activate_16_MainPage() { return new global::TickTick.Views.MainPage(); }
-        private object Activate_17_MainPageViewModel() { return new global::TickTick.ViewModels.MainPageViewModel(); }
-        private object Activate_18_SettingDetailPage() { return new global::TickTick.Views.SettingDetailPage(); }
-        private object Activate_19_SettingDetailPageViewModel() { return new global::TickTick.ViewModels.SettingDetailPageViewModel(); }
-        private object Activate_20_SettingPage() { return new global::TickTick.Views.SettingPage(); }
-        private object Activate_21_SettingPageViewModel() { return new global::TickTick.ViewModels.SettingPageViewModel(); }
-        private object Activate_22_SignInPage() { return new global::TickTick.Views.SignInPage(); }
-        private object Activate_23_SignInPageViewModel() { return new global::TickTick.ViewModels.SignInPageViewModel(); }
-        private object Activate_24_TasksDetailPageSimple() { return new global::TickTick.Views.TasksDetailPageSimple(); }
-        private object Activate_25_TasksDetailPageViewModel() { return new global::TickTick.ViewModels.TasksDetailPageViewModel(); }
-        private object Activate_26_TasksListItemDateConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemDateConverter(); }
-        private object Activate_27_TasksListItemImageSourceConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter(); }
-        private object Activate_28_TasksDetailDueDateConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter(); }
-        private object Activate_29_TasksDetailCheckListItemConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksDetailCheckListItemConverter(); }
-        private object Activate_30_TasksDetailContentConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksDetailContentConverter(); }
-        private object Activate_31_ProjectsListItemConverter() { return new global::TickTick.Utilities.ConverterUtility.ProjectsListItemConverter(); }
-        private object Activate_32_TasksListItemCompleteIconSourceConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter(); }
-        private void MapAdd_10_ObservableDictionary(object instance, object key, object item)
+        private object Activate_5_TasksListItemDateConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemDateConverter(); }
+        private object Activate_7_TasksListItemImageSourceConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter(); }
+        private object Activate_8_TasksItemStatusControl() { return new global::TickTick.Controls.TasksItemStatusControl(); }
+        private object Activate_9_TasksItemControl() { return new global::TickTick.Controls.TasksItemControl(); }
+        private object Activate_10_BasicPage() { return new global::TickTick.Views.BasicPage(); }
+        private object Activate_15_ObservableDictionary() { return new global::TickTick.Common.ObservableDictionary(); }
+        private object Activate_16_ProjectsListItemConverter() { return new global::TickTick.Utilities.ConverterUtility.ProjectsListItemConverter(); }
+        private object Activate_17_TasksListItemCompleteIconSourceConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter(); }
+        private object Activate_18_DrawerLayout() { return new global::DrawerLayout.DrawerLayout(); }
+        private object Activate_22_MainPage() { return new global::TickTick.Views.MainPage(); }
+        private object Activate_23_MainPageViewModel() { return new global::TickTick.ViewModels.MainPageViewModel(); }
+        private object Activate_24_SettingDetailPage() { return new global::TickTick.Views.SettingDetailPage(); }
+        private object Activate_25_SettingDetailPageViewModel() { return new global::TickTick.ViewModels.SettingDetailPageViewModel(); }
+        private object Activate_26_SettingPage() { return new global::TickTick.Views.SettingPage(); }
+        private object Activate_27_SettingPageViewModel() { return new global::TickTick.ViewModels.SettingPageViewModel(); }
+        private object Activate_28_SignInPage() { return new global::TickTick.Views.SignInPage(); }
+        private object Activate_29_SignInPageViewModel() { return new global::TickTick.ViewModels.SignInPageViewModel(); }
+        private object Activate_30_TasksDetailDueDateConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter(); }
+        private object Activate_31_TasksDetailContentConverter() { return new global::TickTick.Utilities.ConverterUtility.TasksDetailContentConverter(); }
+        private object Activate_32_TasksDetailPageSimple() { return new global::TickTick.Views.TasksDetailPageSimple(); }
+        private object Activate_33_TasksDetailPageViewModel() { return new global::TickTick.ViewModels.TasksDetailPageViewModel(); }
+        private void MapAdd_15_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
             var newKey = (global::System.String)key;
@@ -292,189 +295,194 @@ namespace TickTick.TickTick_WindowsPhone_XamlTypeInfo
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 5:   //  TickTick.Views.BasicPage
+            case 5:   //  TickTick.Utilities.ConverterUtility.TasksListItemDateConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_5_TasksListItemDateConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 6:   //  Object
+                xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 7:   //  TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_7_TasksListItemImageSourceConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  TickTick.Controls.TasksItemStatusControl
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_8_TasksItemStatusControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 9:   //  TickTick.Controls.TasksItemControl
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Control"));
+                userType.Activator = Activate_9_TasksItemControl;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 10:   //  TickTick.Views.BasicPage
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_5_BasicPage;
+                userType.Activator = Activate_10_BasicPage;
                 userType.AddMemberName("NavigationHelper");
                 userType.AddMemberName("DefaultViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 6:   //  Windows.UI.Xaml.Controls.Page
+            case 11:   //  Windows.UI.Xaml.Controls.Page
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  Windows.UI.Xaml.Controls.UserControl
+            case 12:   //  Windows.UI.Xaml.Controls.UserControl
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 8:   //  TickTick.Common.NavigationHelper
+            case 13:   //  TickTick.Common.NavigationHelper
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 9:   //  Windows.UI.Xaml.DependencyObject
+            case 14:   //  Windows.UI.Xaml.DependencyObject
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 10:   //  TickTick.Common.ObservableDictionary
+            case 15:   //  TickTick.Common.ObservableDictionary
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.DictionaryAdd = MapAdd_10_ObservableDictionary;
+                userType.DictionaryAdd = MapAdd_15_ObservableDictionary;
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 11:   //  Object
-                xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+            case 16:   //  TickTick.Utilities.ConverterUtility.ProjectsListItemConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_16_ProjectsListItemConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
                 break;
 
-            case 12:   //  DrawerLayout.DrawerLayout
+            case 17:   //  TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_17_TasksListItemCompleteIconSourceConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 18:   //  DrawerLayout.DrawerLayout
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Grid"));
-                userType.Activator = Activate_12_DrawerLayout;
+                userType.Activator = Activate_18_DrawerLayout;
                 userType.AddMemberName("IsDrawerOpen");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 13:   //  Windows.UI.Xaml.Controls.Grid
+            case 19:   //  Windows.UI.Xaml.Controls.Grid
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  Windows.UI.Xaml.Controls.Panel
+            case 20:   //  Windows.UI.Xaml.Controls.Panel
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  Boolean
+            case 21:   //  Boolean
                 xamlType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 16:   //  TickTick.Views.MainPage
+            case 22:   //  TickTick.Views.MainPage
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_16_MainPage;
-                userType.AddMemberName("NavigationHelper");
-                userType.AddMemberName("DefaultViewModel");
+                userType.Activator = Activate_22_MainPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 17:   //  TickTick.ViewModels.MainPageViewModel
+            case 23:   //  TickTick.ViewModels.MainPageViewModel
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 18:   //  TickTick.Views.SettingDetailPage
+            case 24:   //  TickTick.Views.SettingDetailPage
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_18_SettingDetailPage;
+                userType.Activator = Activate_24_SettingDetailPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 19:   //  TickTick.ViewModels.SettingDetailPageViewModel
+            case 25:   //  TickTick.ViewModels.SettingDetailPageViewModel
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 20:   //  TickTick.Views.SettingPage
+            case 26:   //  TickTick.Views.SettingPage
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_20_SettingPage;
+                userType.Activator = Activate_26_SettingPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 21:   //  TickTick.ViewModels.SettingPageViewModel
+            case 27:   //  TickTick.ViewModels.SettingPageViewModel
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 22:   //  TickTick.Views.SignInPage
+            case 28:   //  TickTick.Views.SignInPage
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_22_SignInPage;
+                userType.Activator = Activate_28_SignInPage;
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 23:   //  TickTick.ViewModels.SignInPageViewModel
+            case 29:   //  TickTick.ViewModels.SignInPageViewModel
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 24:   //  TickTick.Views.TasksDetailPageSimple
+            case 30:   //  TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_30_TasksDetailDueDateConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 31:   //  TickTick.Utilities.ConverterUtility.TasksDetailContentConverter
+                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_31_TasksDetailContentConverter;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 32:   //  TickTick.Views.TasksDetailPageSimple
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_24_TasksDetailPageSimple;
+                userType.Activator = Activate_32_TasksDetailPageSimple;
                 userType.AddMemberName("IsNavigateForUpdate");
                 userType.AddMemberName("ViewModel");
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 25:   //  TickTick.ViewModels.TasksDetailPageViewModel
+            case 33:   //  TickTick.ViewModels.TasksDetailPageViewModel
                 userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
                 userType.SetIsReturnTypeStub();
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 26:   //  TickTick.Utilities.ConverterUtility.TasksListItemDateConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_26_TasksListItemDateConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 27:   //  TickTick.Utilities.ConverterUtility.TasksListItemImageSourceConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_27_TasksListItemImageSourceConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 28:   //  TickTick.Utilities.ConverterUtility.TasksDetailDueDateConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_28_TasksDetailDueDateConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 29:   //  TickTick.Utilities.ConverterUtility.TasksDetailCheckListItemConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_29_TasksDetailCheckListItemConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 30:   //  TickTick.Utilities.ConverterUtility.TasksDetailContentConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_30_TasksDetailContentConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 31:   //  TickTick.Utilities.ConverterUtility.ProjectsListItemConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_31_ProjectsListItemConverter;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 32:   //  TickTick.Utilities.ConverterUtility.TasksListItemCompleteIconSourceConverter
-                userType = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.Activator = Activate_32_TasksListItemCompleteIconSourceConverter;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -533,72 +541,62 @@ namespace TickTick.TickTick_WindowsPhone_XamlTypeInfo
             var that = (global::DrawerLayout.DrawerLayout)instance;
             that.IsDrawerOpen = (global::System.Boolean)Value;
         }
-        private object get_6_MainPage_NavigationHelper(object instance)
-        {
-            var that = (global::TickTick.Views.MainPage)instance;
-            return that.NavigationHelper;
-        }
-        private object get_7_MainPage_DefaultViewModel(object instance)
-        {
-            var that = (global::TickTick.Views.MainPage)instance;
-            return that.DefaultViewModel;
-        }
-        private object get_8_MainPage_ViewModel(object instance)
+        private object get_6_MainPage_ViewModel(object instance)
         {
             var that = (global::TickTick.Views.MainPage)instance;
             return that.ViewModel;
         }
-        private void set_8_MainPage_ViewModel(object instance, object Value)
+        private void set_6_MainPage_ViewModel(object instance, object Value)
         {
             var that = (global::TickTick.Views.MainPage)instance;
             that.ViewModel = (global::TickTick.ViewModels.MainPageViewModel)Value;
         }
-        private object get_9_SettingDetailPage_ViewModel(object instance)
+        private object get_7_SettingDetailPage_ViewModel(object instance)
         {
             var that = (global::TickTick.Views.SettingDetailPage)instance;
             return that.ViewModel;
         }
-        private void set_9_SettingDetailPage_ViewModel(object instance, object Value)
+        private void set_7_SettingDetailPage_ViewModel(object instance, object Value)
         {
             var that = (global::TickTick.Views.SettingDetailPage)instance;
             that.ViewModel = (global::TickTick.ViewModels.SettingDetailPageViewModel)Value;
         }
-        private object get_10_SettingPage_ViewModel(object instance)
+        private object get_8_SettingPage_ViewModel(object instance)
         {
             var that = (global::TickTick.Views.SettingPage)instance;
             return that.ViewModel;
         }
-        private void set_10_SettingPage_ViewModel(object instance, object Value)
+        private void set_8_SettingPage_ViewModel(object instance, object Value)
         {
             var that = (global::TickTick.Views.SettingPage)instance;
             that.ViewModel = (global::TickTick.ViewModels.SettingPageViewModel)Value;
         }
-        private object get_11_SignInPage_ViewModel(object instance)
+        private object get_9_SignInPage_ViewModel(object instance)
         {
             var that = (global::TickTick.Views.SignInPage)instance;
             return that.ViewModel;
         }
-        private void set_11_SignInPage_ViewModel(object instance, object Value)
+        private void set_9_SignInPage_ViewModel(object instance, object Value)
         {
             var that = (global::TickTick.Views.SignInPage)instance;
             that.ViewModel = (global::TickTick.ViewModels.SignInPageViewModel)Value;
         }
-        private object get_12_TasksDetailPageSimple_IsNavigateForUpdate(object instance)
+        private object get_10_TasksDetailPageSimple_IsNavigateForUpdate(object instance)
         {
             var that = (global::TickTick.Views.TasksDetailPageSimple)instance;
             return that.IsNavigateForUpdate;
         }
-        private void set_12_TasksDetailPageSimple_IsNavigateForUpdate(object instance, object Value)
+        private void set_10_TasksDetailPageSimple_IsNavigateForUpdate(object instance, object Value)
         {
             var that = (global::TickTick.Views.TasksDetailPageSimple)instance;
             that.IsNavigateForUpdate = (global::System.Boolean)Value;
         }
-        private object get_13_TasksDetailPageSimple_ViewModel(object instance)
+        private object get_11_TasksDetailPageSimple_ViewModel(object instance)
         {
             var that = (global::TickTick.Views.TasksDetailPageSimple)instance;
             return that.ViewModel;
         }
-        private void set_13_TasksDetailPageSimple_ViewModel(object instance, object Value)
+        private void set_11_TasksDetailPageSimple_ViewModel(object instance, object Value)
         {
             var that = (global::TickTick.Views.TasksDetailPageSimple)instance;
             that.ViewModel = (global::TickTick.ViewModels.TasksDetailPageViewModel)Value;
@@ -651,53 +649,41 @@ namespace TickTick.TickTick_WindowsPhone_XamlTypeInfo
                 xamlMember.Getter = get_5_DrawerLayout_IsDrawerOpen;
                 xamlMember.Setter = set_5_DrawerLayout_IsDrawerOpen;
                 break;
-            case "TickTick.Views.MainPage.NavigationHelper":
-                userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.MainPage");
-                xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "NavigationHelper", "TickTick.Common.NavigationHelper");
-                xamlMember.Getter = get_6_MainPage_NavigationHelper;
-                xamlMember.SetIsReadOnly();
-                break;
-            case "TickTick.Views.MainPage.DefaultViewModel":
-                userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.MainPage");
-                xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "TickTick.Common.ObservableDictionary");
-                xamlMember.Getter = get_7_MainPage_DefaultViewModel;
-                xamlMember.SetIsReadOnly();
-                break;
             case "TickTick.Views.MainPage.ViewModel":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.MainPage");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "ViewModel", "TickTick.ViewModels.MainPageViewModel");
-                xamlMember.Getter = get_8_MainPage_ViewModel;
-                xamlMember.Setter = set_8_MainPage_ViewModel;
+                xamlMember.Getter = get_6_MainPage_ViewModel;
+                xamlMember.Setter = set_6_MainPage_ViewModel;
                 break;
             case "TickTick.Views.SettingDetailPage.ViewModel":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.SettingDetailPage");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "ViewModel", "TickTick.ViewModels.SettingDetailPageViewModel");
-                xamlMember.Getter = get_9_SettingDetailPage_ViewModel;
-                xamlMember.Setter = set_9_SettingDetailPage_ViewModel;
+                xamlMember.Getter = get_7_SettingDetailPage_ViewModel;
+                xamlMember.Setter = set_7_SettingDetailPage_ViewModel;
                 break;
             case "TickTick.Views.SettingPage.ViewModel":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.SettingPage");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "ViewModel", "TickTick.ViewModels.SettingPageViewModel");
-                xamlMember.Getter = get_10_SettingPage_ViewModel;
-                xamlMember.Setter = set_10_SettingPage_ViewModel;
+                xamlMember.Getter = get_8_SettingPage_ViewModel;
+                xamlMember.Setter = set_8_SettingPage_ViewModel;
                 break;
             case "TickTick.Views.SignInPage.ViewModel":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.SignInPage");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "ViewModel", "TickTick.ViewModels.SignInPageViewModel");
-                xamlMember.Getter = get_11_SignInPage_ViewModel;
-                xamlMember.Setter = set_11_SignInPage_ViewModel;
+                xamlMember.Getter = get_9_SignInPage_ViewModel;
+                xamlMember.Setter = set_9_SignInPage_ViewModel;
                 break;
             case "TickTick.Views.TasksDetailPageSimple.IsNavigateForUpdate":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.TasksDetailPageSimple");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "IsNavigateForUpdate", "Boolean");
-                xamlMember.Getter = get_12_TasksDetailPageSimple_IsNavigateForUpdate;
-                xamlMember.Setter = set_12_TasksDetailPageSimple_IsNavigateForUpdate;
+                xamlMember.Getter = get_10_TasksDetailPageSimple_IsNavigateForUpdate;
+                xamlMember.Setter = set_10_TasksDetailPageSimple_IsNavigateForUpdate;
                 break;
             case "TickTick.Views.TasksDetailPageSimple.ViewModel":
                 userType = (global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlUserType)GetXamlTypeByName("TickTick.Views.TasksDetailPageSimple");
                 xamlMember = new global::TickTick.TickTick_WindowsPhone_XamlTypeInfo.XamlMember(this, "ViewModel", "TickTick.ViewModels.TasksDetailPageViewModel");
-                xamlMember.Getter = get_13_TasksDetailPageSimple_ViewModel;
-                xamlMember.Setter = set_13_TasksDetailPageSimple_ViewModel;
+                xamlMember.Getter = get_11_TasksDetailPageSimple_ViewModel;
+                xamlMember.Setter = set_11_TasksDetailPageSimple_ViewModel;
                 break;
             }
             return xamlMember;

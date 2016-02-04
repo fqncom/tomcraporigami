@@ -155,6 +155,19 @@ namespace TestDemo
             //this.TxtResolutionScale.Text = resolutionScale.ToString();
 
         }
+
+        private void ToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
+        {
+            var toggle = sender as ToggleSwitch;
+            if (toggle.IsOn)
+            {
+                this.RequestedTheme = ElementTheme.Light;
+            }
+            else
+            {
+                this.RequestedTheme = ElementTheme.Dark;
+            }
+        }
     }
     public sealed class City
     {

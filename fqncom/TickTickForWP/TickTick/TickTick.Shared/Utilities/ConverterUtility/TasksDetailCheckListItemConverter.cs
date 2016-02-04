@@ -12,26 +12,18 @@ namespace TickTick.Utilities.ConverterUtility
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            try
-            {
-                var checkListItem = value as ChecklistItem;
+            var checkListItem = value as ChecklistItem;
 
-                if (checkListItem == null)
-                {
-                    return false;
-                }
-
-                if (string.Equals(parameter, "IsChecked"))
-                {
-                    return checkListItem.IsChecked;
-                }
-                return string.Empty;
-            }
-            catch (Exception e)
+            if (checkListItem == null)
             {
-                
-                throw e;
+                return false;
             }
+
+            if (string.Equals(parameter, "IsChecked"))
+            {
+                return checkListItem.IsChecked;
+            }
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

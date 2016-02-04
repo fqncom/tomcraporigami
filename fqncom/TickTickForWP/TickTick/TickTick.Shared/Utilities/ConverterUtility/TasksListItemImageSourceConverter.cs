@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TickTick.Entity;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media.Imaging;
 
 namespace TickTick.Utilities.ConverterUtility
 {
@@ -10,62 +11,56 @@ namespace TickTick.Utilities.ConverterUtility
     {
         #region IValueConverter 成员
 
+        public static BitmapImage RepeatImage;
+        public static BitmapImage RemindImage;
+        public static BitmapImage NoteImage;
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var tasks = value as Tasks;
             try
             {
+                var tasks = value as Tasks;
                 if (tasks == null)
                 {
                     return string.Empty;
                 }
-                bool flag = false;
-                bool isForVisibility = false;
-                bool isForImageSource = false;
+                
+                string basePath = "ms-appx:///Assets/Images/Scale-100/{0}_icon_enable_light.png";
                 var param = parameter.ToString();
-                if (param.Contains("Visibility"))
-                {
-                    isForVisibility = true;
-                }
-                else
-                {
-                    isForImageSource = true;
-                }
+                
                 if (param.Contains("Reminder"))//reminder_icon_enable_light.png
                 {
-                    flag = tasks.IsReminder();
+                    if (tasks.IsReminder())
+                    {
+                        return
+                            RemindImage =
+                                RemindImage ??
+                                new BitmapImage(new Uri(string.Format(basePath, parameter.ToString().ToLower())));
+                    }
                 }
                 if (param.Contains("Note"))// fqn_diff   :note_small_undone_icon_dark.png 改成了    note_icon_enable_light.png
                 {
-                    flag = !string.IsNullOrEmpty(tasks.Content);
+                    if (!string.IsNullOrEmpty(tasks.Content))
+                    {
+                        return
+                         NoteImage =
+                             NoteImage ??
+                             new BitmapImage(new Uri(string.Format(basePath, parameter.ToString().ToLower())));
+                    }
                 }
                 if (param.Contains("Repeat"))//repeat_icon_enable_light.png
                 {
-                    flag = tasks.IsRepeatTask();
+                    if (tasks.IsRepeatTask())
+                    {
+                        return RepeatImage = RepeatImage ?? new BitmapImage(new Uri(string.Format(basePath, parameter.ToString().ToLower())));
+                    }
                 }
-
-                if (isForImageSource && flag)
-                {
-                    return string.Format("ms-appx:///Assets/Images/Scale-100/{0}_icon_enable_light.png", parameter.ToString().ToLower());
-                }
-                if (isForVisibility && flag)
-                {
-                    return Windows.UI.Xaml.Visibility.Visible;
-                }
-
-                if (param.Contains("Visibility"))
-                {
-                    return Windows.UI.Xaml.Visibility.Collapsed;
-                }
-                else
-                {
-                    return string.Empty;
-                }
+                return string.Empty;
             }
             catch (Exception e)
             {
-                
-                throw e;
+
+                throw;
             }
         }
 

@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PriInfo>
+  <PriHeader>
+    <WindowsEnvironment checksum="0" version="1.0" />
+    <AutoMerge>false</AutoMerge>
+  </PriHeader>
+  <QualifierInfo>
+    <Qualifiers>
+      <Qualifier index="1" scoreAsDefault="0.0" priority="900" value="QPS-PLOC" name="Language" />
+    </Qualifiers>
+    <QualifierSets>
+      <QualifierSet index="1">
+        <Qualifier index="1" scoreAsDefault="0.0" priority="900" value="QPS-PLOC" name="Language" />
+      </QualifierSet>
+    </QualifierSets>
+    <Decisions />
+  </QualifierInfo>
+  <ResourceMap name="TickTick.WindowsPhone" primary="true">
+    <VersionInfo version="1.0" />
+  </ResourceMap>
+</PriInfo>

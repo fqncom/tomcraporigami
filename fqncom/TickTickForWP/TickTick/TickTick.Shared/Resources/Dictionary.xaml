@@ -5,13 +5,7 @@
 
     <x:String x:Key="TickTick_SqliteDataBase">ms-appx:///TickTick_SqliteDataBase</x:String>
 
-    <utility:TasksListItemDateConverter x:Key="TasksListItemDateConverter" />
-    <utility:TasksListItemImageSourceConverter x:Key="TasksListItemImageSourceConverter" />
-    <utility:TasksDetailDueDateConverter x:Key="TasksDetailDueDateConverter" />
-    <utility:TasksDetailCheckListItemConverter x:Key="TasksDetailCheckListItemConverter" />
-    <utility:TasksDetailContentConverter x:Key="TasksDetailContentConverter" />
-    <utility:ProjectsListItemConverter x:Key="ProjectsListItemConverter" />
-    <utility:TasksListItemCompleteIconSourceConverter x:Key="TasksListItemCompleteIconSourceConverter" />
+
 
 
     <!--  资源路径开始  -->
@@ -82,8 +76,8 @@
     <!--  外边距开始  -->
     <Thickness x:Key="NormalGridMarginThickness">22.5,0</Thickness>
     <Thickness x:Key="NormalListViewMarginThickness">0,36.25,0,0</Thickness>
-    <Thickness x:Key="NormalProjectsNameMarginThickness">22.5,0,10,0</Thickness>
-    <Thickness x:Key="NormalTasksCheckIconMarginThickness">12.5,0,23.75,0</Thickness>
+    <Thickness x:Key="NormalProjectsNameMarginThickness">21.25,0,20,0</Thickness>
+    <Thickness x:Key="NormalTasksCheckIconMarginThickness">15,0,0,0</Thickness>
     <Thickness x:Key="NormalMainGridMarginThickness">15,0,15,0</Thickness>
     <Thickness x:Key="NormalProjectsListViewItemMarginThickness">0,0,0,10</Thickness>
     <Thickness x:Key="NormalTitleBarNameMarginThickness">42.5,0,0,0</Thickness>
@@ -140,7 +134,7 @@
     <SolidColorBrush x:Key="NormalButtonForegroudColor" Color="#5f7fb0" />
 
     <SolidColorBrush x:Key="NormalPickerBorderColor" Color="#dcdcdc" />
-    <SolidColorBrush x:Key="NormalSplitLineBorderColor" Color="#dcdcdc" />
+    <SolidColorBrush x:Key="NormalSplitLineBorderColor" Color="#eeeeee" />
 
     <SolidColorBrush x:Key="NormalMaskingBackgroudColor" Color="#dcdcdc" />
     <SolidColorBrush x:Key="NormalBackgroudColor" Color="#ffffff" />
@@ -213,6 +207,7 @@
         <!--<Setter Property="Margin" Value="{StaticResource NormalTasksCheckListItemMarginThickness}" />-->
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Height" Value="57.5"></Setter>
         <!--<Setter Property="MinHeight" Value="{StaticResource NormalTasksCheckListItemLineHeight}" />-->
     </Style>
 
@@ -384,7 +379,6 @@
     <Style x:Key="NormalBottomBarStyle" TargetType="Border">
         <Setter Property="Height" Value="{StaticResource NormalMainBottomBarLineHeight}" />
         <Setter Property="Background" Value="{StaticResource NormalBackgroudColor}" />
-        <Setter Property="Margin" Value="{StaticResource NormalBottomBarMarginThickness}" />
         <Setter Property="BorderBrush" Value="{StaticResource NormalSplitLineBorderColor}" />
         <Setter Property="BorderThickness" Value="{StaticResource NormalTopBorderThickness}" />
     </Style>
@@ -409,8 +403,8 @@
     <Style x:Key="NormalProjectsListIconStyle" TargetType="Rectangle">
         <!--<Setter Property="Stroke" Value="{StaticResource NormalRectangleIconBorderColor}" />-->
         <!--<Setter Property="StrokeThickness" Value="{StaticResource NormalBorderThickness}" />-->
-        <Setter Property="Width" Value="{StaticResource BigIconWidth}" />
-        <Setter Property="Height" Value="{StaticResource BigIconHeight}" />
+        <Setter Property="Width" Value="{StaticResource SmallIconWidth}" />
+        <Setter Property="Height" Value="{StaticResource SmallIconHeight}" />
         <!--<Setter Property="Fill">
             <Setter.Value>
                 <ImageBrush ImageSource="{StaticResource ProjectsListIconSourcePath}" />
@@ -433,14 +427,11 @@
 
     <!--  Tasks列表模块样式开始  -->
 
-    <Style x:Name="NormalMainGridStyle" TargetType="ScrollViewer">
-        <Setter Property="Margin" Value="{StaticResource NormalMainGridMarginThickness}" />
+    <Style x:Key="NormalMainGridStyle" TargetType="ScrollViewer">
+        <Setter Property="Margin" Value="15,0,15,0" />
     </Style>
 
-    <Style x:Name="NormalTasksListViewStyle" TargetType="ListView">
-        <!--<Setter Property="Foreground" Value="{StaticResource NormalContentFontColor}" />-->
-        <Setter Property="Background" Value="{StaticResource NormalBackgroudColor}" />
-    </Style>
+
 
     <!--<Style x:Name="NormalCompletedTasksListViewStyle" TargetType="ListView">
         <Setter Property="Foreground" Value="{StaticResource NormalContentFontColor}" />
@@ -448,13 +439,13 @@
         <Setter Property="Opacity" Value="{StaticResource NormalOpacity}" />
     </Style>-->
 
-    <Style x:Name="NormalTasksListItemStyle" TargetType="ListViewItem">
+    <Style x:Key="NormalTasksListItemStyle" TargetType="ListViewItem">
         <Setter Property="Foreground" Value="{StaticResource NormalContentFontColor}" />
         <Setter Property="Height" Value="{StaticResource NormalTasksLineHeight}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
     </Style>
 
-    <Style x:Name="NormalCompletedTasksListItemStyle" TargetType="ListViewItem">
+    <Style x:Key="NormalCompletedTasksListItemStyle" TargetType="ListViewItem">
         <Setter Property="Height" Value="{StaticResource NormalTasksLineHeight}" />
         <Setter Property="Foreground" Value="{StaticResource NormalContentCompletedFontColor}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -466,10 +457,7 @@
         <Setter Property="Margin" Value="{StaticResource NormalTasksCheckIconMarginThickness}" />
     </Style>
 
-    <Style x:Key="NormalTasksListStatusIconStyle" TargetType="Rectangle">
-        <Setter Property="Width" Value="{StaticResource SmallIconWidth}" />
-        <Setter Property="Height" Value="{StaticResource SmallIconHeight}" />
-    </Style>
+
 
     <Style x:Key="NormalTasksNameStyle" TargetType="TextBlock">
         <Setter Property="FontSize" Value="{StaticResource NormalTitleFontSize}" />

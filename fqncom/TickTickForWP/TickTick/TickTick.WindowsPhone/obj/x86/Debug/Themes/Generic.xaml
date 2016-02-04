@@ -1,8 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converterUtility="using:TickTick.Utilities.ConverterUtility"
                     xmlns:local="using:TickTick.Controls">
-
-
 
     <Style TargetType="local:AppBarBtnControl">
         <Setter Property="Template">
@@ -16,6 +15,112 @@
                             <SymbolIcon Margin="5,0" Symbol="{TemplateBinding BtnSymbol}" />
                             <TextBlock FontSize="{TemplateBinding BtnFontSize}" Text="{TemplateBinding BtnContent}" />
                         </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <converterUtility:TasksListItemDateConverter x:Key="TasksListItemDateConverter" />
+    <converterUtility:TasksListItemImageSourceConverter x:Key="TasksListItemImageSourceConverter" />
+    <Style x:Key="NormalTasksListStatusIconStyle" TargetType="Image">
+        <Setter Property="Stretch" Value="None" />
+        <!--<Setter Property="Width" Value="{StaticResource SmallIconWidth}" />
+        <Setter Property="Height" Value="{StaticResource SmallIconHeight}" />-->
+    </Style>
+
+    <Style TargetType="local:TasksItemStatusControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TasksItemStatusControl">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="1*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock x:Name="txtTasksDueTime"
+                                       Grid.Row="1"
+                                       Grid.ColumnSpan="3"
+                                       FontSize="15"
+                                       Foreground="{Binding DueDate,
+                                                            Converter={StaticResource TasksListItemDateConverter},
+                                                            ConverterParameter=Foreground}"
+                                       Text="{Binding DueDate,
+                                                      Converter={StaticResource TasksListItemDateConverter}}" />
+                            <Image Grid.Row="1"
+                                   Grid.Column="0"
+                                   Source="{Binding Converter={StaticResource TasksListItemImageSourceConverter},
+                                                    ConverterParameter=Reminder}"
+                                   Style="{StaticResource NormalTasksListStatusIconStyle}" />
+                            <Image x:Name="rectTasksRepeat"
+                                   Grid.Row="1"
+                                   Grid.Column="1"
+                                   Source="{Binding Converter={StaticResource TasksListItemImageSourceConverter},
+                                                    ConverterParameter=Repeat}"
+                                   Style="{StaticResource NormalTasksListStatusIconStyle}" />
+                            <Image x:Name="rectTasksNote"
+                                   Grid.Row="1"
+                                   Grid.Column="2"
+                                   Source="{Binding Converter={StaticResource TasksListItemImageSourceConverter},
+                                                    ConverterParameter=Note}"
+                                   Style="{StaticResource NormalTasksListStatusIconStyle}" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:TasksItemControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:TasksItemControl">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!--<Rectangle x:Name="rectTasksCheckBox"
+                               Grid.Row="0"
+                               Grid.Column="0"
+                               Style="{StaticResource NormalTasksListCheckIconStyle}"
+                               Tag="{Binding}"
+                               Tapped="CheckBoxIcon_Tapped">
+                                <Rectangle.Fill>
+                                    <ImageBrush ImageSource="{Binding IsCompleted, Converter={StaticResource TasksListItemCompleteIconSourceConverter}}" />
+                                </Rectangle.Fill>
+                            </Rectangle>-->
+                            <TextBlock x:Name="txtTasksTitle"
+                                       Grid.Column="0"
+                                       VerticalAlignment="Center"
+                                       CommonNavigationTransitionInfo.IsStaggerElement="True"
+                                       Style="{StaticResource NormalTasksNameStyle}"
+                                       Text="{Binding Title}" />
+                            <!--
+                                {Binding DueDate,
+                                Converter={StaticResource TasksListItemDateConverter},
+                                ConverterParameter=Foreground}
+                            -->
+                            <!--  Style="{StaticResource NormalTasksDateStyle}"  -->
+
+                            <local:TasksItemStatusControl Grid.Column="1"
+                                                          HorizontalAlignment="Right"
+                                                          VerticalAlignment="Center" />
+
+                        </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

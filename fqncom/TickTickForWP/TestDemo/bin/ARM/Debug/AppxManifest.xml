@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:build="http://schemas.microsoft.com/developer/appx/2012/build" IgnorableNamespaces="build">
+  <!--
+  此包清单文件由生成过程生成。
+
+  如果重新生成此文件，将丢失对其所做的更改。若要更正此文件中的错误，请编辑源 .appxmanifest 文件。
+
+  有关程序包清单文件的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=241727
+ -->
+  <Identity Name="d3dcdfcf-7a82-4600-a721-d6cfcec93528" Publisher="CN=fqn" Version="1.0.0.0" ProcessorArchitecture="arm" />
+  <mp:PhoneIdentity PhoneProductId="d3dcdfcf-7a82-4600-a721-d6cfcec93528" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Properties>
+    <DisplayName>TestDemo</DisplayName>
+    <PublisherDisplayName>fqn</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.3.1</OSMinVersion>
+    <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="ZH-CN" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="TestDemo.exe" EntryPoint="TestDemo.App">
+      <m3:VisualElements DisplayName="TestDemo" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="TestDemo" ForegroundText="light" BackgroundColor="transparent" ToastCapable="true">
+        <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"></m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" />
+      </m3:VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="ReminderComponent.Reminder">
+          <BackgroundTasks>
+            <Task Type="pushNotification" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="internetClientServer" />
+    <m3:Capability Name="appointments" />
+  </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>CLRHost.dll</Path>
+        <ActivatableClass ActivatableClassId="NotificationsExtensions.BadgeContent.BadgeNumericNotificationContent" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="NotificationsExtensions.BadgeContent.BadgeGlyphNotificationContent" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="NotificationsExtensions.TileContent.TileContentFactory" ThreadingModel="both" />
+        <ActivatableClass ActivatableClassId="NotificationsExtensions.ToastContent.ToastContentFactory" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+  <build:Metadata>
+    <build:Item Name="TargetFrameworkMoniker" Value="WindowsPhoneApp,Version=v8.1" />
+    <build:Item Name="VisualStudio" Version="14.0" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2015 RC" />
+    <build:Item Name="OperatingSystem" Version="10.0.10074.0 (fbl_impressive.150424-1350)" />
+    <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="14.0.22823.1" />
+    <build:Item Name="ProjectGUID" Value="{975082C7-B3AB-4C8C-8379-E6DF0D65BB3D}" />
+    <build:Item Name="ilc.exe" Version="1.0.22816.00 built by: PROJECTNREL" />
+    <build:Item Name="Microsoft.Windows.UI.Xaml.81.Build.Tasks.dll" Version="14.0.22705.1" />
+    <build:Item Name="MakePri.exe" Version="6.3.9600.17336 (winblue.150226-1500)" />
+  </build:Metadata>
+</Package>

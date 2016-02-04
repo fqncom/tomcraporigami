@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PriInfo>
+	<ResourceMap name="WinRTXamlToolkit.Controls.Calendar" version="1.0" primary="true">
+		<Qualifiers/>
+		<ResourceMapSubtree name="Files">
+			<ResourceMapSubtree name="WinRTXamlToolkit.Controls.Calendar">
+				<NamedResource name="WinRTXamlToolkit.Controls.Calendar.xr.xml" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/WinRTXamlToolkit.Controls.Calendar.xr.xml">
+					<Candidate type="Path">
+						<Value>WinRTXamlToolkit.Controls.Calendar\WinRTXamlToolkit.Controls.Calendar.xr.xml</Value>
+					</Candidate>
+				</NamedResource>
+				<ResourceMapSubtree name="Controls">
+					<ResourceMapSubtree name="Calendar">
+						<NamedResource name="Calendar.xbf" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/Controls/Calendar/Calendar.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\Calendar.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="CalendarButton.xbf" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/Controls/Calendar/CalendarButton.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarButton.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="CalendarDayButton.xbf" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/Controls/Calendar/CalendarDayButton.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarDayButton.xbf</Value>
+							</Candidate>
+						</NamedResource>
+						<NamedResource name="CalendarItem.xbf" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/Controls/Calendar/CalendarItem.xbf">
+							<Candidate type="Path">
+								<Value>WinRTXamlToolkit.Controls.Calendar\Controls\Calendar\CalendarItem.xbf</Value>
+							</Candidate>
+						</NamedResource>
+					</ResourceMapSubtree>
+				</ResourceMapSubtree>
+				<ResourceMapSubtree name="Themes">
+					<NamedResource name="Generic.xbf" uri="ms-resource://WinRTXamlToolkit.Controls.Calendar/Files/WinRTXamlToolkit.Controls.Calendar/Themes/Generic.xbf">
+						<Candidate type="Path">
+							<Value>WinRTXamlToolkit.Controls.Calendar\Themes\Generic.xbf</Value>
+						</Candidate>
+					</NamedResource>
+				</ResourceMapSubtree>
+			</ResourceMapSubtree>
+		</ResourceMapSubtree>
+	</ResourceMap>
+</PriInfo>

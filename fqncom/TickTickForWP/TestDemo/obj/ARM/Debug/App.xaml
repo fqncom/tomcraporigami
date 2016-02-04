@@ -1,10 +1,10 @@
-﻿<Application
-    x:Class="TestDemo.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TestDemo">
+﻿<Application x:Class="TestDemo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="using:TestDemo">
     <Application.Resources>
         <!--<ResourceDictionary Source="Resources.resw"/>-->
+        <ResourceDictionary Source="Dictionary1.xaml" />
     </Application.Resources>
 </Application>
 

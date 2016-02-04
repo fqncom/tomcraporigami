@@ -120,7 +120,7 @@ namespace TickTick.Synchronous
         /// </summary>
         private async Task Pull()
         {
-            SyncBean syncBean = await Communicator.BatchCheck(1428303870729);
+            SyncBean syncBean = await Communicator.BatchCheck(0);
             //if (Log.IS_LOG_ENABLED)
             //{
             //    Log.debugSync("syncBean.getInboxId() = " + syncBean.getInboxId());

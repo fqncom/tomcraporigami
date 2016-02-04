@@ -290,7 +290,7 @@ namespace TickTick.Entity
         //@JsonIgnore
         //private TaskSource _source;
 
-        private int _taskStatus;
+        private int _taskStatus = ModelStatusEnum.NOT_COMPLETED;
 
         public int TaskStatus
         {

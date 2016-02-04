@@ -17,9 +17,13 @@ using TickTick.Synchronous;
 using Windows.ApplicationModel;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using TickTick.Helper;
 
 namespace TickTick.ViewModels
 {
+    /// <summary>
+    /// 主界面ViewModel类
+    /// </summary>
     public class MainPageViewModel : INotifyPropertyChanged
     {
         #region 自定义属性
@@ -31,7 +35,23 @@ namespace TickTick.ViewModels
             }
         }
 
-        private ObservableCollection<Projects> _projects;
+        private List<Projects> _intelligentProjects;
+        /// <summary>
+        /// 智能清单
+        /// </summary>
+        public IList<Projects> IntelligentProjects
+        {
+            get { return _intelligentProjects; }
+            set
+            {
+                if (_intelligentProjects != value)
+                {
+                    _intelligentProjects = (List<Projects>)value;
+                    OnPropertyChanged("IntelligentProjects");
+                }
+            }
+        }
+        private List<Projects> _projects;
 
         /// <summary>
         /// 用于显示的Projects集合
@@ -43,30 +63,13 @@ namespace TickTick.ViewModels
             {
                 if (_projects != value)
                 {
-                    _projects = (ObservableCollection<Projects>)value;
+                    _projects = (List<Projects>)value;
                     OnPropertyChanged("Projects");
                 }
             }
         }
 
-        public void BatchAddProjects(IEnumerable<Projects> newProjects)
-        {
-            // TODO 有问题，需要解决
-            _projects.Clear();
-            var currentProjects = _projects;
-            this.Projects = null;
-            foreach (var item in newProjects)
-            {
-                if (currentProjects.Contains(item))
-                {
-                    continue;
-                }
-                currentProjects.Add(item);
-            }
-            this.Projects = currentProjects;
-        }
-
-        private ObservableCollection<Tasks> _tasks;
+        private List<Tasks> _tasks;
         /// <summary>
         /// 用于显示的Tasks集合
         /// </summary>
@@ -77,30 +80,14 @@ namespace TickTick.ViewModels
             {
                 if (_tasks != value)
                 {
-                    _tasks = (ObservableCollection<Tasks>)value;
+                    _tasks = (List<Tasks>)value;
                     OnPropertyChanged("Tasks");
                 }
             }
         }
 
-        public void BatchAddTasks(IEnumerable<Tasks> newTasks)
-        {
-            // TODO 有问题，需要解决
-            _tasks.Clear();
-            var currentTasks = _tasks;
-            this.Tasks = null;
-            foreach (var item in newTasks)
-            {
-                if (currentTasks.Contains(item))
-                {
-                    continue;
-                }
-                currentTasks.Add(item);
-            }
-            this.Tasks = currentTasks;
-        }
 
-        private ObservableCollection<Tasks> _tasksFinished;
+        private List<Tasks> _tasksFinished;
         /// <summary>
         /// 用于显示的已完成Tasks集合
         /// </summary>
@@ -111,28 +98,12 @@ namespace TickTick.ViewModels
             {
                 if (_tasksFinished != value)
                 {
-                    _tasksFinished = (ObservableCollection<Tasks>)value;
+                    _tasksFinished = (List<Tasks>)value;
                     OnPropertyChanged("TasksFinished");
                 }
             }
         }
 
-        public void BatchAddTasksFinished(IEnumerable<Tasks> newTasksFinished)
-        {
-            // TODO 有问题，需要解决
-            _tasksFinished.Clear();
-            var currentTasksFinished = _tasksFinished;
-            this.TasksFinished = null;
-            foreach (var item in newTasksFinished)
-            {
-                if (currentTasksFinished.Contains(item))
-                {
-                    continue;
-                }
-                currentTasksFinished.Add(item);
-            }
-            this.TasksFinished = currentTasksFinished;
-        }
 
         /// <summary>
         /// 用于存储需要被提示的信息
@@ -172,67 +143,23 @@ namespace TickTick.ViewModels
             }
         }
 
-        private ObservableCollection<Projects> _intelligentcoProjects;
         /// <summary>
-        /// 智能清单
-        /// </summary>
-        public IList<Projects> IntelligentProjects
-        {
-            get { return _intelligentcoProjects; }
-            set
-            {
-                if (_intelligentcoProjects != value)
-                {
-                    _intelligentcoProjects = (ObservableCollection<Projects>)value;
-                    OnPropertyChanged("IntelligentcoProjects");
-                }
-            }
-        }
-
-        //public void UpdateIntelligentProjects(IEnumerable<Projects> newIntelligentProjects)
-        //{
-        //    _intelligentcoProjects = null;
-        //    var current = _intelligentcoProjects;
-        //    IntelligentProjects = null;
-        //    foreach (var item in newIntelligentProjects)
-        //    {
-        //        current.Add(item);
-        //    }
-        //    IntelligentProjects = current;
-        //}
-
-        //public Tasks ToastTasks { get; set; }
-
-
-        #region 弃用
-        ///// <summary>
-        ///// 用户判断projects列表的显示与隐藏状态
-        ///// </summary>
-        //public ProjectsListStatus ProjectsListStatus { get; set; } 
-        #endregion
-
-        /// <summary>
-        /// 用户dal层对象
-        /// </summary>
-        //private IBaseBll<User> UserBll { get; set; }
-        /// <summary>
-        /// Projects的dal层对象
+        /// Projects的bll层对象
         /// </summary>
         private ProjectBll ProjectBll = new ProjectBll();
         /// <summary>
-        /// Tasks的dal层对象
+        /// Tasks的bll层对象
         /// </summary>
         private TaskBll TaskBll = new TaskBll();
-        //private IBaseDal<Tasks> TaskDal { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
+
         public ReminderTaskBll ReminderTaskBll = new ReminderTaskBll();
         /// <summary>
         /// 存储用户信息
         /// </summary>
         private User _userInfo;
-
+        /// <summary>
+        /// 用户信息
+        /// </summary>
         public User UserInfo
         {
             get { return _userInfo; }
@@ -258,64 +185,15 @@ namespace TickTick.ViewModels
 
         public MainPageViewModel()
         {
-            _projects = new ObservableCollection<Projects>();
-            _tasks = new ObservableCollection<Tasks>();
-            _tasksFinished = new ObservableCollection<Tasks>();
+            _projects = new List<Projects>();
+            _tasks = new List<Tasks>();
+            _tasksFinished = new List<Tasks>();
             TasksNeedNotification = new List<Tasks>();
 
-            _intelligentcoProjects = new ObservableCollection<Projects>();
-            //Projects = new TrulyObservableCollection<Projects>();
-            //Tasks = new TrulyObservableCollection<Entity.Tasks>();
-            //TasksFinished = new TrulyObservableCollection<Entity.Tasks>();
-            //TasksNeedNotification = new ObservableCollection<Entity.Tasks>();
+            _intelligentProjects = new List<Projects>();
+
             ProjectsSelected = Entity.Projects.GetDefaultProjects();
 
-            if (DesignMode.DesignModeEnabled)
-            {
-
-            }
-
-            //ProjectBll = new ProjectBll();
-            //TaskBll = new TaskBll();
-
-            //初始化同步数据
-            //InitialAsync();
-
-            #region 测试用数据 弃用
-
-#if DEBUG
-
-            //Communicator = new Communicator();
-
-            //直接删除表数据，测试使用！！！=============
-            //ProjectDal.DropTable();
-            //TaskDal.DropTable();
-
-
-            //插入测试数据
-            //ProjectDal.InsertAllAsync(new List<Projects> { 
-            //    new Projects{ ProjectName="test1"},
-            //    new Projects{ ProjectName="test2"},
-            //    new Projects{ ProjectName="test3"},
-            //});
-
-            //TaskDal.InsertAllAsync(new List<Tasks> {
-            //    new Tasks{ TaskName = "task3", ProjectId = 3},
-            //    new Tasks{ TaskName = "task3", ProjectId = 4},
-            //    new Tasks{ TaskName = "task3", ProjectId = 5},
-            //    new Tasks{ TaskName = "task3", ProjectId = 3},
-            //    new Tasks{ TaskName = "task3", ProjectId = 4},
-            //    new Tasks{ TaskName = "task3", ProjectId = 5},
-            //});
-
-            ////从数据库中查询出所有的projects
-            //GetAllProjects();
-
-            ////从数据库中查询出所有的tasks
-            //GetAllTasks();
-#endif
-
-            #endregion
         }
 
         public async Task InitialAsync()
@@ -337,18 +215,12 @@ namespace TickTick.ViewModels
         /// <summary>
         /// 查询所有projects
         /// </summary>
-        public async Task GetAllProjects()
+        public async Task LoadProjectsList()
         {
-            var projectsTemp = await ProjectBll.GetAllProjectsWithTasksCount();
-            //var projectsTemp = await ProjectBll.GetAllProjectsDeletedNo();
+            this.Projects = await ProjectBll.GetAllProjectsWithTasksCount();
 
-            BatchAddProjects(projectsTemp);
+            this.IntelligentProjects = await InitialIntelligentProjects();
 
-            //Projects.Clear();
-            //foreach (var item in projectsTemp)
-            //{
-            //    Projects.Add(item);
-            //}
         }
 
         /// <summary>
@@ -367,19 +239,6 @@ namespace TickTick.ViewModels
             await ProjectBll.UpdateAsync(projects);
         }
 
-        #region 弃用
-        /// <summary>
-        /// 删除某个projects
-        /// </summary>
-        //public async Task DeleteProject(Projects projects)
-        //{
-        //    if (await ProjectBll.DeleteForever(projects) > 0)
-        //    {
-        //        //System.Diagnostics.Debug.WriteLine("删除一条projects成功");
-        //    }
-        //} 
-        #endregion
-
         #endregion
 
 
@@ -387,15 +246,8 @@ namespace TickTick.ViewModels
         /// <summary>
         /// 查询所有tasks
         /// </summary>
-        public async Task GetAllTasks()
+        public async Task GetAllTasksList()
         {
-            //var allTasksList = await TaskBll.GetAllTasks();
-            //Tasks = new ObservableCollection<Tasks>(allTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.Task_Not_Finished));
-            ////TasksFinished = new ObservableCollection<Tasks>(await TaskBll.GetAllTasksByTaskStatus(ModelStatusEnum.Task_Finished));
-            //TasksFinished = new ObservableCollection<Tasks>(allTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.Task_Finished));
-
-            ////1.获取所有的需要进行提醒的任务
-            //TasksNeedNotification = new ObservableCollection<Tasks>(allTasksList.FindAll((t) => t.IsReminder() && t.TaskStatus == ModelStatusEnum.Task_Not_Finished));
             await GetTasksByProjectId(string.Empty);
         }
 
@@ -404,108 +256,51 @@ namespace TickTick.ViewModels
         /// </summary>
         public async Task GetTasksByProjectId(string proId)
         {
-            //var projectTasksList = await TaskBll.GetAllTasksByProjectId(proId);
-            //Tasks = new ObservableCollection<Tasks>(projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.Task_Not_Finished));
-            //TasksFinished = new ObservableCollection<Tasks>(projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.Task_Finished));
-
-            ////1.获取所有的需要进行提醒的任务
-            //TasksNeedNotification = new ObservableCollection<Tasks>(projectTasksList.FindAll((t) => t.IsReminder() && t.TaskStatus == ModelStatusEnum.Task_Not_Finished));
             await GetTasksByProjectId(proId, TasksSortEnum.Custom_Sort);
         }
         public async Task GetTasksByProjectId(string proId, TasksSortEnum tasksSortEnum)
         {
-            //if (string.IsNullOrEmpty(proId))
-            //{
-            //    proId = ProjectsSelected.Id.ToString();
-            //}
-            var projectTasksList = await TaskBll.GetAllTasksByProjectIdDeletedNo(proId, tasksSortEnum);
-            //Tasks = new List<Entity.Tasks>(projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.NOT_COMPLETED));
-            //TasksFinished = new List<Entity.Tasks>(projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.COMPLETED));
-
-            if (ProjectsSelected.IntelligentProjectsTypeEnum == IntelligentProjectsTypeEnum.IsInboxList)
-            {
-                foreach (var item in IntelligentProjects)
-                {
-                    switch (item.IntelligentProjectsTypeEnum)
-                    {
-                        case IntelligentProjectsTypeEnum.IsShowTodayList:
-                            item.TasksCount = projectTasksList.Count(t => t.CreatedTime.Date == DateTime.UtcNow);
-                            break;
-                        case IntelligentProjectsTypeEnum.IsShowCompletedList:
-                            item.TasksCount = projectTasksList.Count(t => t.IsCompleted);
-                            break;
-                        case IntelligentProjectsTypeEnum.IsShowScheduledList:
-                            item.TasksCount = projectTasksList.Count(t => t.DueDate != null);
-                            break;
-                        case IntelligentProjectsTypeEnum.IsShow7DaysList:
-                            item.TasksCount = projectTasksList.Count(t => DateTime.UtcNow.Date - t.CreatedTime.Date <= TimeSpan.FromDays(7));
-                            break;
-                        case IntelligentProjectsTypeEnum.IsShowAllList:
-                            item.TasksCount = projectTasksList.Count;
-                            break;
-                        case IntelligentProjectsTypeEnum.IsInboxList:
-                            var inboxId = App.SignUserInfo.InboxId;
-                            item.TasksCount = projectTasksList.Count(t => t.ProjectSid == inboxId);
-                            break;
-                        default:
-                            item.TasksCount = projectTasksList.Count;
-                            break;
-                    }
-                }
-            }
-            //var tasksTemp = projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.NOT_COMPLETED);
-
+            List<Tasks> projectTasksList = new List<Tasks>();
 
             if (ProjectsSelected.IsIntelligentProjects)
             {
                 switch (ProjectsSelected.IntelligentProjectsTypeEnum)
                 {
                     case IntelligentProjectsTypeEnum.IsShowTodayList:
-                        projectTasksList = projectTasksList.Where(t => t.CreatedTime.Date == DateTime.UtcNow).ToList();
+                        projectTasksList = await TaskBll.GetTodayTasks();
                         break;
                     case IntelligentProjectsTypeEnum.IsShowCompletedList:
-                        projectTasksList = projectTasksList.Where(t => t.IsCompleted).ToList();
+                        projectTasksList = await TaskBll.GetCompletedTasks();
                         break;
                     case IntelligentProjectsTypeEnum.IsShowScheduledList:
+                        if (LoggerHelper.IS_LOG_ENABLED)
+                        {
+                            await LoggerHelper.LogToAllChannels(null, "此处不应该被触发");
+                        }
                         projectTasksList = projectTasksList.Where(t => t.DueDate != null).ToList();
                         break;
                     case IntelligentProjectsTypeEnum.IsShow7DaysList:
-                        projectTasksList = projectTasksList.Where(t => DateTime.UtcNow.Date - t.CreatedTime.Date <= TimeSpan.FromDays(7)).ToList();
+                        projectTasksList = await TaskBll.GetSevenTasks();
                         break;
                     case IntelligentProjectsTypeEnum.IsShowAllList:
+                        projectTasksList = await TaskBll.GetAllTasks();
                         break;
                     case IntelligentProjectsTypeEnum.IsInboxList:
-                        var inboxId = App.SignUserInfo.InboxId;
-                        projectTasksList = projectTasksList.Where(t => t.ProjectSid == inboxId).ToList();
+                        projectTasksList = await TaskBll.GetInboxTasks();
                         break;
                 }
             }
             else
             {
-                projectTasksList = projectTasksList.FindAll(t => t.ProjectId == ProjectsSelected.Id.ToString());
-
+                projectTasksList = await TaskBll.GetTasksByProjectIdAndSortOrder(proId, tasksSortEnum);
             }
 
+            this.Tasks = projectTasksList.FindAll(t => t.TaskStatus == ModelStatusEnum.NOT_COMPLETED);
 
-            BatchAddTasks(projectTasksList.FindAll(t => t.TaskStatus == ModelStatusEnum.NOT_COMPLETED));
-            //UpdateIntelligentProjects();
-            //Tasks.Clear();
-            //foreach (var item in tasksTemp)
-            //{
-            //    Tasks.Add(item);
-            //}
-
-            var tasksFinishedTemp = projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.COMPLETED);
-
-            BatchAddTasksFinished(tasksFinishedTemp);
-            //TasksFinished.Clear();
-            //foreach (var item in tasksFinishedTemp)
-            //{
-            //    TasksFinished.Add(item);
-            //}
+            this.TasksFinished = projectTasksList.FindAll((t) => t.TaskStatus == ModelStatusEnum.COMPLETED);
 
             ////1.获取所有的需要进行提醒的任务
-            TasksNeedNotification = projectTasksList.FindAll((t) => t.IsReminder() && t.TaskStatus == ModelStatusEnum.NOT_COMPLETED);
+            this.TasksNeedNotification = projectTasksList.FindAll((t) => t.IsReminder() && t.TaskStatus == ModelStatusEnum.NOT_COMPLETED);
         }
 
 
@@ -538,29 +333,6 @@ namespace TickTick.ViewModels
         }
 
 
-        /// <summary>
-        /// 添加一条数据
-        /// </summary>
-        /// <param name="tasks"></param>
-        public async Task AddTasks(Tasks tasks)
-        {
-            await Task.WhenAll(TaskBll.InsertAsync(tasks), SyncStatusBll.InsertAsync(new SyncStatus { EntityId = tasks.SId, Type = ModelStatusEnum.SYNC_TYPE_TASK_CREATE, UserId = tasks.UserId }));
-            //await TaskBll.InsertAsync(tasks);
-            //await SyncStatusBll.InsertAsync(new SyncStatus { EntityId = tasks.SId, Type = ModelStatusEnum.SYNC_TYPE_TASK_CREATE, UserId = tasks.UserId });
-            //await SyncBll.DoAsync();
-        }
-
-        /// <summary>
-        /// 更新一条数据
-        /// </summary>
-        /// <param name="tasks"></param>
-        //public async Task UpdateTasks(Tasks tasks)
-        //{
-        //    await TaskBll.UpdateAsync(tasks);
-        //    await SyncStatusBll.InsertAsync(new SyncStatus { EntityId = tasks.SId, Type = ModelStatusEnum.SYNC_TYPE_TASK_CONTENT, UserId = tasks.UserId });
-        //    //await SyncBll.DoAsync();
-        //}
-
         #endregion
 
         /// <summary>
@@ -574,63 +346,14 @@ namespace TickTick.ViewModels
             await TaskBll.UpdateTaskContent(ToastTasks);
         }
 
-        public async Task GetAllProjectsAndTasks(TasksSortEnum tasksSortEnum)
+        /// <summary>
+        /// 加载数据
+        /// </summary>
+        /// <param name="tasksSortEnum"></param>
+        /// <returns></returns>
+        public async Task LoadData(TasksSortEnum tasksSortEnum)
         {
-            //var project = ProjectsSelected;
-
-            await GetAllProjects();
-            InitialIntelligentProjects();
-            await GetAllTasks();
-            
-            // await GetAllProjects()
-            //if (project.SId.Equals(App.SignUserInfo.InboxId))// TODO 临时用户可能会有问题
-            //{
-            //    await GetAllTasks();
-            //}
-            //else
-            //{
-            //    await GetTasksByProjectId(project.Id.ToString(), tasksSortEnum);
-            //}
-            //foreach (var item in Projects)
-            //{
-            //    item.TasksCount = Tasks.Count(t => t.ProjectId == item.Id.ToString());
-            //}
-            // 初始化智能列表
-
-
-            //if (Tasks != null)
-            //{
-            //    if (!project.IsIntelligentProjects)
-            //    {
-            //        Tasks = Tasks.Where(t => t.ProjectId == project.Id.ToString()).ToList();
-            //    }
-            //    else
-            //    {
-            //        switch (project.IntelligentProjectsTypeEnum)
-            //        {
-            //            case IntelligentProjectsTypeEnum.IsShowTodayList:
-            //                Tasks = Tasks.Where(t => t.CreatedTime.Date == DateTime.UtcNow).ToList();
-            //                break;
-            //            case IntelligentProjectsTypeEnum.IsShowCompletedList:
-            //                Tasks = Tasks.Where(t => t.IsCompleted).ToList();
-            //                break;
-            //            case IntelligentProjectsTypeEnum.IsShowScheduledList:
-            //                Tasks = Tasks.Where(t => t.DueDate != null).ToList();
-            //                break;
-            //            case IntelligentProjectsTypeEnum.IsShow7DaysList:
-            //                Tasks = Tasks.Where(t => DateTime.UtcNow.Date - t.CreatedTime.Date <= TimeSpan.FromDays(7)).ToList();
-            //                break;
-            //            case IntelligentProjectsTypeEnum.IsShowAllList:
-            //                Tasks = Tasks;
-            //                break;
-            //            default:
-            //                Tasks = Tasks;
-            //                break;
-            //        }
-            //    }
-            //}
-            //// 初始化智能列表
-            //InitialIntelligentProjects();
+            await Task.WhenAll(LoadProjectsList(), GetTasksByProjectId(ProjectsSelected.Id.ToString()));
         }
 
         #region INotifyPropertyChanged 成员
@@ -639,46 +362,86 @@ namespace TickTick.ViewModels
 
         #endregion
 
+        /// <summary>
+        /// 获取用户的设置信息
+        /// </summary>
+        /// <returns></returns>
         public async Task GetUserProfile()
         {
             var userId = App.SignUserInfo.Sid;
-            UserProfile = await UserProfileBll.GetLastOneUserProfileInfoByUserId(userId);
-            if (UserProfile == null)
-            {
-                UserProfile = UserProfile.CreateDefaultUserProfile(userId);
-            }
+            UserProfile = await UserProfileBll.GetLastOneUserProfileInfoByUserId(userId) ??
+                          UserProfile.CreateDefaultUserProfile(userId);
         }
 
-        public void InitialIntelligentProjects()
+        /// <summary>
+        /// 初始化智能清单列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Projects>> InitialIntelligentProjects()
         {
-            IntelligentProjects.Clear();
+            var intelligentProjects = new List<Projects>();
             if (UserProfile == null)
             {
                 UserProfile = UserProfile.CreateDefaultUserProfile(App.SignUserInfo.Sid);
             }
             if (UserProfile.IsShowAllList)
             {
-                IntelligentProjects.Add(new Projects { Name = "所有", IsIntelligentProjects = true, IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowAllList });
+                var allTasks = await TaskBll.GetAllTasks();
+                intelligentProjects.Add(new Projects
+                {
+                    Name = "所有",
+                    IsIntelligentProjects = true,
+                    IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowAllList,
+                    TasksCount = allTasks.Count(t => !t.IsCompleted)
+                });
             }
             if (UserProfile.IsShowTodayList == ModelStatusEnum.YES)
             {
-                IntelligentProjects.Add(new Projects { Name = "今天", IsIntelligentProjects = true, IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowTodayList });
+                var todayTasks = await TaskBll.GetTodayTasks();
+                intelligentProjects.Add(new Projects
+                {
+                    Name = "今天",
+                    IsIntelligentProjects = true,
+                    IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowTodayList,
+                    TasksCount = todayTasks.Count(t => !t.IsCompleted)
+                });
             }
             if (UserProfile.IsShow7DaysList == ModelStatusEnum.YES)
             {
-                IntelligentProjects.Add(new Projects { Name = "最近7天", IsIntelligentProjects = true, IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShow7DaysList });
+                var sevenDaysTasks = await TaskBll.GetSevenTasks();
+                intelligentProjects.Add(new Projects
+                {
+                    Name = "最近7天",
+                    IsIntelligentProjects = true,
+                    IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShow7DaysList,
+                    TasksCount = sevenDaysTasks.Count(t => !t.IsCompleted)
+                });
             }
             if (UserProfile.IsShowCompletedList == ModelStatusEnum.YES)
             {
-                IntelligentProjects.Add(new Projects { Name = "已完成", IsIntelligentProjects = true, IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowCompletedList });
+                var completedTasks = await TaskBll.GetCompletedTasks();
+                intelligentProjects.Add(new Projects
+                {
+                    Name = "已完成",
+                    IsIntelligentProjects = true,
+                    IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsShowCompletedList,
+                    TasksCount = completedTasks.Count(t => !t.IsCompleted)
+                });
             }
 
             //if (UserProfile.IsShowScheduledList)
             //{
             //    IntelligentProjects.Add(new Projects { Name = "所有", IsIntelligentProjects = true });
             //}
-
-            IntelligentProjects.Add(new Projects { Name = "收集箱", IsIntelligentProjects = true, IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsInboxList });
+            var inboxTasks = await TaskBll.GetInboxTasks();
+            intelligentProjects.Add(new Projects
+            {
+                Name = "收集箱",
+                IsIntelligentProjects = true,
+                IntelligentProjectsTypeEnum = IntelligentProjectsTypeEnum.IsInboxList,
+                TasksCount = inboxTasks.Count(t => !t.IsCompleted)
+            });
+            return intelligentProjects;
         }
 
     }
