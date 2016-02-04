@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="DataBindingDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DataBindingDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding Data, RelativeSource={RelativeSource Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <StackPanel>
+
+        <StackPanel.Resources>
+            <local:ValueToColorConverter x:Key="ValueToColorConverter"/>
+            <local:ColorRgbByte x:Key="colorByte"/>
+        </StackPanel.Resources>
+        <TextBox Text="{Binding Text1}" FontSize="{Binding ElementName=slider,Path=Value}"  />
+
+        <Slider x:Name="slider" Minimum="50" Maximum="300" ValueChanged="slider_ValueChanged"/>
+
+        <Slider x:Name="slider2" Minimum="30" Maximum="255"  />
+
+        <Ellipse Margin="0 20 0 0" x:Name="ellipse" Width="{Binding ElementName=slider,Path=Value}"
+                 Height="{Binding ElementName=slider,Path=Value}" Fill="{Binding ElementName=slider,Path=Value,Converter={StaticResource ValueToColorConverter}}">
+            </Ellipse>
+        
+        <Ellipse Margin="0 -20 0 0" Width="{Binding ElementName=slider2,Path=Value}"
+                 Height="{Binding ElementName=slider2,Path=Value}" 
+                 Fill="{Binding ElementName=colorByte,Path=Value,Converter={StaticResource ValueToColorConverter}}">
+        </Ellipse>
+
+
+
+    </StackPanel>
+</Page>

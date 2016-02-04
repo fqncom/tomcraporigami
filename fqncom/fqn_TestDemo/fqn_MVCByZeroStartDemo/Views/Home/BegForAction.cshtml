@@ -1,0 +1,46 @@
+﻿@{
+    Layout = null;
+}
+@using fqn_MVCByZeroStartDemo
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    @*<link href="/content/css/" rel="stylesheet" />*@
+    @*<link href="~/Assests/css/PageBar.css" rel="stylesheet" />
+        <link href="~/Assests/css/tableStyle.css" rel="stylesheet" />*@
+    @*<script src="~/Assests/script/datapattern.js"></script>
+        <script src="~/Assests/script/jquery-1.8.0.js"></script>*@
+    @Scripts.Render("~/content/script")
+    @Styles.Render("~/content/css")
+
+</head>
+<body>
+    <div>
+        this is a cshtml page;
+
+        <table>
+            <tr>
+                <th>haha</th>
+                <th>haha</th>
+                <th>haha</th>
+            </tr>
+            @foreach (Books item in ViewBag.BooksList)
+            {
+                <tr>
+                    <td>@item.Id</td>
+
+                    <td>@item.Title</td>
+
+                    <td>@item.PublishDate</td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="8633c998-aeb4-4848-bbbd-9feb1d0aa054" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="7a3055f9-15bb-4b59-aa97-baf8be503bd9" name="DataBase" />
+    <layer Id="e3c04b19-e6da-4a29-a8b2-04384eb80b2c" name="Model" />
+    <layer Id="0191f7dd-795e-4998-9882-a95c8eb46e7a" name="EntityFrameWork" />
+    <layer Id="385415d4-fae9-402d-bfb6-8bce34d31b13" name="Common" />
+    <layer Id="93191ff1-94de-47ca-8ea4-6100f61a2ffb" name="Data Access Layer" />
+    <layer Id="9b2bcb3a-00c6-44f8-81e3-7a1996cd84c5" name="IDal" />
+    <layer Id="08c7fdc2-b77f-4348-9ccd-800a321ec537" name="DalFactory" />
+    <layer Id="469ea81b-3346-48dc-ae87-1edc18c7acc0" name="IBll" />
+    <layer Id="222e3576-729d-4576-a693-98a8535a2d6e" name="Business Logic Layer" />
+    <layer Id="2b916799-5b03-474a-bb75-61ea3b86640d" name="BllFactory" />
+    <layer Id="e3bf37e9-fbf7-4b4a-ab33-a318d168cd40" name="DBSession" />
+    <layer Id="ed45f609-c20e-453d-b1c8-00ed8bf576a7" name="UI" />
+    <layer Id="92f773e3-8de4-4a43-a2d9-9c4195e739d9" name="Spring.Net" />
+  </layers>
+</layerModel>

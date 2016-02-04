@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <form action="/" method="get">
+        <input type="text" name="txt" value="" />
+        <input type="submit" value="提交" />
+    </form>
+</body>
+</html>
+
+<script src="Lib/CommonJS/jquery-1.8.0.js"></script>
+<script src="http://localhost:36488/Lib/CommonJS/jquery-1.8.0.js"></script>
+
+<script>
+
+    //定义一个直接的jquery扩展方法。在该扩展方法中模拟异步请求，将请求数据放到script标签的src属性中去实现跨域请求。而不是使用xmlHttpRequest对象，因为xmlHttpRequest无法进行跨域请求
+    $.GetDataFromAnotherDomain = function (url, paras, func) {
+        //将当前func方法给一个对象，通过eavl将字符串当作script脚本执行
+        var funcObj = 'jsonpDemo' + Date.UTC(2015, 02, 04);
+        eval(funcObj + ' = func;');
+        //到这一步funcObj中存储的就是func方法的内容
+
+        //将paras中存储的参数进行拼接。拼接到queryString中去。之后使用get请求提交
+        var queryStr = '?';
+        for (var item in paras) {
+            queryStr += item + '=' + paras[item] + '&';
+        }
+        //将funcObj对象也同时加到queryString中去
+        queryStr += 'callback=' + funcObj;
+
+        //此时，所有的queryString已经拼接完毕，接下来该创建一个script标签然后给他的src属性赋值。同时将该script标签加到当前body中去执行
+        var $script = $('<script />').attr('src', url + queryStr);
+        $script.appendTo('body');
+    }
+
+    //调用上面的扩展方法，并传入参数
+    $.GetDataFromAnotherDomain('http://localhost:36488/NormalRequest.ashx', { Id: 123 }, function (data) { console.log(data); });//alert(data);
+
+
+
+
+    //以上是封装了一个扩展方法，其实核心思想是XMLHttpRequest对象不能进行跨域请求，那么我们就找一个能进行跨域请求的，由此我们想到我们之前图片分布式存储的时候，将图片单独放在一台服务器上，然后通过图片服务器的地址直接去拿相应的图片，由此我们知道image的src属性可以进行跨域请求，那么我们的js要实现跨域，我们就可以使用script标签的src属性来操作。所以总结来说其实很简单，就是将我们的请求内容直接放在任何有src属性的标签内即可。为清晰起见，我们使用script的src属性来做。
+
+    //从上面的分析我们可以把代码精简成下面的样子
+    function callbackFunc(data) {
+        console.log(data);
+    }
+    var funcObj = 'jsonpDemo' + Date.UTC(2015, 02, 04);
+    eval(funcObj + ' = callbackFunc;');
+
+    $('<script/>').attr('src', 'http://localhost:36488/NormalRequest.ashx?Id=123&Name=hehe&callback=' + funcObj).appendTo('body');
+
+    //以上我们其实实现的是jsonp的原理。那么我们实际使用jsonp，则可以如下更简洁的写：
+    $.ajax({
+        dataType: 'jsonp',
+        data: 'Id=123,Name=hahaahaha',
+        url: 'http://localhost:36488/NormalRequest.ashx',
+        jsonp: 'callbackFunc',
+        success: function () {
+            alert('success');//什么时候才会用到success？
+        }
+    });
+</script>

@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="App1.FlyoutDemo"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel HorizontalAlignment="Center">
+            <Button Content="showFlyout1">
+                <Button.Flyout>
+                    <Flyout>
+                        <ListBox x:Name="list1">
+                            <TextBlock Text="text1"/>
+                            <TextBlock Text="text1"/>
+                            <TextBlock Text="text1"/>
+                        </ListBox>
+                    </Flyout>
+                </Button.Flyout>
+            </Button>
+            <Border BorderBrush="White" BorderThickness="3" Background="Black" Height="30" Width="130">
+                <TextBlock Text="showFlyout2" Tapped="TextBlock_Tapped">
+                <FlyoutBase.AttachedFlyout>
+                    <Flyout>
+                        <ListBox x:FieldModifier="public">
+                            <TextBlock Text="text1"/>
+                            <TextBlock Text="text1"/>
+                            <TextBlock Text="text1"/>
+                        </ListBox>
+                    </Flyout>
+                </FlyoutBase.AttachedFlyout>
+            </TextBlock>
+            </Border>
+
+            <Button x:Name="btnMenuFlyout" Content="menuFlyoutItem">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="option1" Click="MenuFlyoutItem_Click"/>
+                        <MenuFlyoutItem Text="option1" Click="MenuFlyoutItem_Click"/>
+                        <MenuFlyoutItem Text="option1" Click="MenuFlyoutItem_Click"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+            </Button>
+
+            <Button x:Name="btnDatePicker" Content="datePicker">
+                <Button.Flyout>
+                    <DatePickerFlyout x:Name="datePicker" DatePicked="DatePickerFlyout_DatePicked"/>
+                </Button.Flyout>
+            </Button>
+
+            <Button x:Name="btnTimePicker" Content="timePicker">
+                <Button.Flyout>
+                    <TimePickerFlyout x:Name="timePicker" TimePicked="TimePickerFlyout_TimePicked"/>
+                </Button.Flyout>
+            </Button>
+
+            <Button x:Name="btnPickerFlyout" Content="pickerFlyout">
+                <Button.Flyout>
+                    <PickerFlyout Confirmed="PickerFlyout_Confirmed" ConfirmationButtonsVisible="True">
+                        <TextBlock x:Name="txtPicker" Text="are you sure that you want to pick this?" FontSize="30"/>
+                    </PickerFlyout>
+                </Button.Flyout>
+            </Button>
+            
+            <!--<Button x:Name="btnListFlyout" Content="listFlyout">
+                <Button.Flyout>
+                    <ListPickerFlyout>
+                        <ListPickerFlyout.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" FontSize="30"></TextBlock>
+                            </DataTemplate>
+                        </ListPickerFlyout.ItemTemplate>
+                    </ListPickerFlyout>
+                </Button.Flyout>
+            </Button>-->
+            
+        </StackPanel>
+
+    </Grid>
+</Page>

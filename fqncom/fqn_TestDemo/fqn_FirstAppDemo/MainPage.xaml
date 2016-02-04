@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="fqn_FirstAppDemo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:fqn_FirstAppDemo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    DataContext="{Binding MainViewModel,RelativeSource={RelativeSource Mode=Self}}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <StackPanel>
+            <Button Content="create an simple tile" Click="Button_Click" />
+            <Button Content="create an amazing tile" Command="{Binding MyCommandBase}" CommandParameter="{Binding}" />
+            <!--<AppBarButton Icon="Add" Content="create" Command="{Binding MyCommandBase}" CommandParameter="{Binding}"/>-->
+
+
+            <ComboBox ItemsSource="{Binding TileTmplList}" SelectionChanged="ComboBox_SelectionChanged"/>
+
+        </StackPanel>
+    </Grid>
+</Page>
