@@ -1,0 +1,211 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainMaster.master.cs" Inherits="MyBookShop.Master.MainMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>北京市新华书店王府井书店 - 网上书店80折起，购书满99元免运费！</title>
+    <meta content="北京市新华书店王府井书店，致力于提供专业化购书服务.网上购书选择新华书店王府井书店(网上书店),购书放心有保障.王府井书店电话:010-65132842.010-65252592" name="description" />
+    <meta content="王府井书店 新华书店 网上书店 网上购书 北京图书大厦" name="keywords">
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+
+    <link href="/css/index.css" rel="stylesheet" type="text/css">
+    <link href="/Css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+    <script src="/js/jquery-1.7.1.js"></script>
+    <script src="/js/jquery-ui-1.8.2.custom.min.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $divLogin = $('#divLogin');
+            $linkUserName = $('#linkUserName');
+            $linkLogout = $('#linkLogout');
+            $divNotLogin = $('#divNotLogin');
+            $linkLogin = $('#linkLogin');
+            $dlgLogin = $('#dlgLogin');
+            $txtLoginUserName = $('#txtLoginUserName');
+            $txtLoginPassword = $('#txtLoginPassword');
+            $divLoginMsg = $('#divLoginMsg');
+
+            CheckIsLogin();
+
+            $linkLogin.click(function () {
+                LoginClick();
+            });
+            $linkLogout.click(function () {
+                LogOut();
+            });
+        });
+
+        //注销登入
+        function LogOut() {
+            $.post(
+                '/ashx/AjaxUserLogin.ashx',
+                {
+                    TransCode: 'LogOut'
+                },
+                function (data) {
+                    if (data == 'success') {
+                        //CheckIsLogin();
+                        window.location.reload();
+                    } else {
+                        alert('注销失败');
+                    }
+                }
+            );
+        }
+
+        //点击页面登入按钮
+        function LoginClick() {
+            $dlgLogin.dialog({
+                modal: true,
+                buttons: {
+                    登入: function () {
+                        ConfirmUerLogin();
+                    },
+                    取消: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+        //点击确认登入按钮
+        function ConfirmUerLogin() {
+            $.post(
+                '/ashx/AjaxUserLogin.ashx',
+                {
+                    TransCode: 'ConfirmUserLogin',
+                    UserName: $txtLoginUserName.val(),
+                    UserPwd: $txtLoginPassword.val(),
+                    RememberMe: $('#chkRememberMe').attr('checked')
+                },
+                function (data) {
+                    if (data == 'success') {
+                        $divLoginMsg.html('登入成功');
+                        $linkUserName.html($txtLoginUserName.val());
+                        //IsLogin();
+                        window.location.reload();
+                    } else {
+                        $divLoginMsg.html('登入失败');
+                        IsNotLogin();
+                    }
+                }
+            );
+        }
+
+        //检测登入状态
+        function CheckIsLogin() {
+            $.post(
+                '/ashx/AjaxUserLogin.ashx',
+                {
+                    TransCode: 'CheckIsLogin'
+                },
+                function (data) {
+                    var serverData = data.split(':');
+                    if (serverData[0] == 'success') {
+                        $linkUserName.html(serverData[1]);
+                        IsLogin();
+                    } else {
+                        IsNotLogin();
+                        $divLoginMsg.html('未登入');
+                    }
+                }
+            );
+        }
+
+        function IsLogin() {
+            $divLogin.show();
+            $divNotLogin.hide();
+            $dlgLogin.dialog('close');
+        }
+        function IsNotLogin() {
+            $divLogin.hide();
+            $divNotLogin.show();
+            //$dlgLogin.dialog();
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="Header" runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+
+
+<body>
+    <%--<form id="form1" runat="server">--%>
+
+    <center>
+        <div id="divAddToCartResult" style="display: none;">
+        <span id="spanMsgSys" style="font-family: '黑体'; font-size: 18px; color: red;"></span>
+              <br/>  <a href="/CartSite.aspx">查看我的购物车</a>
+    </div>
+<div class="top" style="margin-bottom: 50px;">
+	<div class="m_c" style="width: 736px; height: 27px">
+	<span class="l">
+      <a href="http://www.beifabook.com" target="_blank">北发图书网主网站</a> |&nbsp;
+      <a href="http://www.bjbb.com" target="_blank">北京图书大厦</a>&nbsp; |
+      <a href="../default.aspx" target="_blank"><font color="#00A0E9">王府井书店</font></a>&nbsp;|
+      <a href="http://www.zgcbb.com/" target="_blank">中关村图书大厦</a>&nbsp; |
+      <a href="http://www.yycbook.com/" target="_blank">亚运村图书大厦</a>&nbsp; |
+      <a href="http://www.hs-book.com" target="_blank">花市书店</a>&nbsp; |
+	  <a href="/OrderInfo.aspx" >我的订单</a></span>
+        
+        <div id="divLogin" style="display:none">
+            <a id="linkUserName"></a>
+            <a id="linkLogout" href="javascript:void(0)">注销</a>
+        </div>
+
+        <div id="divNotLogin" style="display:none">
+            <a href="javascript:void(0)" id="linkLogin">登录</a>
+        </div>
+
+        <div id="dlgLogin" style="display:none">
+          用户名：<input type="text" id="txtLoginUserName"/>
+            <br />
+            <br/>
+          密&nbsp;&nbsp;&nbsp;码：<input type="password" id="txtLoginPassword" />
+            <br />
+            <br/>
+            <input id="chkRememberMe" type="checkbox" name="rememberMe" checked="checked" />&nbsp;记住我
+            <br/>
+            <br/>
+
+          <div id="divLoginMsg" style="color:Red"></div><br />
+          
+        </div>
+
+
+	</div></div>
+
+
+	<div style="WIDTH: 750px; text-align: left;"><img src="../images/集团网站1.jpg" width="780" height="93" /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;         </div>
+
+
+<div id="main_box"style="margin-top: 50px; margin-bottom: 50px;">
+ 
+    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        <p>
+        </p>
+    </asp:ContentPlaceHolder>
+ 
+    </div>
+<div id="footer" style="margin-top: 50px;">
+  <table border="0" width="100%" class="categories1">
+    <tr>
+      <td align="center">　
+        <ul>
+            <li><a href="#">关于我们王府井书店</a></li>
+          <li><a href="#">书店营业时间：9：30-21：00 </a> </li>
+          <li> <a href="#"  target=_blank; ><img src="/images/logo123x40.jpg" width="123" height="40" border="0"></a> <a href="#" target=_blank; ><img border="0" src="/Images/kaixin.jpg"></a> </li>
+          <li>&nbsp;<span lang="zh-cn"><a title="京ICP备08001692号" href="http://www.miibeian.gov.cn">京ICP备08987373号</a></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
+        </ul></td>
+    </tr>
+  </table>
+</div>
+
+</center>
+
+    <%--    </form>--%>
+</body>
+
+</html>

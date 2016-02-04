@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+    <link href="/Css/tableStyle.css" rel="stylesheet" />
+    <!--在模板文件中使用外部文件时一定要绝对路径-->
+    <title>框架设计（第2版）：CLR Via C#</title>
+    <script src="/js/jquery-1.7.1.js"></script>
+    <script src="/CKEditor/ckeditor.js"></script>
+    <script src="/js/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //获取富文本编辑器的实例
+            UseUBB();
+            oEditor = CKEDITOR.instances.txtAreaComment;
+
+            //添加进购物车
+            $('#btnAddCart').click(function () {
+                AddBookToCart();
+            });
+
+            //给提交评论注册点击事件
+            $('#btnComment').click(function () {
+                SubmitComment();
+            });
+            LoadAllComment();
+
+        });
+
+        //添加进购物车
+        function AddBookToCart() {
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'AddBookIntoCart',
+                    BookId: 4946
+                },
+                function (data) {
+                    //alert(data);//返回是加入数据库还是加入cookie
+                    ShowGoToCartDialog(data);
+                }
+            );
+        }
+
+        //显示提示窗体==跳转到购物车界面
+        function ShowGoToCartDialog(data) {
+            $('#spanMsg').text(data);
+            $('#divAddToCartResult').dialog({
+                modal: true,
+                buttons: {
+                    回到首页: function () {
+                        window.location.href = '/Index.aspx';
+                    },
+                    继续浏览本页: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+
+        //提交评论
+        function SubmitComment() {
+            var msg = oEditor.getData();
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'AddComment',
+                    BookId: 4946,
+                    Msg: msg
+                },
+                function (data) {
+                    var serverData = data.split(':');
+                    if (serverData[0] == 'success') {
+                        alert(serverData[1]);
+                        oEditor.setData(''); //置空文本框
+                        LoadAllComment();
+                    } else if (serverData[0] == 'failed') {
+                        alert(serverData[1]);
+                        $('#txtAreaComment').focus(); //获取焦点
+                    } else {
+                        alert(serverData[1]);
+                    }
+                }
+            );
+        }
+
+        //加载所有的评论
+        function LoadAllComment() {
+            $('#ulComment').empty();
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'GetAllComment',
+                    BookId: 4946
+                },
+                function (data) {
+                    var serverDate = $.parseJSON(data);
+                    $.each(serverDate, function (index, item) {
+                        $('<li>' + item.CreateDateTime + ' : ' + item.Msg + '</li>').appendTo('#ulComment');
+                    });
+                }
+            );
+        }
+
+        //使用UBB=========将富文本编辑器中的内容进行转换成UBB的格式，在上传的时候就不会发生跨站脚本攻击
+        //<![CDATA[
+        // Replace the <textarea id="editor"> with an CKEditor
+        // instance, using the "bbcode" plugin, shaping some of the
+        // editor configuration to fit BBCode environment.
+        function UseUBB() {
+            CKEDITOR.replace('txtAreaComment',
+  {
+      extraPlugins: 'bbcode',
+      // Remove unused plugins.
+      removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+      // Width and height are not supported in the BBCode format, so object resizing is disabled.
+      disableObjectResizing: true,
+      // Define font sizes in percent values.
+      fontSize_sizes: "30/30%;50/50%;100/100%;120/120%;150/150%;200/200%;300/300%",
+      toolbar:
+      [
+      ['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+      ['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+      ['Link', 'Unlink', 'Image', 'Smiley', 'SpecialChar'],
+      '/',
+      ['Bold', 'Italic', 'Underline'],
+      ['FontSize'],
+      ['TextColor'],
+      ['NumberedList', 'BulletedList', '-', 'Blockquote'],
+      ['Maximize']
+      ],
+      // Strip CKEditor smileys to those commonly used in BBCode.
+      smiley_images:
+      [
+      'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+      'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+      'cry_smile.gif', 'kiss.gif'
+      ],
+      smiley_descriptions:
+      [
+      'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+      'indecision', 'angel', 'cool', 'crying', 'kiss'
+      ]
+  });
+        }
+
+        //]]>
+
+
+        //var childCommStr = '<span class="floorCount">$floorIndexId</span><p class="content">$childMsg</p>
+        //回复';
+        //var index = item.FloorIndexId;
+        //if (item.ParentId == $('.parentId').val()) {
+        //    var childStr = childCommStr.replace('$floorIndexId', item.FloorIndexId).replace('$childMsg', item.Msg);
+        //    var $divChild = $('<div class="commentBox">' + childStr + '</div>
+        //');
+        //    $divChild.appendTo('.commentBox:last');
+        //}
+        //将日期格式进行转换，将json格式转换成标准格式
+        //function ChangeDateFormat(cellval) {
+        //    var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+        //    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        //    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        //    return date.getFullYear() + "-" + month + "-" + currentDate;
+        //}
+    </script>
+
+</head>
+<body>
+    <div style="display: none;">
+        <div class="commentBox">
+            <span class="floorCount">1</span>
+            <input class="parentId" type="hidden" name="name" value="" />
+            <p class="content">掉落位置是计算出来的</p>
+            回复
+        <div class="commentBox">
+            <span class="floorCount">2</span>
+            <p class="content">砸到人怎么办？</p>
+            回复
+        </div>
+
+        </div>
+    </div>
+
+    <input id="hideBookId" type="hidden" name="bookId" value="4946" />
+    <table>
+        <tr>
+            <td>书名</td>
+            <td>框架设计（第2版）：CLR Via C#</td>
+        </tr>
+        <tr>
+            <td>作者</td>
+            <td>（美）瑞奇特（Richter,J.）  著，周靖，张杰良  译</td>
+        </tr>
+        <tr>
+            <td>作者简介</td>
+            <td>Jeffrey Richter是全球有盛誉的技术作家，Wintellect公司的创办人之一。该公司专门从事培训、调试和咨询，帮助客户构建更好、更快的软件。</td>
+        </tr>
+        <tr>
+            <td>封面</td>
+            <td>
+                <img src="/images/BookCovers/9787302140160.jpg" /></td>
+        </tr>
+        <tr>
+            <td>价格</td>
+            <td>68.0000
+                <input id="btnAddCart" type="button" name="name" value="加入购物车" />
+            </td>
+        </tr>
+        <tr>
+            <td>内容简介</td>
+            <td>作为深受编程人员爱戴和尊敬的编程专家，微软.NET开发团队的顾问，本书作者Jeffrey Richter针对开发各种应用程序（如Web Form、Windows Form和Web服务、Microsoft SQL Server解决方案、控制台应用程序、NT Service）的开发人员，深入揭示了公共语言运行库（CLR）和.NET Framework.，演示了如何将这些知识应用到实际开发。全书分5部分，共24章。第Ⅰ部分讲述CLR基础，第Ⅱ部分介绍类型的使用，第Ⅲ部分说明类型的设计，第Ⅳ部分介绍基本类型，第Ⅴ部分讲述CLR实用特性。 <br>    通过本书的阅读，读者可以掌握CLR精髓，轻松、高效地创建高性能应用程序。</td>
+        </tr>
+    </table>
+    <hr />
+    <ul id="ulComment">
+    </ul>
+    <textarea cols="80" id="txtAreaComment" name="editor1" rows="10"></textarea>
+
+
+    <input type="button" value="发布评论" id="btnComment" />
+
+    <div id="divAddToCartResult" style="display: none;">
+        <span id="spanMsg" style="font-family: '黑体'; font-size: 18px; color: red;"></span>
+              <br/>  <a href="/CartSite.aspx">查看我的购物车</a>
+    </div>
+</body>
+</html>

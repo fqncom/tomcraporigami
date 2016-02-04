@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Css/jquery-ui-1.8.16.custom.css" rel="stylesheet" />
+    <link href="/Css/tableStyle.css" rel="stylesheet" />
+    <!--在模板文件中使用外部文件时一定要绝对路径-->
+    <title>C++Primer Plus（第五版）中文版</title>
+    <script src="/js/jquery-1.7.1.js"></script>
+    <script src="/CKEditor/ckeditor.js"></script>
+    <script src="/js/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+
+            //获取富文本编辑器的实例
+            UseUBB();
+            oEditor = CKEDITOR.instances.txtAreaComment;
+
+            //添加进购物车
+            $('#btnAddCart').click(function () {
+                AddBookToCart();
+            });
+
+            //给提交评论注册点击事件
+            $('#btnComment').click(function () {
+                SubmitComment();
+            });
+            LoadAllComment();
+
+        });
+
+        //添加进购物车
+        function AddBookToCart() {
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'AddBookIntoCart',
+                    BookId: 4945
+                },
+                function (data) {
+                    //alert(data);//返回是加入数据库还是加入cookie
+                    ShowGoToCartDialog(data);
+                }
+            );
+        }
+
+        //显示提示窗体==跳转到购物车界面
+        function ShowGoToCartDialog(data) {
+            $('#spanMsg').text(data);
+            $('#divAddToCartResult').dialog({
+                modal: true,
+                buttons: {
+                    回到首页: function () {
+                        window.location.href = '/Index.aspx';
+                    },
+                    继续浏览本页: function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+
+        //提交评论
+        function SubmitComment() {
+            var msg = oEditor.getData();
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'AddComment',
+                    BookId: 4945,
+                    Msg: msg
+                },
+                function (data) {
+                    var serverData = data.split(':');
+                    if (serverData[0] == 'success') {
+                        alert(serverData[1]);
+                        oEditor.setData(''); //置空文本框
+                        LoadAllComment();
+                    } else if (serverData[0] == 'failed') {
+                        alert(serverData[1]);
+                        $('#txtAreaComment').focus(); //获取焦点
+                    } else {
+                        alert(serverData[1]);
+                    }
+                }
+            );
+        }
+
+        //加载所有的评论
+        function LoadAllComment() {
+            $('#ulComment').empty();
+            $.post(
+                '/ashx/DealWithBookComment.ashx',
+                {
+                    TransCode: 'GetAllComment',
+                    BookId: 4945
+                },
+                function (data) {
+                    var serverDate = $.parseJSON(data);
+                    $.each(serverDate, function (index, item) {
+                        $('<li>' + item.CreateDateTime + ' : ' + item.Msg + '</li>').appendTo('#ulComment');
+                    });
+                }
+            );
+        }
+
+        //使用UBB=========将富文本编辑器中的内容进行转换成UBB的格式，在上传的时候就不会发生跨站脚本攻击
+        //<![CDATA[
+        // Replace the <textarea id="editor"> with an CKEditor
+        // instance, using the "bbcode" plugin, shaping some of the
+        // editor configuration to fit BBCode environment.
+        function UseUBB() {
+            CKEDITOR.replace('txtAreaComment',
+  {
+      extraPlugins: 'bbcode',
+      // Remove unused plugins.
+      removePlugins: 'bidi,button,dialogadvtab,div,filebrowser,flash,format,forms,horizontalrule,iframe,indent,justify,liststyle,pagebreak,showborders,stylescombo,table,tabletools,templates',
+      // Width and height are not supported in the BBCode format, so object resizing is disabled.
+      disableObjectResizing: true,
+      // Define font sizes in percent values.
+      fontSize_sizes: "30/30%;50/50%;100/100%;120/120%;150/150%;200/200%;300/300%",
+      toolbar:
+      [
+      ['Source', '-', 'Save', 'NewPage', '-', 'Undo', 'Redo'],
+      ['Find', 'Replace', '-', 'SelectAll', 'RemoveFormat'],
+      ['Link', 'Unlink', 'Image', 'Smiley', 'SpecialChar'],
+      '/',
+      ['Bold', 'Italic', 'Underline'],
+      ['FontSize'],
+      ['TextColor'],
+      ['NumberedList', 'BulletedList', '-', 'Blockquote'],
+      ['Maximize']
+      ],
+      // Strip CKEditor smileys to those commonly used in BBCode.
+      smiley_images:
+      [
+      'regular_smile.gif', 'sad_smile.gif', 'wink_smile.gif', 'teeth_smile.gif', 'tounge_smile.gif',
+      'embaressed_smile.gif', 'omg_smile.gif', 'whatchutalkingabout_smile.gif', 'angel_smile.gif', 'shades_smile.gif',
+      'cry_smile.gif', 'kiss.gif'
+      ],
+      smiley_descriptions:
+      [
+      'smiley', 'sad', 'wink', 'laugh', 'cheeky', 'blush', 'surprise',
+      'indecision', 'angel', 'cool', 'crying', 'kiss'
+      ]
+  });
+        }
+
+        //]]>
+
+
+        //var childCommStr = '<span class="floorCount">$floorIndexId</span><p class="content">$childMsg</p>
+        //回复';
+        //var index = item.FloorIndexId;
+        //if (item.ParentId == $('.parentId').val()) {
+        //    var childStr = childCommStr.replace('$floorIndexId', item.FloorIndexId).replace('$childMsg', item.Msg);
+        //    var $divChild = $('<div class="commentBox">' + childStr + '</div>
+        //');
+        //    $divChild.appendTo('.commentBox:last');
+        //}
+        //将日期格式进行转换，将json格式转换成标准格式
+        //function ChangeDateFormat(cellval) {
+        //    var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+        //    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+        //    var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+        //    return date.getFullYear() + "-" + month + "-" + currentDate;
+        //}
+    </script>
+
+</head>
+<body>
+    <div style="display: none;">
+        <div class="commentBox">
+            <span class="floorCount">1</span>
+            <input class="parentId" type="hidden" name="name" value="" />
+            <p class="content">掉落位置是计算出来的</p>
+            回复
+        <div class="commentBox">
+            <span class="floorCount">2</span>
+            <p class="content">砸到人怎么办？</p>
+            回复
+        </div>
+
+        </div>
+    </div>
+
+    <input id="hideBookId" type="hidden" name="bookId" value="4945" />
+    <table>
+        <tr>
+            <td>书名</td>
+            <td>C++Primer Plus（第五版）中文版</td>
+        </tr>
+        <tr>
+            <td>作者</td>
+            <td>[美]普拉塔（Prata,S.）  著，孙建春，韦强  译</td>
+        </tr>
+        <tr>
+            <td>作者简介</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>封面</td>
+            <td>
+                <img src="/images/BookCovers/9787115134165.jpg" /></td>
+        </tr>
+        <tr>
+            <td>价格</td>
+            <td>72.0000
+                <input id="btnAddCart" type="button" name="name" value="加入购物车" />
+            </td>
+        </tr>
+        <tr>
+            <td>内容简介</td>
+            <td>C++是在C语言基础上开发的一种集面向对象编程、通用编程和传统的过程化编程于一体的编程语言，是C语言的超集。本书是根据2003年的ISO/ANSI C++标准编写的，通过大量短小精悍的程序详细而全面地阐述了C++的基本概念和技术。<br>　　全书分17章和10个附录，分别介绍了C++程序的运行方式、基本数据类型、复合数据类型、循环和关系表达式、分支语句和逻辑操作符、函数重载和函数模板、内存模型和名称空间、类的设计和使用、多态、虚函数、动态内存分配、继承、代码重用、友元、异常处理技术、string类和标准模板库、输入/输出等内容。<br>　　本书针对C++初学者，从C语言基础知识开始介绍，然后在此基础上详细阐述C++新增的特性，因此不要求读者有较多C语言方面的背景知识。本书可作为高等院校C++课程的教材，也可供初学者自学C++时使用。<br><br>作者简介：<br>    Stephen Prata在加州肯特菲尔得的马林学院教授天文、物理和计算机科学。他毕业于加州理工学院，在加州大学伯克利分校获得博士学位。Stephen本人或他人合作编写的图书有十多本。他撰写的the Waite Group's New C Primer Plus一书获得了计算机出版联合会1990年度最佳“How-to”计算机图书奖；他撰写的The Waite Group's C++Primer Plus一书获得了计算机出版联合会1991年度最佳“How-to”计算机图书奖的提名。<br></td>
+        </tr>
+    </table>
+    <hr />
+    <ul id="ulComment">
+    </ul>
+    <textarea cols="80" id="txtAreaComment" name="editor1" rows="10"></textarea>
+
+
+    <input type="button" value="发布评论" id="btnComment" />
+
+    <div id="divAddToCartResult" style="display: none;">
+        <span id="spanMsg" style="font-family: '黑体'; font-size: 18px; color: red;"></span>
+              <br/>  <a href="/CartSite.aspx">查看我的购物车</a>
+    </div>
+</body>
+</html>
