@@ -1,0 +1,117 @@
+﻿@{
+    Layout = null;
+}
+@using fqn.ItcastOA.WebApp.Models
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+
+    <style type="text/css">
+        .search-text2 {
+            display: block;
+            width: 528px;
+            height: 26px;
+            line-height: 26px;
+            float: left;
+            margin: 3px 5px;
+            border: 1px solid groove;
+            outline: none;
+            font-family: 'Microsoft Yahei';
+            font-size: 14px;
+        }
+
+        .search-btn2 {
+            width: 102px;
+            height: 32px;
+            line-height: 32px;
+            cursor: pointer;
+            border: 0px;
+            background-color: #d6000f;
+            font-family: 'Microsoft Yahei';
+            font-size: 16px;
+            color: #f3f3f3;
+        }
+
+        .search-list {
+            width: 600px;
+            overflow: hidden;
+            margin: 10px 20px 0px 20px;
+        }
+
+        .search-list dt {
+            font-family: 'Microsoft Yahei';
+            font-size: 16px;
+            line-height: 20px;
+            margin-bottom: 7px;
+            font-weight: normal;
+        }
+
+        .search-list dt a {
+            color: #2981a9;
+        }
+
+        .search-list dt a em {
+            font-style: normal;
+            color: #cc0000;
+        }
+
+        .search-list .author-time {
+            color: #666666;
+            font-family: "microsoft yahei";
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .search-list .author-time a {
+            color: #2981a9;
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $("#txtSearchContent").autocomplete({
+                source: "/Search/GetTheHotWords"
+            });
+        });
+
+
+
+    </script>
+</head>
+<body>
+    @*<!-- JiaThis Button BEGIN -->
+    <script type="text/javascript">
+        var jiathis_config = {
+            data_track_clickback: true,
+            showClose: true,
+            hideMore: false
+        }
+    </script>
+    <script type="text/javascript" src="http://v3.jiathis.com/code/jiathis_r.js?uid=1986459&type=left&btn=l.gif&move=0" charset="utf-8"></script>
+    <!-- JiaThis Button END -->*@
+
+    <div>
+        <form method="get" action="/Search/SearchContent">
+            <input id="txtSearchContent" type="text" name="txtSearchContent" autocomplete="off" value="@ViewData["searchContent"]" class="search-text2" />
+            <input type="submit" value="搜一搜" name="btnSearch" class="search-btn2" />
+            <input type="submit" value="创建索引库" name="btnCreate" />
+        </form>
+        @if (ViewData["list"] != null)
+        {
+            <dl class="search-list">
+                @foreach (var viewModel in (List<SearchResultViewModel>)ViewData["list"])
+                {
+                    <dt><a href="/Book/GetModel/?id=@viewModel.Id"> @viewModel.Title</a></dt>
+                    <dd class="author-time">@MvcHtmlString.Create(viewModel.Content)</dd>
+                }
+            </dl>
+        }
+    </div>
+</body>
+</html>

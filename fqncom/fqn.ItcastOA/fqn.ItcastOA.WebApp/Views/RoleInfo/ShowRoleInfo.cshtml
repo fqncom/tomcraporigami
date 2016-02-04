@@ -1,0 +1,38 @@
+﻿@{
+    Layout = null;
+}
+@using fqn.ItcastOA.Model
+@model fqn.ItcastOA.Model.RoleInfo
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowRoleInfo</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#editForm").submit();
+        }
+        function afterEdit(data) {
+            window.parent.afterEdit(data);//调用父窗体中的方法
+        }
+    </script>
+</head>
+<body>
+    <div>
+        @using (Ajax.BeginForm("EditRoleInfo", "RoleInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterEdit" }, new { id = "editForm" }))
+        {
+            <input type="hidden" name="ID" id="txtId" value=" @ViewData.Model.ID " />
+            <input type="hidden" name="SubTime" id="txtSubTime" value="@ViewData.Model.SubTime" />
+            <table>
+                <tr><td>角色名称</td><td><input type="text" name="RoleName" id="txtRoleName" value="@ViewData.Model.RoleName" /></td></tr>
+                <tr><td>备注</td><td><input type="text" name="Remark" id="txtRemark" value="@ViewData.Model.Remark" /></td></tr>
+                <tr><td>排序</td><td><input type="text" name="Sort" id="txtSort" value="@ViewData.Model.Sort" /></td></tr>
+            </table>
+
+        }
+    </div>
+</body>
+</html>

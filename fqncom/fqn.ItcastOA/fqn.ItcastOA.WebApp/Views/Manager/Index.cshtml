@@ -1,0 +1,107 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.24.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(function () {
+            $('.clsManTreeOpt').click(function () {
+                if ($('#divTabPanel').tabs('exists', $(this).text())) {
+                    $('#divTabPanel').tabs('select', $(this).text());
+                    return;
+                }
+                addtTabPanel($(this).text(),$(this).attr('src'));
+            });
+        });
+        /*=======================增加移除中部panel=====================*/
+        function addtTabPanel(title,url) {
+            $('#divTabPanel').tabs('add', {
+                title: title,
+                content: '<iframe src="' + url + '" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>',
+                closable: true
+            });
+        }
+        function removeTabPanel() {
+            var tab = $('#divTabPanel').tabs('getSelected');
+            if (tab) {
+                var index = $('#divTabPanel').tabs('getTabIndex', tab);
+                $('#divTabPanel').tabs('close', index);
+            }
+        }
+        /*=======================增加移除中部panel=====================*/
+
+        /*=======================增加移除左侧panel=====================*/
+        function addPanel() {
+            $('#divManagePanel').accordion('add', {
+                title: 'Title',
+                content: '<div style="padding:10px">Content</div>'
+            });
+        }
+        function removePanel() {
+            var pp = $('#divManagePanel').accordion('getSelected');
+            if (pp) {
+                var index = $('#divManagePanel').accordion('getPanelIndex', pp);
+                $('#divManagePanel').accordion('remove', index);
+            }
+        }
+        /*=======================增加移除左侧panel=====================*/
+    </script>
+</head>
+<body class="easyui-layout">
+
+    <!----------------------------------头部div开始---------------------------------->
+    <div data-options="region:'north',border:false" style="height: 80px; background-image: url('../../Content/Images/bg3.png');  padding: 10px ">
+        <img src="~/Content/Images/logo.gif" />
+        <span>fqn_OA管理系统</span>
+        <span>欢迎 @ViewBag.Model.UName <a href="/Manager/UserLogOut">注销</a> </span>
+    </div> <!----------------------------------头部div结束---------------------------------->
+    <!----------------------------------左侧div开始---------------------------------->
+    <div data-options="region:'west',split:true,title:'West'" style="width: 200px; padding: 10px;">
+        <div style="margin:20px 0 10px 0;">
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="addPanel()">添加</a>
+            <a href="javascript:void(0)" class="easyui-linkbutton" onclick="removePanel()">移除</a>
+        </div>
+        <div id="divManagePanel" class="easyui-accordion" style="width:auto;height:auto;">
+            <div class="clsManageOpt" title="用户管理" data-options="iconCls:'icon-ok'" style="overflow: auto; padding: 10px;">
+                <a class="clsManTreeOpt" src="/UserInfo/Index">用户管理</a>
+            </div>
+            <div class="clsManageOpt" title="权限管理" data-options="iconCls:'icon-ok'" style="overflow: auto; padding: 10px;">
+                <a class="clsManTreeOpt" src="/RoleInfo/Index">权限管理</a>
+            </div>
+        </div>
+
+
+    </div> <!----------------------------------左侧div结束---------------------------------->
+    <!----------------------------------右侧div开始---------------------------------->
+    <div data-options="region:'east',split:true,collapsed:true,title:'East'" style="width: 100px; padding: 10px;">
+
+
+    </div> <!----------------------------------右侧div结束---------------------------------->
+    <!----------------------------------尾部div开始---------------------------------->
+    <div data-options="region:'south',border:false" style="height: 50px; background: #A9FACD; padding: 10px;">
+
+
+    </div>    <!----------------------------------尾部div结束---------------------------------->
+    <!----------------------------------中部div结束---------------------------------->
+    <div data-options="region:'center',title:'Center'">
+        <div id="divTabPanel" class="easyui-tabs" data-options="tools:'#tab-tools'" fit="true">
+            <div title="用户管理" style="padding:10px">
+                <iframe src="/UserInfo/Index" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+            </div>
+        </div>
+    </div>
+    <!----------------------------------中部div结束---------------------------------->
+</body>
+
+</html>

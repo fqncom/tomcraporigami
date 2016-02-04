@@ -1,0 +1,412 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>角色管理</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script src="~/Scripts/MyAjaxForm.js"></script>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(function () {
+            loadData();
+            $("#divAddAction").css("display", "none");
+            $("#divEditAction").css("display", "none");
+            $("#divSetActionRole").css("display", "none");
+            // validateUserForm();//当页面加载完成以后，先给表单加上验证规则，当单击提交按钮时自动执行。
+            bindActionTypeEnumChange(); //判断用户是否选择了菜单权限，如果选择了，显示上传的按钮
+            bindFileUpEnvent();
+        });
+
+        function bindActionTypeEnumChange() {
+            $("#ActionTypeEnumChange").change(function () {
+                if ($(this).val() == "1") {
+                    $("#showTr").fadeIn("show");
+                } else {
+                    $("#showTr").fadeOut("show");
+                }
+            });
+        }
+
+        //上传文件
+        function bindFileUpEnvent() {
+            $("#btnUpload").click(function () {
+                if ($("#fileUpload").val() == "") {
+                    $.messager.alert("提示", "请选择上传文件", "error");
+                    return;
+                }
+                $("#formAddAction").ajaxSubmit({
+                    url: '/ActionInfo/fileUpload',
+                    type: "post",
+                    success: function (data) {
+                        var serverData = data.split(':');
+                        if (serverData[0] == "success") {
+                            $("#showImage").append("<img src='" + serverData[1] + "' width='40px' height='40px'/>");
+                            $("#hiddenIcon").val(serverData[1]); //将上传成功的图片路径保存在隐藏中。
+                        } else {
+                            $.messager.alert("提示", serverData[1], "error");
+                        }
+                    }
+                });
+            });
+        }
+
+        function loadData(pars) {
+            $('#tbActionInfo').datagrid({
+                url: '/Authority/GetActionInfoList',
+                title: '权限数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID', //主键列的列明
+                loadMsg: '正在加载权限的信息...',
+                pagination: true, //是否有分页
+                singleSelect: false, //是否单行选择
+                pageSize: 5, //页大小，一页多少条数据
+                pageNumber: 1, //当前页，默认的
+                pageList: [5, 10, 15],
+                queryParams: pars, //往后台传递参数
+                columns: [
+                    [
+//c.UserName, c.UserPass, c.Email, c.RegTime
+                        { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                        { field: 'ID', title: '编号', width: 80 },
+                        { field: 'ActionInfoName', title: '权限是名称', width: 120 },
+                        { field: 'Sort', title: '排序', width: 120 },
+                        { field: 'Url', title: '请求地址', width: 120 },
+                        { field: 'HttpMethod', title: '请求方式', width: 120 },
+                        {
+                            field: 'ActionTypeEnum',
+                            title: '权限类型',
+                            width: 120,
+                            formatter: function (value, row, index) {
+                                if (value == "1") {
+                                    return "菜单权限";
+                                } else {
+                                    return "普通权限";
+                                }
+
+                            }
+                        },
+                        { field: 'Remark', title: '备注', width: 120 },
+                        {
+                            field: 'SubTime',
+                            title: '时间',
+                            width: 80,
+                            align: 'right',
+                            formatter: function (value, row, index) {
+                                return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+                            }
+                        },
+                        {
+                            field: 'Operate',
+                            title: '操作',
+                            width: 80,
+                            align: 'right',
+                            formatter: function (value, row, index) {
+                                var str = "<a href='javascript:void(0)' class='deletes' ids='" + row.ID + "'>删除</a>";
+                                str = str + "&nbsp;&nbsp;<a href='javascript:void(0)' class='edits' ids='" + row.ID + "'>编辑</a>";
+                                return str;
+
+                            }
+                        }
+                    ]
+                ],
+                toolbar: [
+                    {
+                        id: 'btnDelete',
+                        text: '删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            deleteInfo();
+
+                        }
+                    }, {
+                        id: 'btnAdd',
+                        text: '添加',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            addInfo();
+
+                        }
+                    }, {
+                        id: 'btnEdit',
+                        text: '编辑',
+                        iconCls: 'icon-edit',
+                        handler: function () {
+                            editInfo();
+                        }
+                    }, {
+                        id: 'btnShowActionRoleInfo',
+                        text: '为权限指定角色',
+                        iconCls: 'icon-edit',
+                        handler: function () {
+                            ShowActionRoleInfo();
+                        }
+                    }
+                ],
+                onLoadSuccess: function () {
+                    $(".deletes").click(function () {
+                        alert($(this).atbActionInfor("ids"));
+                    });
+                }
+
+            });
+        }
+
+        //为权限指定角色
+        function ShowActionRoleInfo() {
+
+            var rows = $('#tbActionInfo').datagrid('getSelections'); //获取要编辑的数据.
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会设置角色数据吗?", "error");
+                return;
+            }
+            $("#setActionRoleFrame").attr("src", "/Authority/ShowActionRoleInfo/?actionId=" + rows[0].ID);
+            $("#divSetActionRole").css("display", "block");
+            $('#divSetActionRole').dialog({
+                title: '为权限设置角色',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [
+                    {
+                        text: 'Ok',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            //判断数据是否填写完整。
+                            //提交表单
+                            //$("#editForm").submit();
+                            var childWindow = $("#setActionRoleFrame")[0].contentWindow; //获取子窗体window对象
+                            childWindow.subForm(); //调用子窗体的方法
+                        }
+                    }, {
+                        text: 'Cancel',
+                        handler: function () {
+                            $('#divSetActionRole').dialog('close');
+                        }
+                    }
+                ]
+            });
+        }
+
+        //为权限分配完成角色后调用该方法
+        function afterSetActionRole() {
+            $('#divSetActionRole').dialog('close');
+        }
+
+        //添加数据
+        function addInfo() {
+            $("#divAddAction").css("display", "block");
+            $('#divAddAction').dialog({
+                title: '添加权限',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [
+                    {
+                        text: 'Ok',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            //判断数据是否填写完整。
+                            //提交表单
+                            $("#formAddAction").submit();
+                        }
+                    }, {
+                        text: 'Cancel',
+                        handler: function () {
+                            $('#divAddAction').dialog('close');
+                        }
+                    }
+                ]
+            });
+        }
+
+        //添加完成以后执行该方法。
+        function afterAdd(data) {
+            if (data == "success") {
+                $("#formAddAction input").val("");
+                $('#divAddAction').dialog('close');
+                $('#tbActionInfo').datagrid('reload'); //加载但是在当前页面
+                ActionSuccess();
+
+            } else {
+                ActionFailed();
+            }
+        }
+
+        //修改
+        function editInfo() {
+            var rows = $('#tbActionInfo').datagrid('getSelections'); //获取要编辑的数据.
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会修改数据吗?", "error");
+                return;
+            }
+            //先给iframe的src赋值.
+            $("#editFrame").attr("src", "/Authority/ShowActionInfo?id=" + rows[0].ID);
+            $("#divEditAction").css("display", "block");
+            $('#divEditAction').dialog({
+                title: '编辑权限',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [
+                    {
+                        text: 'Ok',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            //判断数据是否填写完整。
+                            //提交表单
+                            //$("#editForm").submit();
+                            var childWindow = $("#editFrame")[0].contentWindow; //获取子窗体window对象
+                            childWindow.subForm(); //调用子窗体的方法
+                        }
+                    }, {
+                        text: 'Cancel',
+                        handler: function () {
+                            $('#divEditAction').dialog('close');
+                        }
+                    }
+                ]
+            });
+
+        }
+
+        //更新完成后调用该方法
+        function afterEdit(data) {
+            if (data == "success") {
+                $('#divEditAction').dialog('close');
+                $('#tbActionInfo').datagrid('reload'); //加载但是在当前页面
+                ActionSuccess();
+            } else {
+                ActionFailed();
+            }
+
+        }
+
+        //操作成功
+        function ActionSuccess() {
+            $.messager.show({
+                title: '操作信息',
+                msg: '操作成功',
+                showType: 'show'
+            });
+        }
+
+        //操作失败
+        function ActionFailed() {
+            $.messager.show({
+                title: '操作信息',
+                msg: '操作失败',
+                showType: 'show'
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <table id="tbActionInfo" style="width: 700px;" title="标题，可以使用代码进行初始化，也可以使用这种属性的方式" iconcls="icon-edit"></table>
+    </div>
+    <!-------------------------添加数据------------------------------>
+    <div id="divAddAction">
+        @using (Ajax.BeginForm("AddActionInfo", "Authority", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "formAddAction" }))
+        {
+            <table>
+                <tr>
+                    <td>权限名称</td>
+                    <td>
+                        <input type="text" name="ActionInfoName" />
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Url</td>
+                    <td>
+                        <input type="text" name="Url" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>HttpMethod</td>
+                    <td>
+                        <select name="HttpMethod">
+                            <option value="GET">GET</option>
+                            <option value="POST">POST</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td>权限类型</td>
+                    <td>
+
+                        <select name="ActionTypeEnum" id="ActionTypeEnumChange">
+                            <option value="0">普通权限</option>
+                            <option value="1">菜单权限</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr style="display:none" id="showTr">
+                    <td>菜单图标</td>
+                    <td>
+                        <input type="hidden" name="MenuIcon" id="hiddenIcon" />
+                        <input type="file" name="fileIconUp" id="fileUpload" />
+                        <input type="button" value="上传文件" id="btnUpload" />
+                        <div id="showImage"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>备注</td>
+                    <td>
+                        <input type="text" name="Remark" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>排序</td>
+                    <td>
+                        <input type="text" name="Sort" />
+                    </td>
+                </tr>
+            </table>
+
+        }
+    </div>
+    <!-------------------------添加数据完成------------------------------>
+    <!-------------------------修改数据------------------------------>
+    <div id="divEditAction">
+        <iframe id="editFrame" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+
+    <!-------------------------修改数据完成------------------------------>
+    <!-------------------------为权限指定角色数据------------------------------>
+
+    <div id="divSetActionRole">
+
+        <iframe id="setActionRoleFrame" frameborder="0" scrolling="no" width="100%" height="100%"></iframe>
+    </div>
+
+
+    <!-------------------------为权限指定角色数据------------------------------>
+</body>
+</html>

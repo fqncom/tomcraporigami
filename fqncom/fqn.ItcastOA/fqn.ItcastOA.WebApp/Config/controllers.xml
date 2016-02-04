@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.UserInfoController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="UserInfoBll" ref="IUserInfoBll"/>
+    <property name="RoleInfoBll" ref="IRoleInfoBll"/>
+    <property name="ActionInfoBll" ref="IActionInfoBll"/>
+    <property name="R_UserInfo_ActionInfoBll" ref="IR_UserInfo_ActionInfoBll"/>
+
+  </object>
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.LoginController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="UserInfoBll" ref="IUserInfoBll"/>
+  </object>
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.RoleInfoController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="RoleInfoBll" ref="IRoleInfoBll"/>
+  </object>
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.AuthorityController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="ActionInfoBll" ref="IActionInfoBll"/>
+    <property name="RoleInfoBll" ref="IRoleInfoBll"/>
+  </object>
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.ManagerController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="UserInfoBll" ref="IUserInfoBll"/>
+  </object>
+
+  <object type="fqn.ItcastOA.WebApp.Controllers.SearchController, fqn.ItcastOA.WebApp" singleton="false" >
+    <!--是否单例模式-->
+    <property name="BooksBll" ref="IBooksBll"/>
+    <property name="SearchDetailsBll" ref="ISearchDetailsBll"/>
+    <property name="KeyWordsRankBll" ref="IKeyWordsRankBll"/>
+
+
+
+  </object>
+
+
+  <!--<object type="Spring.Mvc4QuickStart.Controllers.SuffixController, Spring.Mvc4QuickStart" singleton="false" >
+    <property name="Suffix" value="_Spring.NET_was_Here!" />
+  </object>
+
+  <object type="Spring.Mvc4QuickStart.Controllers.OdataController, Spring.Mvc4QuickStart" singleton="false" />-->
+
+
+  <!--intentionally do NOT register the AccountController or the ValuesController with the container; demonstrates that the underlying
+  default controller factory will properly (attempt to!) resolve all controllers not registered with Spring.NET
+  using its default controller resolution behavoir-->
+  <!--<object type="Spring.Mvc4QuickStart.Controllers.AccountController, Spring.Mvc4QuickStart" singleton="false" />-->
+  <!--<object type="Spring.Mvc4QuickStart.Controllers.ValuesController, Spring.Mvc4QuickStart" singleton="false" />-->
+</objects>

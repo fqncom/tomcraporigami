@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="332c3ca824f549989471bc1690b9fa06" Name="关系图1">
+        <EntityTypeShape EntityType="OAModel.UserInfo" Width="1.5" PointX="0.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OAModel.ActionInfo" Width="1.5" PointX="8.375" PointY="1.625" />
+        <EntityTypeShape EntityType="OAModel.Department" Width="1.5" PointX="4.25" PointY="0.5" />
+        <EntityTypeShape EntityType="OAModel.R_UserInfo_ActionInfo" Width="1.5" PointX="4.25" PointY="3.125" />
+        <EntityTypeShape EntityType="OAModel.RoleInfo" Width="1.5" PointX="4.25" PointY="5.375" />
+        <AssociationConnector Association="OAModel.FK_ActionInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="OAModel.FK_UserInfoR_UserInfo_ActionInfo" />
+        <AssociationConnector Association="OAModel.DepartmentActionInfo" />
+        <AssociationConnector Association="OAModel.RoleInfoActionInfo" />
+        <AssociationConnector Association="OAModel.UserInfoDepartment" />
+        <AssociationConnector Association="OAModel.UserInfoRoleInfo" />
+        <EntityTypeShape EntityType="OAModel.Books" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="OAModel.KeyWordsRank" Width="1.5" PointX="6.5" PointY="6.75" />
+        <EntityTypeShape EntityType="OAModel.SearchDetails" Width="1.5" PointX="8.5" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

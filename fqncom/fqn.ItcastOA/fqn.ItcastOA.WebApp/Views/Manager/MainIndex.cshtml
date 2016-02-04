@@ -1,0 +1,146 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Win7样式视图</title>
+    <link href="~/Content/lib/ligerUI/skins/Aqua/css/ligerui-all.css" rel="stylesheet" />
+    <link href="~/Content/lib/ligerUI/skins/ligerui-icons.css" rel="stylesheet" />
+    <link href="~/Content/MyCss/Win7Style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Content/lib/ligerUI/js/ligerui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#layout1").ligerLayout({
+                allowTopResize: false,
+                topHeight: 73
+            });
+        });
+
+    </script>
+
+
+</head>
+<body style="overflow: hidden; background: url(/Content/lib/images/applebg.jpg) no-repeat  center center;">
+
+    <div id="layout1">
+
+        <div position="center" title="标题" style="background: url(/Content/lib/images/applebg.jpg) no-repeat  center center;">
+
+            <div id="winlinks">
+                <ul></ul>
+            </div>
+
+        </div>
+
+        <div position="top" style="background-image:url(/Content/Images/bg3.png)">
+            <img src="~/Content/Images/logo.gif" style="float:left" />
+            <span class="txt">fqn_OA管理系统</span>
+            <span class="txt1"> <a href="/Manager/UserLogOut">注销</a> @ViewBag.Model.UName</span>
+        </div>
+
+    </div>
+
+    <div style="display: none;"></div>
+</body>
+<script type="text/javascript">
+    var LINKWIDTH = 90, LINKHEIGHT = 90, TASKBARHEIGHT = 43;
+    var winlinksul = $("#winlinks ul");
+    function f_open(url, title, icon) {
+        var win = $.ligerDialog.open(
+        {
+            height: 550, url: url, width: 750, showMax: true, showToggle: true, showMin: true, isResize: true, modal: true, title: title, slide: false, buttons: [
+              {
+                  text: '确定', onclick: function (item, Dialog, index) {
+                      win.hide();
+                  }
+              }
+            ]
+        });
+        var task = jQuery.ligerui.win.tasks[win.id];
+        if (task) {
+            $(".l-taskbar-task-icon:first", task).html('<img src="' + icon + '" />');
+        }
+        return win;
+    }
+    var links = [
+            //从后台数据库读取信息放入数组
+            //{ icon: '/Content/lib/images/3DSMAX.png', title: '用户管理', url: '/UserInfo/Index' },
+            //{ icon: '/Content/lib/images/3DSMAX.png', title: '角色管理', url: '/RoleInfo/Index' },
+            //{ icon: '/Content/lib/images/3DSMAX.png', title: '权限管理', url: '/Authority/Index' },
+            //{ icon: 'images/Program Files Folder.png', title: '固定列', url: '../grid/frozen/frozengrid.htm' },
+            //{ icon: 'images/Program Files Folder.png', title: '可拖动', url: '../base/drag.htm' },
+            //{ icon: 'images/Alien Folder.png', title: '树', url: '../tree/draggable.htm' },
+            //{ icon: 'images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+            //{ icon: 'images/Xp-G5 006.png', title: '下拉框', url: '../comboBox/comboBoxGrid.htm' },
+            //{ icon: 'images/Alien Folder.png', title: 'layout', url: '../layout/layoutFullHeight.htm' },
+            //{ icon: 'images/Alien Folder.png', title: 'menu', url: '../menu/menubar.htm' },
+            //{ icon: 'images/Xp-G5 006.png', title: 'tab', url: '../tab/tabHtml.htm' },
+            //{ icon: 'images/3DSMAX.png', title: '分组', url: '../grid/groupable/checkbox.htm' }
+    ];
+
+    function onResize() {
+        var linksHeight = $(window).height() - TASKBARHEIGHT - 85;
+        var winlinks = $("#winlinks");
+        winlinks.height(linksHeight);
+        var colMaxNumber = parseInt(linksHeight / LINKHEIGHT);//一列最多显示几个快捷方式
+        for (var i = 0, l = links.length; i < l; i++) {
+            var link = links[i];
+            var jlink = $("li[linkindex=" + i + "]", winlinks);
+            var top = (i % colMaxNumber) * LINKHEIGHT, left = parseInt(i / colMaxNumber) * LINKWIDTH;
+            if (isNaN(top) || isNaN(left)) continue;
+            jlink.css({ top: top, left: left });
+        }
+
+    }
+    //将数组中的所有的元素放在<li>中并且追加到body中的<div id="winlinks">，决定了桌面上显示的内容。
+    function linksInit() {
+        for (var i = 0, l = links.length; i < l; i++) {
+            var link = links[i];
+            var jlink;
+            var jlink = $("<li></li>");
+            jlink.attr("linkindex", i);
+            jlink.append("<img src='" + link.icon + "' />");
+            jlink.append("<span>" + link.title + "</span>");
+            jlink.append("<div class='bg'></div>");
+            jlink.hover(function () {
+                $(this).addClass("l-over");
+            }, function () {
+                $(this).removeClass("l-over");
+            }).click(function () {
+                var linkindex = $(this).attr("linkindex");
+                var link = links[linkindex];
+                f_open(link.url, link.title, link.icon);
+            });
+            jlink.appendTo(winlinksul);
+        }
+
+    }
+
+    $(window).resize(onResize);
+    $.ligerui.win.removeTaskbar = function () { }; //不允许移除
+    $.ligerui.win.createTaskbar(); //页面加载时创建任务栏
+
+    $.getJSON(
+        '/Manager/LoadUserAction',
+        {
+
+        },
+        function (data) {
+            links = data;
+            linksInit();
+            onResize();
+        }
+        );
+
+    
+
+</script>
+
+
+
+</html>

@@ -1,0 +1,65 @@
+﻿@using fqn.ItcastOA.Model
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditR_UserRoleInfo</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+    <script>
+        $(function() {
+
+        });
+
+        function SubmitForm() {
+            $('#formEditR_UserRoleInfo').submit();
+        }
+
+        function EditUserRoleInfoSuccess() {
+            window.parent.EditUserRoleInfoSuccess();
+        }
+    </script>
+</head>
+
+<body>
+    <div>
+        为用户
+        @{
+            UserInfo userInfo = ViewBag.UserInfo;
+            <span style="font-size:14px;color:red"> @userInfo.UName</span>
+        }分配角色
+
+        @using (Ajax.BeginForm("EditRUserRoleInfo", "UserInfo", new { }, new AjaxOptions { HttpMethod = "post", OnSuccess = "EditUserRoleInfoSuccess" }, new { id = "formEditR_UserRoleInfo" }))
+        {
+            List<RoleInfo> roleInfoList = ViewBag.RoleInfoList;
+            List<int> roleIdList = ViewBag.UserRoleIdList;
+
+            <input id="hidUserId" type="hidden" name="UserID" value="@userInfo.ID" />
+            <table>
+                <th>
+                    角色名：
+                </th>
+                <th>
+                    选中
+                </th>
+                @foreach (var roleInfo in roleInfoList)
+                {
+                    string checkStr = roleIdList.Contains(roleInfo.ID) ? "checked = 'checked'" : "";
+                    string chName = "ch_" + roleInfo.ID;
+                    <tr>
+                        <td>@roleInfo.RoleName</td>
+
+                        <td><input type="checkbox" name="@chName" value="" @checkStr /></td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</body>
+</html>

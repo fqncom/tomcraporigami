@@ -1,0 +1,470 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <script>
+        $(function () {
+            validateUserForm($("#formAddUserInfo"));
+            validateUserForm($("#formEditUserInfo"));
+            $('#divAddUserInfo').hide();
+            $('#formEditUserInfo').hide();
+            loadData();
+        });
+
+        //查询分页数据
+        function loadData(pars) {
+
+            $('#tbShowUserInfo').datagrid({
+                url: '/UserInfo/GetUserInfoList',
+                title: '用户数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID', //主键列的列名
+                loadMsg: '正在加载用户的信息...',
+                pagination: true, //是否有分页
+                singleSelect: false, //是否单行选择
+                pageSize: 5, //页大小，一页多少条数据
+                pageNumber: 1, //当前页，默认的
+                pageList: [5, 10, 15],
+                queryParams: pars, //往后台传递参数
+                columns: [
+                    [
+                        { field: 'ck', checkbox: true, align: 'left', width: 50 },
+                        { field: 'ID', title: '编号', width: 80 },
+                        { field: 'UName', title: '姓名', width: 120 },
+                        { field: 'UPwd', title: '密码', width: 120 },
+                        { field: 'Remark', title: '备注', width: 120 },
+                        {
+                            field: 'SubTime',
+                            title: '提交时间',
+                            width: 80,
+                            align: 'right',
+                            formatter: function (value, row, index) {
+                                return (eval(value.replace(/\/Date\((\d+)\)\//gi, 'new Date($1)'))).pattern('yyyy-M-d');
+                            }
+                        }
+                    ]
+                ],
+                toolbar: [
+                {
+                    id: 'btnAdd',
+                    text: '新增',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                        AddUserInfo();
+                    }
+                },
+                {
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+                        DeleteUserInfo();
+                    }
+                },
+                {
+                    id: 'btnEdit',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        EditUserInfo();
+                    }
+                },
+                {
+                    id: 'btnR_UserRoleInfo',
+                    text: '用户角色设置',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        EditR_UserInfo_RoleInfo();
+                    }
+                },
+                {
+                    id: 'btnShowUserActionInfo',
+                    text: '为用户分配权限',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        ShowUserActionInfo();
+                    }
+                },
+                {
+                    id: 'txtSearch',
+                    text: '搜索',
+                    //iconCls: 'icon-edit',
+                    handler: function () {
+                        SearchUserInfo();
+                    }
+                }
+                ]
+            });
+            $('#txtSearch').searchbox({//搜索框
+                searcher: function (value, name) {
+                    if (name == 'UName') {
+                        loadData({ UName: value });
+                    }
+                    if (name == 'Remark') {
+                        loadData({ Remark: value });
+                    }
+                },
+                menu: '#divSearchOptions',
+                prompt: '用户名 / 备注'
+            });
+        }
+        //显示用户特殊权限
+        function ShowUserActionInfo() {
+            var rows = $('#tbShowUserInfo').datagrid('getSelections');//获取要编辑的数据.
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会给用户分配权限数据吗?", "error");
+                return;
+            }
+            $("#frameSetUserAction").attr("src", "/UserInfo/ShowUserActionInfo/?userId=" + rows[0].ID);
+            $("#divShowUserAction").css("display", "block");
+            $('#divShowUserAction').dialog({
+                title: '给用户分配权限',
+                collapsible: true,
+                resizable: true,
+                width: 550,
+                height: 500,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //判断数据是否填写完整。
+                        //提交表单
+                        // $("#editForm").submit();
+                        var childWindow = $("#frameSetUserAction")[0].contentWindow;
+                        childWindow.subForm();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#divShowUserAction').dialog('close');
+                    }
+                }]
+            });
+        }
+
+        //设置用户角色
+        function EditR_UserInfo_RoleInfo() {
+            var rows = $('#tbShowUserInfo').datagrid('getSelections');
+            if (!rows || rows.length != 1) {
+                $.messager.alert('提醒', '请选择要编辑的用户!', 'error');
+                return;
+            }
+
+            //先清空
+            //$('#divEditR_UserRoleInfo').empty();
+            //再新增
+            $('#iframeR_User_RoleInfo').attr('src', '/UserInfo/GetRUserRoleInfo?id=' + rows[0].ID);
+
+            $('#divEditR_UserRoleInfo').show();
+            $('#divEditR_UserRoleInfo').dialog({
+                title: '用户角色编辑',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //调用子窗体的方法进行数据提交
+                        $('#iframeR_User_RoleInfo')[0].contentWindow.SubmitForm();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#divEditR_UserRoleInfo').dialog('close');
+                    }
+                }]
+            });
+        }
+
+        //设置用户角色成功后进行的操作
+        function EditUserRoleInfoSuccess() {
+            $('#divEditR_UserRoleInfo').dialog('close');
+        }
+
+        //搜索用户
+        function SearchUserInfo() {
+            var pars = {
+                UName: $('#txtSearch').val(),
+                Remark: $('#txtSearch').val()
+            };
+            loadData(pars);
+        }
+
+        //添加用户
+        function AddUserInfo() {
+            $('#divAddUserInfo').show();
+            $('#divAddUserInfo').dialog({
+                title: '添加用户',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //判断数据是否填写完整。
+                        //提交表单
+                        $("#formAddUserInfo").submit();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#divAddUserInfo').dialog('close');
+                    }
+                }]
+            });
+        }
+
+        //添加用户成功触发
+        function AddUserSuccess(data) {
+            $('#divAddUserInfo').dialog('close');
+            if (data == 'success') {
+                $('#formAddUserInfo input').val('');
+                ActionSuccess();
+                loadData();
+            } else {
+                ActionFailed();
+            }
+        }
+
+        //编辑用户
+        function EditUserInfo() {
+            var rows = $('#tbShowUserInfo').datagrid('getSelections');
+            if (!rows || rows.length != 1) {
+                $.messager.alert('提醒', '一次只能更新一条数据!', 'error');
+                return;
+            } else {
+                LoadUserInfoById(rows[0].ID);
+                $('#formEditUserInfo').show();
+            }
+        }
+
+        //编辑用户成功
+        function EditUserSuccess(data) {
+            $('#divEditUserInfo').dialog('close');
+            if (data == 'success') {
+                //$('#formEditUserInfo input').val('');
+                ActionSuccess();
+                $('#tbShowUserInfo').datagrid('reload');
+            } else {
+                ActionFailed();
+            }
+        }
+
+        //加载单独一个用户
+        function LoadUserInfoById(id) {
+            $.post(
+                'GetUserInfo',
+                {
+                    Id: id
+                },
+                function (data) {
+                    if (data != 'failed') {
+                        $('#hidId').val(data.ID);
+                        $('#hidSubTime').val(ChangeDateFormat(data.SubTime));
+                        $('#txtName').val(data.UName);
+                        $('#txtPwd').val(data.UPwd);
+                        $('#txtRemark').val(data.Remark);
+                        $('#txtSort').val(data.Sort);
+                        $('#divEditUserInfo').show();
+                        $('#divEditUserInfo').dialog({
+                            title: '编辑用户',
+                            collapsible: true,
+                            resizable: true,
+                            width: 350,
+                            height: 300,
+                            modal: true,
+                            buttons: [{
+                                text: 'Ok',
+                                iconCls: 'icon-ok',
+                                handler: function () {
+                                    //判断数据是否填写完整。
+                                    //提交表单
+                                    $("#formEditUserInfo").submit();
+                                }
+                            }, {
+                                text: 'Cancel',
+                                handler: function () {
+                                    $('#divEditUserInfo').dialog('close');
+                                }
+                            }]
+                        });
+                    } else {
+                        ActionFailed();
+                    }
+                });
+        }
+
+        //删除用户
+        function DeleteUserInfo() {
+            var rows = $('#tbShowUserInfo').datagrid('getSelections');
+            if (!rows || rows.length == 0) {
+                $.messager.alert('提醒', '请选择要删除的记录!', 'error');
+                return;
+            } else {
+                $.messager.confirm('提示', '确认要删除当前选中的用户吗？', function (flag) {
+                    if (flag) {
+                        var deleteId = '';
+                        for (var i = 0; i < rows.length; i++) {
+                            deleteId += rows[i].ID + ','
+                        }
+                        ConfirmDeleteUserInfo(deleteId);
+                        $('#tbShowUserInfo').datagrid('clearSelections'); //清除已选择的项目
+                    }
+                });
+            }
+        }
+
+        //确认删除用户数据
+        function ConfirmDeleteUserInfo(deleteId) {
+            $.post(
+                'DeleteUserInfo',
+                {
+                    DeleteId: deleteId
+                },
+                function (data) {
+                    if (data == 'success') {
+                        ActionSuccess();
+                        $('#tbShowUserInfo').datagrid('reload');
+                    } else {
+                        ActionFailed();
+                    }
+                });
+        }
+
+        //操作成功
+        function ActionSuccess() {
+            $.messager.show({
+                title: '操作信息',
+                msg: '操作成功',
+                showType: 'show'
+            });
+        }
+
+        //操作失败
+        function ActionFailed() {
+            $.messager.show({
+                title: '操作信息',
+                msg: '操作失败',
+                showType: 'show'
+            });
+        }
+
+        //校验用户表单
+        function validateUserForm($formObject) {
+
+            $formObject.validate({
+                rules: {//表示验证规则
+                    UName: "required",
+                    UPwd: {
+                        required: true
+                    },
+                    Remark: {
+                        required: true
+                    },
+                    Sort: {
+                        required: true
+                    }
+                },
+                messages: {
+                    UName: "请输入用户名",
+                    UPwd: {
+                        required: "请输入密码"
+                    },
+                    Remark: {
+                        required: "请输入备注"
+
+                    },
+                    Sort: {
+                        required: "请输入排序"
+
+                    }
+                }
+            });
+        }
+
+        //将序列化成json格式后日期(毫秒数)转成日期格式
+        function ChangeDateFormat(cellval) {
+            var date = new Date(parseInt(cellval.replace("/Date(", "").replace(")/", ""), 10));
+            var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
+            var currentDate = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
+            return date.getFullYear() + "-" + month + "-" + currentDate;
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <table id="tbShowUserInfo"></table>
+    </div>
+
+
+    <!----------------------------用户添加模块--------------------->
+    <div id="divAddUserInfo">
+        @using (Ajax.BeginForm("AddUserInfo", "UserInfo", new { }, new AjaxOptions { HttpMethod = "post", OnSuccess = "AddUserSuccess" }, new { id = "formAddUserInfo" }))
+        {
+            <table>
+                <tr><td>用户姓名：</td><td><input type="text" name="UName" value="" /></td></tr>
+                <tr><td>用户密码：</td><td><input type="text" name="UPwd" value="" /></td></tr>
+                <tr><td>用户备注：</td><td><input type="text" name="Remark" value="" /></td></tr>
+                <tr><td>用户排序：</td><td><input type="text" name="Sort" value="" /></td></tr>
+            </table>
+        }
+    </div>
+    <!----------------------------用户添加模块--------------------->
+    <!----------------------------用户编辑模块--------------------->
+    <div id="divEditUserInfo">
+        @using (Ajax.BeginForm("EditUserInfo", "UserInfo", new { }, new AjaxOptions { HttpMethod = "post", OnSuccess = "EditUserSuccess" }, new { id = "formEditUserInfo" }))
+        {
+            <input id="hidId" type="hidden" name="ID" value="" />
+            <input id="hidSubTime" type="hidden" name="SubTime" value="" />
+            <table>
+                <tr><td>用户姓名：</td><td><input id="txtName" type="text" name="UName" value="" /></td></tr>
+                <tr><td>用户密码：</td><td><input id="txtPwd" type="text" name="UPwd" value="" /></td></tr>
+                <tr><td>用户备注：</td><td><input id="txtRemark" type="text" name="Remark" value="" /></td></tr>
+                <tr><td>用户排序：</td><td><input id="txtSort" type="text" name="Sort" value="" /></td></tr>
+            </table>
+        }
+    </div>
+    <!----------------------------用户编辑模块--------------------->
+    <!----------------------------用户搜索模块--------------------->
+    <div id="divSearchOptions" style="width: 120px">
+        <div data-options="name:'UName',iconCls:'icon-ok'">用户名</div>
+        <div data-options="name:'Remark'">备注</div>
+    </div>
+    <!----------------------------用户搜索模块--------------------->
+    <div id="divEditR_UserRoleInfo">
+        <iframe id="iframeR_User_RoleInfo" src="" scrolling="auto" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+
+<!----------------------------用户权限设置模块--------------------->
+
+    <div id="divShowUserAction" style="overflow:hidden">
+        <iframe id="frameSetUserAction" frameborder="0" scrolling="auto" width="100%" height="100%"></iframe>
+    </div>
+<!----------------------------用户权限设置模块--------------------->
+</body>
+</html>

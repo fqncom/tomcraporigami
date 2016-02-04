@@ -1,0 +1,54 @@
+﻿@{
+    Layout = null;
+}
+@using fqn.ItcastOA.Model
+@using fqn.ItcastOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为权限指定角色</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript">
+        function subForm() {
+            $("#setActionRoleForm").submit();
+        }
+        function afterSet() {
+            window.parent.afterSetActionRole();
+        }
+    </script>
+</head>
+<body>
+    <div>
+        为权限@{
+            ActionInfo actionInfo = ViewBag.ActionInfo;
+            <span style="font-size:14px;color:red"> @actionInfo.ActionInfoName </span>
+        }权限分配角色
+
+        @using (Ajax.BeginForm("SetActionInfoRoleInfo", "Authority", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterSet" }, new { id = "setActionRoleForm" }))
+        {
+
+            <input type="hidden" name="hiddenActionId" value="@actionInfo.ID" />
+            List<RoleInfo> AllRoleInfoList = ViewBag.RoleInfoList;
+            List<int> AllRoleIdList = ViewBag.RoleIdList;
+            foreach (RoleInfo roleInfo in AllRoleInfoList)
+            {
+                string checkName = "cba_" + roleInfo.ID;
+                //string chStr = AllRoleIdList.Contains(roleInfo.ID) ? "'checked'" : "";
+
+                if (AllRoleIdList.Contains(roleInfo.ID))
+                {
+                    <input type="checkbox" name="@checkName" checked="checked" value="@roleInfo.ID" />@roleInfo.RoleName
+                }
+                else
+                {
+                    <input type="checkbox" name="@checkName" value="@roleInfo.ID" />@roleInfo.RoleName
+                }
+
+            }
+        }
+    </div>
+</body>
+</html>

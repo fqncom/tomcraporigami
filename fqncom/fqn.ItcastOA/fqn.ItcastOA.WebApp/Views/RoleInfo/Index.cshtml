@@ -1,0 +1,213 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>角色管理</title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/datapattern.js"></script>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript">
+     $(function () {
+            loadData();
+         $("#divAddRoleInfo").hide();
+         $("#divEditRoleInfo").hide();
+         // validateUserForm();//当页面加载完成以后，先给表单加上验证规则，当单击提交按钮时自动执行。
+
+     });
+        function loadData(pars) {
+            $('#tbShowRoleInfo').datagrid({
+                url: '/RoleInfo/GetRoleInfoList',
+                title: '角色数据表格',
+                width: 700,
+                height: 400,
+                fitColumns: true, //列自适应
+                nowrap: false,
+                idField: 'ID',//主键列的列明
+                loadMsg: '正在加载角色的信息...',
+                pagination: true,//是否有分页
+                singleSelect: false,//是否单行选择
+                pageSize: 5,//页大小，一页多少条数据
+                pageNumber: 1,//当前页，默认的
+                pageList: [5, 10,15],
+                queryParams: pars,//往后台传递参数
+                columns: [[//c.UserName, c.UserPass, c.Email, c.RegTime
+                    { field: 'ck', checkbox: true, align: 'left', width: 50 },
+					{ field: 'ID', title: '编号', width: 80 },
+					{ field: 'RName', title: '角色名称', width: 120 },
+                     { field: 'Sort', title: '排序', width: 120 },
+                      { field: 'Remark', title: '备注', width: 120 },
+					{
+					    field: 'SubTime', title: '时间', width: 80, align: 'right',
+					    formatter: function (value, row, index) {
+					        return (eval(value.replace(/\/Date\((\d+)\)\//gi, "new Date($1)"))).pattern("yyyy-M-d");
+					    }
+					}
+                ]],
+                toolbar: [{
+                    id: 'btnDelete',
+                    text: '删除',
+                    iconCls: 'icon-remove',
+                    handler: function () {
+                        deleteInfo();
+
+                    }
+                }, {
+                    id: 'btnAdd',
+                    text: '添加',
+                    iconCls: 'icon-add',
+                    handler: function () {
+                       addInfo();
+
+                    }
+                }, {
+                    id: 'btnEdit',
+                    text: '编辑',
+                    iconCls: 'icon-edit',
+                    handler: function () {
+                        editInfo();
+                    }
+                }],
+            });
+        }
+
+        //添加数据
+        function addInfo() {
+            $("#divAddRoleInfo").css("display", "block");
+            $('#divAddRoleInfo').dialog({
+                title: '添加角色',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //判断数据是否填写完整。
+                        //提交表单
+                        $("#addForm").submit();
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#divAddRoleInfo').dialog('close');
+                    }
+                }]
+            });
+        }
+        //添加完成以后执行该方法。
+        function afterAdd(data) {
+            if (data == "success") {
+                $("#addForm input").val("");
+                $('#divAddRoleInfo').dialog('close');
+                $('#tbShowRoleInfo').datagrid('reload');//加载但是在当前页面
+                $.messager.show({
+                    title: '添加角色',
+                    msg: '添加角色成功!!',
+                    showType: 'show'
+                });
+
+            } else {
+                $.messager.show({
+                    title: '添加角色',
+                    msg: '添加角色失败!!',
+                    showType: 'show'
+                });
+            }
+        }
+        //修改
+        function editInfo() {
+            var rows = $('#tbShowRoleInfo').datagrid('getSelections');//获取要编辑的数据.
+            if (rows.length != 1) {
+                $.messager.alert("提示", "你会修改数据吗?", "error");
+                return;
+            }
+            //先给iframe的src赋值.
+            $("#editFrame").attr("src","/RoleInfo/ShowRoleInfo?id="+rows[0].ID);
+            $("#divEditRoleInfo").css("display", "block");
+            $('#divEditRoleInfo').dialog({
+                title: '编辑角色',
+                collapsible: true,
+                resizable: true,
+                width: 350,
+                height: 300,
+                modal: true,
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        //判断数据是否填写完整。
+                        //提交表单
+                        //$("#editForm").submit();
+                        var childWindow = $("#editFrame")[0].contentWindow;
+                        childWindow.subForm();//调用子窗体的方法
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#divEditRoleInfo').dialog('close');
+                    }
+                }]
+            });
+
+        }
+        //更新完成后调用该方法
+        function afterEdit(data) {
+            if (data == "success") {
+                $('#divEditRoleInfo').dialog('close');
+                $('#tbShowRoleInfo').datagrid('reload');//加载但是在当前页面
+                $.messager.show({
+                    title: '编辑角色',
+                    msg: '修改角色成功!!',
+                    showType: 'show'
+                });
+            } else {
+                $.messager.show({
+                    title: '编辑角色',
+                    msg: '修改角色失败!!',
+                    showType: 'show'
+                });
+            }
+
+        }
+
+    </script>
+</head>
+<body>
+    <div>
+        <table id="tbShowRoleInfo" style="width: 700px;" title="标题，可以使用代码进行初始化，也可以使用这种属性的方式" iconcls="icon-edit"></table>
+    </div>
+    <!-------------------------添加数据------------------------------>
+    <div id="divAddRoleInfo">
+        @using (Ajax.BeginForm("AddRoleInfo", "RoleInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterAdd" }, new { id = "addForm" }))
+        {
+            <table>
+                <tr><td>角色名称</td><td><input type="text" name="RoleName" /></td></tr>
+                <tr><td>备注</td><td><input type="text" name="Remark" /></td></tr>
+                <tr><td>排序</td><td><input type="text" name="Sort" /></td></tr>
+            </table>
+
+        }
+    </div>
+    <!-------------------------添加数据完成------------------------------>
+    <!-------------------------修改数据------------------------------>
+    <div id="divEditRoleInfo">
+        <iframe id="editFrame" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+
+    <!-------------------------修改数据完成------------------------------>
+
+
+</body>
+</html>

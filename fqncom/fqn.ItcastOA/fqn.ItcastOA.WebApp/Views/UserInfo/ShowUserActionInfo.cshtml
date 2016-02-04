@@ -1,0 +1,121 @@
+﻿@{
+    Layout = null;
+}
+@using fqn.ItcastOA.Model
+@using fqn.ItcastOA.Model
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>为用户分配权限</title>
+    <link href="~/Content/tableStyle.css" rel="stylesheet" />
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.easyui.min.js"></script>
+    <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+    <div>
+        为用户 @{
+            UserInfo userInfo = ViewBag.UserInfo;
+            <span style="font-size:14px;color:red"> @userInfo.UName</span>
+        }分配权限
+
+        @using (Ajax.BeginForm("SetUserInfoActionInfo", "UserInfo", new { }, new AjaxOptions() { HttpMethod = "post", OnSuccess = "afterSet" }, new { id = "setUserAction" }))
+        {
+            List<ActionInfo> actionInfoList = ViewBag.ActionInfoList;
+            List<R_UserInfo_ActionInfo> userInfoActionInfoList = ViewBag.UserActionInfoList;
+            <table>
+                <tr>
+                    <th>权限编号</th>
+                    <th>权限名称</th>
+                    <th>地址</th>
+                    <th>请求方式</th>
+                    <th>操作</th>
+                </tr>
+                @foreach (var actionInfo in actionInfoList)
+                {
+                    var rb_name = "cba_" + actionInfo.ID;
+                    var norb_name = "nocba_" + actionInfo.ID;
+
+                    string allowStr = "";
+                    string disallowStr = "";
+                    var isExt = (from a in userInfoActionInfoList
+                                 where a.ActionInfoID == actionInfo.ID
+                                 select a).FirstOrDefault();
+                    if (isExt != null)//表示用户有权限
+                    {
+                        allowStr = isExt.IsPass == true ? "checked='checked'" : "";
+                        disallowStr = isExt.IsPass == false ? "checked='checked'" : "";
+                    }
+                    <tr>
+                        <td>@actionInfo.ID</td>
+                        <td>@actionInfo.ActionInfoName</td>
+                        <td>@actionInfo.Url</td>
+                        <td>@actionInfo.HttpMethod</td>
+                        <td>
+                            <label for="@rb_name">
+                                允许
+                            </label>
+                            <input type="radio" name="@rb_name" id="@rb_name" value="true" class="setactions" ids="@actionInfo.ID" @allowStr />
+                            <label for="@norb_name">拒绝</label>
+                            <input type="radio" name="@rb_name" id="@norb_name" value="false" class="setactions" ids="@actionInfo.ID" @disallowStr />
+                            <input type="button" value="清除" class="btnClear" ids="@actionInfo.ID" />
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        }
+
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $(".setactions").click(function () {
+            var $control = $(this);
+            $.post("/UserInfo/SetUserInfoActionInfo", {"userId":@userInfo.ID ,"actionId":$control.attr("ids"),"IsPass":$control.val()}, function (data) {
+                if(data=="success"){
+                    $.messager.show({
+                        title: '设置权限',
+                        msg: '用户设置权限成功!!',
+                        showType: 'show'
+                    });
+                }else{
+                    $.messager.show({
+                        title: '设置权限',
+                        msg: '用户设置权限失败!!',
+                        showType: 'show'
+                    });
+                }
+            });
+        });
+
+        $(".btnClear").click(function(){
+            var $control = $(this);
+            $.post("/UserInfo/ClearUserActionInfo",{"userId":@userInfo.ID ,"actionId":$control.attr("ids")},function(data){
+                if(data=="success"){
+                    $control.parent().find(".setactions").removeAttr("checked");
+                    $.messager.show({
+                        title: '清除权限',
+                        msg: '清除权限成功!!',
+                        showType: 'show'
+                    });
+                }else{
+                    $.messager.show({
+                        title: '清除权限',
+                        msg: '清除权限失败!!',
+                        showType: 'show'
+                    });
+                }
+            });
+        });
+    });
+
+
+
+</script>

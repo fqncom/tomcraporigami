@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<objects>
+
+
+  <object name="IUserInfoBll" type="fqn.ItcastOA.Bll.UserInfoBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+  <object name="IRoleInfoBll" type="fqn.ItcastOA.Bll.RoleInfoBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+  <object name="IActionInfoBll" type="fqn.ItcastOA.Bll.ActionInfoBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+  <object name="IR_UserInfo_ActionInfoBll" type="fqn.ItcastOA.Bll.R_UserInfo_ActionInfoBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+
+  <object name="IBooksBll" type="fqn.ItcastOA.Bll.BooksBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+  <object name="ISearchDetailsBll" type="fqn.ItcastOA.Bll.SearchDetailsBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+  <object name="IKeyWordsRankBll" type="fqn.ItcastOA.Bll.KeyWordsRankBll, fqn.ItcastOA.Bll" singleton="false" >
+    <!--是否单例模式-->
+
+  </object>
+
+
+
+</objects>
